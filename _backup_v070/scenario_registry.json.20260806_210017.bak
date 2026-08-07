@@ -1,0 +1,23 @@
+{
+  "version": "0.6.0-alpha",
+  "scenarios": [
+    {
+      "file": "house_fire_001.json",
+      "name": "Vivienda unifamiliar",
+      "status": "active",
+      "module": "Operaciones en Incendios Estructurales"
+    },
+    {
+      "file": "warehouse_fire_001.json",
+      "name": "Depósito industrial",
+      "status": "preview",
+      "module": "Operaciones en Incendios Estructurales"
+    },
+    {
+      "file": "highrise_fire_001.json",
+      "name": "Edificio en altura",
+      "status": "preview",
+      "module": "Operaciones en Incendios Estructurales"
+    }
+  ]
+}

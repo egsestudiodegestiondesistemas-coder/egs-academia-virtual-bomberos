@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "module_id": "RV-001",
+    "module_name": "Rescate Vehicular",
+    "version": "0.7.0-alpha",
+    "source_ids": [
+      "SRC-RV-N1-CCP"
+    ],
+    "status": "activo"
+  },
+  "sections": [
+    {
+      "title": "Principios",
+      "summary": "El rescate vehicular Nivel I comienza con evaluación de escena, seguridad, comprensión de la estructura vehicular y criterios orientados a la víctima."
+    },
+    {
+      "title": "Escena dinámica",
+      "summary": "Tránsito, fuego, fugas, inestabilidad, clima, tecnología y terceros pueden modificar los riesgos durante la intervención."
+    },
+    {
+      "title": "Reconocimiento",
+      "summary": "Se evalúan combustible, electricidad, estabilidad, tecnología, víctimas y carga antes de iniciar maniobras técnicas."
+    },
+    {
+      "title": "Estabilización",
+      "summary": "Busca evitar movimientos horizontales, verticales y de balanceo, creando un lugar de trabajo seguro."
+    },
+    {
+      "title": "Acceso y creación de espacio",
+      "summary": "El acceso inicial precede a la creación controlada de espacio para atención y liberación."
+    },
+    {
+      "title": "Extricación y extracción",
+      "summary": "Extricación es la liberación técnica; extracción es el retiro final del paciente hacia camilla o zona sanitaria."
+    },
+    {
+      "title": "Herramientas hidráulicas",
+      "summary": "Cortadora, separador y RAM permiten cortar, separar, empujar o desplazar estructuras según el plan de rescate."
+    },
+    {
+      "title": "Secuencia operativa",
+      "summary": "Observar, asegurar, estabilizar, acceder, planificar, crear espacio y extraer."
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué debe ocurrir antes de comenzar a cortar un vehículo?",
+      "source_id": "SRC-RV-N1-CCP",
+      "options": [
+        {
+          "text": "Evaluar y asegurar la escena, atender prioridades y estabilizar",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Cortar primero y evaluar después",
+          "score": -25,
+          "status": "critical_error"
+        },
+        {
+          "text": "Mover siempre el vehículo a una posición más cómoda",
+          "score": -25,
+          "status": "critical_error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué objetivo tiene la estabilización?",
+      "source_id": "SRC-RV-N1-CCP",
+      "options": [
+        {
+          "text": "Evitar movimientos que puedan agravar lesiones y crear una zona segura de trabajo",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Aumentar el movimiento del vehículo",
+          "score": -20,
+          "status": "error"
+        },
+        {
+          "text": "Sustituir la evaluación de la víctima",
+          "score": -20,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Cuál es la diferencia entre extricación y extracción?",
+      "source_id": "SRC-RV-N1-CCP",
+      "options": [
+        {
+          "text": "Extricación libera técnicamente; extracción retira finalmente al paciente",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Son exactamente lo mismo",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Extracción siempre ocurre antes que extricación",
+          "score": -20,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué secuencia resume el material de estudio de rescate vehicular?",
+      "source_id": "SRC-RV-N1-CCP",
+      "options": [
+        {
+          "text": "Observar - Asegurar - Estabilizar - Acceder - Planificar - Crear espacio - Extraer",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Cortar - Empujar - Mover - Evaluar",
+          "score": -25,
+          "status": "critical_error"
+        },
+        {
+          "text": "Extraer - Estabilizar - Reconocer",
+          "score": -20,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

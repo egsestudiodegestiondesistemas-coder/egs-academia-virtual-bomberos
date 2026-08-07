@@ -1,0 +1,41 @@
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pathlib import Path
+import json
+
+app=FastAPI(title="EGS FIRE ACADEMY API",version="0.5.0-alpha")
+app.add_middleware(CORSMiddleware,allow_origins=["*"],allow_credentials=True,allow_methods=["*"],allow_headers=["*"])
+BASE_DIR=Path(__file__).resolve().parent.parent
+KNOWLEDGE_DIR=BASE_DIR/"knowledge"
+SCENARIO_DIR=BASE_DIR/"scenarios"
+
+def load_json(path:Path):
+    if not path.exists():
+        raise HTTPException(status_code=404,detail=f"No existe: {path.name}")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+@app.get("/")
+def root():
+    return {"system":"EGS FIRE ACADEMY","status":"online","version":"0.5.0-alpha","developer":"Téc. Ambiental Yamila Vocos","location":"San Francisco, Córdoba, Argentina"}
+
+@app.get("/sources")
+def sources(): return load_json(KNOWLEDGE_DIR/"source_registry.json")
+
+@app.get("/doctrine/chemistry")
+def chemistry(): return load_json(KNOWLEDGE_DIR/"chemistry_training.json")
+
+@app.get("/doctrine/chemistry/training")
+def chemistry_training():
+    d=load_json(KNOWLEDGE_DIR/"chemistry_training.json")
+    return {"metadata":d["metadata"],"training":d["training"]}
+
+@app.get("/doctrine/structural-fire")
+def structural(): return load_json(KNOWLEDGE_DIR/"structural_fire_training.json")
+
+@app.get("/doctrine/structural-fire/training")
+def structural_training():
+    d=load_json(KNOWLEDGE_DIR/"structural_fire_training.json")
+    return {"metadata":d["metadata"],"training":d["training"]}
+
+@app.get("/scenarios")
+def scenarios(): return load_json(SCENARIO_DIR/"scenario_registry.json")

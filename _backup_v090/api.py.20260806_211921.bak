@@ -1,0 +1,64 @@
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pathlib import Path
+import json, random
+
+app = FastAPI(title="EGS | ACADEMIA VIRTUAL DE BOMBEROS API", version="0.8.0-alpha")
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+KNOWLEDGE_DIR = BASE_DIR / "knowledge"
+MODULE_DIR = KNOWLEDGE_DIR / "modules"
+SCENARIO_DIR = BASE_DIR / "scenarios"
+
+def load_json(path: Path):
+    if not path.exists():
+        raise HTTPException(status_code=404, detail=f"No existe: {path.name}")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+@app.get("/")
+def root():
+    return {"system":"EGS | ACADEMIA VIRTUAL DE BOMBEROS","status":"en línea","version":"0.8.0-alpha",
+            "developer":"Téc. Sup. en Gestión Ambiental Yamila Vocos","location":"San Francisco, Córdoba, Argentina"}
+
+@app.get("/academy/modules")
+def academy_modules():
+    return load_json(KNOWLEDGE_DIR / "academy_modules.json")
+
+@app.get("/academy/module/{module_id}")
+def academy_module(module_id: str):
+    return load_json(MODULE_DIR / f"{module_id}.json")
+
+@app.get("/academy/module/{module_id}/training")
+def academy_module_training(module_id: str, shuffle: bool = True):
+    data = academy_module(module_id)
+    training = data.get("training", [])
+    if shuffle:
+        training = training[:]
+        random.shuffle(training)
+    return {"metadata":data.get("metadata",{}),"training":training}
+
+@app.get("/academy/integral")
+def integral_exam(limit: int = 20):
+    catalog = load_json(KNOWLEDGE_DIR / "academy_modules.json")
+    questions = []
+    for mod in catalog.get("modules", []):
+        path = MODULE_DIR / f"{mod['id']}.json"
+        if path.exists():
+            data = load_json(path)
+            for q in data.get("training", []):
+                x = dict(q)
+                x["module_id"] = mod["id"]
+                x["module_name"] = mod["name"]
+                questions.append(x)
+    random.shuffle(questions)
+    return {"metadata":{"module_name":"Evaluación Integral BN1","version":"0.8.0-alpha"},
+            "training":questions[:max(1,min(limit,len(questions)))]}
+
+@app.get("/sources")
+def sources():
+    return load_json(KNOWLEDGE_DIR / "source_registry.json")
+
+@app.get("/scenarios")
+def scenarios():
+    return load_json(SCENARIO_DIR / "scenario_registry.json")

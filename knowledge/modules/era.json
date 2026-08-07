@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "module_id": "ERA-001",
+    "module_name": "Equipos de Respiración Autónoma",
+    "version": "0.9.0-alpha",
+    "status": "activo",
+    "source_ids": [
+      "SRC-DC-BN1-2022"
+    ]
+  },
+  "sections": [
+    {
+      "title": "Función",
+      "summary": "Proporcionar una fuente respirable independiente de la atmósfera del entorno durante operaciones que requieren protección respiratoria.",
+      "source_id": "SRC-DC-BN1-2022"
+    },
+    {
+      "title": "Formación BN1",
+      "summary": "El currículo incluye tipos, colocación, carga, inspección, uso, alistamiento y cuidado del ERA.",
+      "source_id": "SRC-DC-BN1-2022"
+    },
+    {
+      "title": "Inspección",
+      "summary": "La inspección previa forma parte del alistamiento y busca confirmar que el equipo esté en condiciones de uso.",
+      "source_id": "SRC-DC-BN1-2022"
+    },
+    {
+      "title": "Modelos del cuartel",
+      "summary": "Los parámetros específicos de modelos concretos deben mantenerse vinculados a sus manuales y procedimientos institucionales.",
+      "source_id": "SRC-DC-BN1-2022"
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué aspectos del ERA incluye expresamente la formación BN1?",
+      "source_id": "SRC-DC-BN1-2022",
+      "options": [
+        {
+          "text": "Tipos, colocación, carga, inspección y uso",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Solo color del cilindro",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Únicamente reparación electrónica",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿La inspección previa forma parte del alistamiento del ERA?",
+      "source_id": "SRC-DC-BN1-2022",
+      "options": [
+        {
+          "text": "Sí",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "No",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Solo si el equipo es nuevo",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

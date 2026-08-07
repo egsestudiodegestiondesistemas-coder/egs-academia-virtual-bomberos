@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EGS | Academia Virtual de Bomberos</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+<div><div class="brand">EGS | ACADEMIA VIRTUAL DE BOMBEROS</div><div class="subtitle">Centro de Investigación, Simulación y Entrenamiento Bomberil</div></div>
+<nav class="topnav"><button onclick="goHome()">Campus</button><button onclick="openAcademy()">Academia</button><button onclick="openSimulator()">Simulador 3D</button><button onclick="showSources()">Biblioteca</button></nav>
+<div class="status" id="apiStatus">ALFA 0.9 · CARGANDO</div>
+</header>
+
+<main>
+<section id="home" class="screen active">
+<p class="eyebrow">CAMPUS DE ENTRENAMIENTO BOMBERIL</p>
+<h1>Academia Virtual de Bomberos</h1>
+<p class="lead">Estudio, evaluación, simulación 3D y seguimiento del progreso con trazabilidad doctrinaria.</p>
+<div class="stats">
+<div><span>MÓDULOS</span><strong id="moduleCount">8</strong></div><div><span>EVALUACIONES</span><strong id="completedCount">0</strong></div><div><span>MEJOR PUNTAJE</span><strong id="bestScore">—</strong></div><div><span>INTENTOS</span><strong id="attemptCount">0</strong></div>
+</div>
+<div class="heroActions"><button class="primary" onclick="openAcademy()">IR A LA ACADEMIA</button><button class="secondary" onclick="startIntegral()">EVALUACIÓN INTEGRAL</button><button class="secondary" onclick="openSimulator()">SIMULADOR 3D</button></div>
+<div class="searchBox"><input id="globalSearch" placeholder="Buscar módulo o tema..." oninput="searchContent(this.value)"></div><div id="searchResults" class="grid"></div>
+</section>
+
+<section id="academy" class="screen">
+<button class="back" onclick="goHome()">← Campus principal</button><p class="eyebrow">PROGRAMA DE FORMACIÓN</p><h1>Academia</h1><div id="academyGrid" class="grid"></div>
+</section>
+
+<section id="module" class="screen">
+<button class="back" onclick="openAcademy()">← Academia</button><p class="eyebrow" id="moduleStatus">MÓDULO</p><h1 id="moduleTitle">Módulo</h1>
+<div class="moduleBar"><span id="moduleSourceCount">0 fuentes</span><span id="moduleQuestionCount">0 preguntas</span></div><div id="moduleSections" class="grid"></div><button id="moduleTrainingButton" class="primary">INICIAR EVALUACIÓN</button>
+</section>
+
+<section id="simulator" class="screen simulatorScreen">
+<div class="simTop">
+<div><button class="back" onclick="goHome()">← Campus principal</button><p class="eyebrow">SIMULADOR OPERACIONAL 3D</p><h1>Incendio en vivienda</h1></div>
+<div class="simTopActions"><select id="qualitySelect" onchange="setSimulatorQuality(this.value)"><option value="baja">Calidad baja</option><option value="media" selected>Calidad media</option><option value="alta">Calidad alta</option></select><button class="secondary" onclick="reset3DScenario()">REINICIAR</button></div>
+</div>
+
+<div class="simShell">
+<div class="simViewportWrap">
+<div id="sim3d"></div>
+<div class="simHUD topLeft"><span>TIEMPO</span><strong id="simClock">00:00</strong></div>
+<div class="simHUD topRight"><span>OBJETIVO</span><strong id="simObjective">Reconocimiento inicial</strong></div>
+<div class="crosshair">+</div>
+</div>
+
+<aside class="simPanel">
+<div class="panelSection"><span class="panelLabel">ESTADO DE ESCENA</span>
+<div class="meterRow"><span>Temperatura</span><strong id="simTemp">120 °C</strong></div>
+<div class="meterRow"><span>Humo</span><strong id="simSmoke">35 %</strong></div>
+<div class="meterRow"><span>Visibilidad</span><strong id="simVisibility">72 %</strong></div>
+<div class="meterRow"><span>Oxígeno</span><strong id="simOxygen">20.2 %</strong></div>
+</div>
+<div class="panelSection"><span class="panelLabel">ACCIONES</span>
+<button class="actionBtn" onclick="simAction('recognition')">Reconocimiento 360°</button>
+<button class="actionBtn" onclick="simAction('open_front')">Abrir puerta principal</button>
+<button class="actionBtn" onclick="simAction('open_window')">Abrir ventana frontal</button>
+<button class="actionBtn" onclick="simAction('cooling')">Aplicar enfriamiento</button>
+<button class="actionBtn" onclick="simAction('search')">Iniciar búsqueda</button>
+</div>
+<div class="panelSection"><span class="panelLabel">REGISTRO</span><div id="simLog" class="simLog"></div></div>
+<button class="primary full" onclick="finish3DSimulation()">FINALIZAR SIMULACIÓN</button>
+</aside>
+</div>
+<p class="simNotice">Simulación educativa 3D basada en reglas doctrinarias. No representa cálculo CFD ni predicción físico-científica certificada.</p>
+</section>
+
+<section id="sources" class="screen"><button class="back" onclick="goHome()">← Campus principal</button><p class="eyebrow">TRAZABILIDAD</p><h1>Biblioteca Doctrinaria</h1><div id="sourceList" class="grid"></div></section>
+
+<section id="training" class="screen">
+<div class="trainingHead"><div><p class="eyebrow">ENTRENAMIENTO ACTIVO</p><h1 id="trainingTitle">Entrenamiento</h1></div><div class="scoreMini">PUNTAJE<strong id="liveScore">100</strong></div></div>
+<div class="trainingLayout"><div class="scenarioPanel"><div class="telemetry"><div><span>TIEMPO</span><strong id="time">00:00</strong></div><div><span>PREGUNTA</span><strong id="stepCounter">1/1</strong></div><div><span>FUENTE</span><strong id="sourceBadge">—</strong></div></div><div class="sceneMock"><div class="smoke"></div><div class="structure"></div></div></div><aside class="decisionPanel"><span class="panelLabel">DECISIÓN / CONOCIMIENTO</span><h2 id="question">Cargando...</h2><div id="options"></div><div id="feedback"></div><button class="finish" onclick="finishTraining()">FINALIZAR</button></aside></div>
+</section>
+
+<section id="analysis" class="screen"><p class="eyebrow">INFORME POST ENTRENAMIENTO</p><h1>Análisis posterior</h1><div class="analysisTop"><div class="finalScore"><strong id="finalScore">100</strong><span>/100</span></div><div id="analysisSummary"></div></div><div id="decisionLog" class="report"></div><div class="heroActions"><button class="primary" onclick="goHome()">VOLVER AL CAMPUS</button><button class="secondary" onclick="exportResult()">EXPORTAR RESULTADO</button></div></section>
+</main>
+
+<footer><div><strong>EGS | Estudio de Gestión de Sistemas</strong><span>Academia Virtual de Bomberos</span></div><div class="credit"><span>Desarrollado por</span><strong>Téc. Sup. en Gestión Ambiental Yamila Vocos</strong><span>San Francisco, Córdoba · Argentina</span></div><div class="right"><span>Alfa 0.9 · 2026</span><span>Doctrina versionada y sujeta a revisión</span></div></footer>
+
+<script src="app.js"></script>
+<script type="module" src="simulator.js"></script>
+</body></html>

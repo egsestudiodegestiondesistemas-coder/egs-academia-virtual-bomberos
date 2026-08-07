@@ -1,0 +1,60 @@
+{
+    "id": "HOUSE_001",
+
+    "name": "Incendio de Vivienda Unifamiliar",
+
+    "module": "Operaciones en Incendios Estructurales",
+
+    "difficulty": "Básico",
+
+    "construction": {
+
+        "type": "Mampostería",
+
+        "floors": 1,
+
+        "rooms": 6
+
+    },
+
+    "fire": {
+
+        "origin": "Cocina",
+
+        "stage": "Desarrollo",
+
+        "ventilation": "Limitada"
+
+    },
+
+    "weather": {
+
+        "temperature": 18,
+
+        "wind": 10
+
+    },
+
+    "victims": [
+
+        {
+
+            "location": "Dormitorio",
+
+            "status": "Inconsciente"
+
+        }
+
+    ],
+
+    "objectives": [
+
+        "Reconocimiento 360",
+
+        "Rescate",
+
+        "Control del incendio"
+
+    ]
+
+}

@@ -1,0 +1,417 @@
+console.log("EGS 3D v0.9.3 cargado");
+
+import * as THREE from "./three.module.js";
+
+let scene, camera, renderer, container;
+let houseGroup, fireGroup, victim, door, windowPanel;
+let animationId = null;
+let running = false;
+let elapsed = 0;
+let lastTime = 0;
+let quality = "media";
+let smokeSprites = [];
+let state = {};
+
+const QUALITY = {
+  baja:  { particles: 100, pixelRatio: 1.0, shadows: false },
+  media: { particles: 220, pixelRatio: 1.1, shadows: true  },
+  alta:  { particles: 360, pixelRatio: 1.3, shadows: true  }
+};
+
+function resetState(){
+  state = {
+    temperature: 120,
+    smoke: 35,
+    visibility: 72,
+    oxygen: 20.2,
+    score: 100,
+    recognized: false,
+    doorOpen: false,
+    windowOpen: false,
+    cooled: false,
+    victimFound: false
+  };
+  elapsed = 0;
+}
+
+function el(id){ return document.getElementById(id); }
+
+function log(text){
+  const box = el("simLog");
+  if(!box) return;
+  const row = document.createElement("div");
+  row.textContent = `${formatTime(elapsed)} · ${text}`;
+  box.prepend(row);
+  while(box.children.length > 12) box.removeChild(box.lastChild);
+}
+
+function formatTime(sec){
+  const m = String(Math.floor(sec / 60)).padStart(2,"0");
+  const s = String(Math.floor(sec % 60)).padStart(2,"0");
+  return `${m}:${s}`;
+}
+
+function updateHUD(){
+  if(el("simClock")) el("simClock").textContent = formatTime(elapsed);
+  if(el("simTemp")) el("simTemp").textContent = `${Math.round(state.temperature)} °C`;
+  if(el("simSmoke")) el("simSmoke").textContent = `${Math.round(state.smoke)} %`;
+  if(el("simVisibility")) el("simVisibility").textContent = `${Math.round(state.visibility)} %`;
+  if(el("simOxygen")) el("simOxygen").textContent = `${state.oxygen.toFixed(1)} %`;
+
+  let objective = "Reconocimiento inicial";
+  if(state.recognized) objective = "Controlar accesos y ventilación";
+  if(state.cooled) objective = "Búsqueda primaria";
+  if(state.victimFound) objective = "Control y finalización";
+  if(el("simObjective")) el("simObjective").textContent = objective;
+}
+
+function material(color, roughness=.8){
+  return new THREE.MeshStandardMaterial({color, roughness});
+}
+
+function addBox(parent, size, pos, mat){
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(...size), mat);
+  mesh.position.set(...pos);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  parent.add(mesh);
+  return mesh;
+}
+
+function createHouse(){
+  houseGroup = new THREE.Group();
+  scene.add(houseGroup);
+
+  const wall = material(0xc8b8a2,.95);
+  const floor = material(0x4b4d4f,.98);
+  const wood = material(0x5a3b27,.9);
+  const dark = material(0x33363a,.9);
+
+  addBox(houseGroup,[12,.25,9],[0,0,0],floor);
+  addBox(houseGroup,[12,3.2,.22],[0,1.7,-4.4],wall);
+  addBox(houseGroup,[.22,3.2,9],[-5.9,1.7,0],wall);
+  addBox(houseGroup,[.22,3.2,9],[5.9,1.7,0],wall);
+
+  addBox(houseGroup,[3.6,3.2,.22],[-4.1,1.7,4.4],wall);
+  addBox(houseGroup,[2.1,3.2,.22],[-.7,1.7,4.4],wall);
+  addBox(houseGroup,[3.3,3.2,.22],[4.25,1.7,4.4],wall);
+
+  addBox(houseGroup,[.22,3.0,5.4],[.8,1.6,-1.3],wall);
+  addBox(houseGroup,[4.8,3.0,.22],[-3.35,1.6,-1.2],wall);
+
+  door = addBox(houseGroup,[1.2,2.3,.12],[1.2,1.2,4.28],wood);
+  windowPanel = addBox(
+    houseGroup,[2.0,1.35,.08],[-2.15,1.9,4.28],
+    new THREE.MeshStandardMaterial({color:0x77a9bd,transparent:true,opacity:.45,roughness:.2})
+  );
+
+  addBox(houseGroup,[2.7,.85,1.0],[-2.2,.55,1.0],material(0x51463f,.95));
+  addBox(houseGroup,[1.5,.12,1.1],[2.8,.85,.5],wood);
+  addBox(houseGroup,[2.5,.55,3.1],[-3.5,.42,-2.7],material(0xb8aaa0,.95));
+  addBox(houseGroup,[3.5,.95,.65],[3.6,.55,-3.7],material(0x666a6d,.9));
+  addBox(houseGroup,[1.0,2.0,.8],[5.0,1.05,-3.4],material(0xbfc4c8,.55));
+
+  const victimMat = material(0x1f2327,.9);
+  victim = new THREE.Mesh(new THREE.CapsuleGeometry(.28,.9,4,8),victimMat);
+  victim.position.set(-3.6,.62,-2.8);
+  victim.rotation.z = Math.PI/2;
+  houseGroup.add(victim);
+}
+
+function createFire(){
+  fireGroup = new THREE.Group();
+  fireGroup.position.set(3.8,.35,-3.2);
+  scene.add(fireGroup);
+
+  for(let i=0;i<14;i++){
+    const flame = new THREE.Mesh(
+      new THREE.ConeGeometry(.12+Math.random()*.13,.45+Math.random()*.5,7),
+      new THREE.MeshStandardMaterial({
+        color: i%2 ? 0xff6a00 : 0xffc14a,
+        emissive: i%2 ? 0xff3300 : 0xff9900,
+        emissiveIntensity: 2.2,
+        transparent:true,
+        opacity:.86
+      })
+    );
+    flame.position.set((Math.random()-.5)*1.2,Math.random()*.35,(Math.random()-.5)*.8);
+    fireGroup.add(flame);
+  }
+
+  const fireLight = new THREE.PointLight(0xff5a18,7,7,2);
+  fireLight.position.set(0,1,0);
+  fireGroup.add(fireLight);
+}
+
+function makeSmokeTexture(){
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = 64;
+  const ctx = canvas.getContext("2d");
+  const g = ctx.createRadialGradient(32,32,2,32,32,30);
+  g.addColorStop(0,"rgba(70,70,70,.45)");
+  g.addColorStop(.55,"rgba(50,50,50,.22)");
+  g.addColorStop(1,"rgba(30,30,30,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,64,64);
+  return new THREE.CanvasTexture(canvas);
+}
+
+function createSmoke(){
+  smokeSprites.forEach(s => scene.remove(s));
+  smokeSprites = [];
+  const tex = makeSmokeTexture();
+  const count = QUALITY[quality].particles;
+
+  for(let i=0;i<count;i++){
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+      map:tex, transparent:true, opacity:.22, depthWrite:false
+    }));
+    sprite.position.set(
+      2.0 + Math.random()*4.5,
+      1.3 + Math.random()*2.2,
+      -4.0 + Math.random()*5.2
+    );
+    const scale = .7 + Math.random()*1.5;
+    sprite.scale.set(scale,scale,scale);
+    sprite.userData.speed = .08 + Math.random()*.08;
+    scene.add(sprite);
+    smokeSprites.push(sprite);
+  }
+}
+
+function installSimpleCameraControls(){
+  let dragging=false, lastX=0, lastY=0;
+  let yaw=.72, pitch=.48, radius=19;
+  const target = new THREE.Vector3(0,1.2,0);
+
+  function updateCam(){
+    pitch = Math.max(.14,Math.min(1.25,pitch));
+    radius = Math.max(6,Math.min(30,radius));
+    camera.position.set(
+      target.x + radius*Math.cos(pitch)*Math.cos(yaw),
+      target.y + radius*Math.sin(pitch),
+      target.z + radius*Math.cos(pitch)*Math.sin(yaw)
+    );
+    camera.lookAt(target);
+  }
+
+  renderer.domElement.addEventListener("pointerdown",e=>{
+    dragging=true; lastX=e.clientX; lastY=e.clientY;
+    renderer.domElement.setPointerCapture?.(e.pointerId);
+  });
+  renderer.domElement.addEventListener("pointerup",()=>dragging=false);
+  renderer.domElement.addEventListener("pointermove",e=>{
+    if(!dragging) return;
+    const dx=e.clientX-lastX, dy=e.clientY-lastY;
+    lastX=e.clientX; lastY=e.clientY;
+    yaw -= dx*.008;
+    pitch -= dy*.006;
+    updateCam();
+  });
+  renderer.domElement.addEventListener("wheel",e=>{
+    e.preventDefault();
+    radius += e.deltaY*.012;
+    updateCam();
+  },{passive:false});
+  updateCam();
+}
+
+function resize(){
+  if(!container || !renderer || !camera) return;
+  const rect = container.getBoundingClientRect();
+  const w = Math.max(320,rect.width);
+  const h = Math.max(420,rect.height);
+  renderer.setSize(w,h,false);
+  camera.aspect = w/h;
+  camera.updateProjectionMatrix();
+}
+
+async function init(){
+  container = el("sim3d");
+  if(!container) throw new Error("No existe el contenedor #sim3d");
+
+  if(renderer){
+    resize();
+    return;
+  }
+
+  container.innerHTML = "";
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x10161c);
+  scene.fog = new THREE.FogExp2(0x2c3236,.022);
+
+  camera = new THREE.PerspectiveCamera(58,1,.1,100);
+
+  renderer = new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"});
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+  renderer.shadowMap.enabled = QUALITY[quality].shadows;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,QUALITY[quality].pixelRatio));
+  container.appendChild(renderer.domElement);
+
+  scene.add(new THREE.HemisphereLight(0xcce2f3,0x261f1b,2.0));
+
+  const sun = new THREE.DirectionalLight(0xffefd2,3.0);
+  sun.position.set(-8,14,10);
+  sun.castShadow = QUALITY[quality].shadows;
+  scene.add(sun);
+
+  const ground = new THREE.Mesh(
+    new THREE.BoxGeometry(34,.25,30),
+    material(0x283329,1)
+  );
+  ground.position.y = -.25;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  createHouse();
+  createFire();
+  createSmoke();
+  installSimpleCameraControls();
+  resetState();
+  resize();
+  updateHUD();
+  log("Escenario 3D cargado");
+
+  window.addEventListener("resize",resize);
+  animate(performance.now());
+}
+
+function animate(now){
+  animationId = requestAnimationFrame(animate);
+  if(running){
+    if(lastTime) elapsed += (now-lastTime)/1000;
+    lastTime = now;
+
+    if(fireGroup){
+      fireGroup.children.forEach((f,i)=>{
+        if(f.isMesh){
+          f.scale.y = .8 + Math.sin(now*.012+i)*.18 + Math.random()*.08;
+        }
+      });
+    }
+
+    smokeSprites.forEach(s=>{
+      s.position.y += s.userData.speed*.012;
+      if(s.position.y>3.7) s.position.y=1.3;
+      s.material.opacity = Math.min(.34,.10 + state.smoke/450);
+    });
+
+    state.temperature = Math.min(780,state.temperature + .006);
+    state.smoke = Math.min(100,state.smoke + .0015);
+    state.visibility = Math.max(5,state.visibility - .001);
+    state.oxygen = Math.max(13,state.oxygen - .00012);
+
+    updateHUD();
+  }else{
+    lastTime = now;
+  }
+
+  renderer.render(scene,camera);
+}
+
+function start(){
+  running=true;
+  lastTime=performance.now();
+  log("Simulación iniciada");
+}
+
+function setQuality(v){
+  quality = QUALITY[v] ? v : "media";
+  if(renderer){
+    renderer.shadowMap.enabled = QUALITY[quality].shadows;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,QUALITY[quality].pixelRatio));
+    createSmoke();
+    resize();
+  }
+  log(`Calidad ${quality}`);
+}
+
+function reset(){
+  resetState();
+  if(door) door.rotation.y=0;
+  if(windowPanel) windowPanel.position.y=1.9;
+  if(victim) victim.material.color.set(0x1f2327);
+  if(fireGroup){
+    fireGroup.visible=true;
+    fireGroup.scale.setScalar(1);
+  }
+  createSmoke();
+  updateHUD();
+  log("Escenario reiniciado");
+}
+
+function action(type){
+  switch(type){
+    case "recognition":
+      if(!state.recognized){
+        state.recognized=true;
+        state.score+=5;
+        log("Reconocimiento 360° completado");
+      }else log("Reconocimiento ya realizado");
+      break;
+
+    case "open_front":
+      if(!state.recognized){
+        state.score-=10;
+        log("Puerta abierta sin reconocimiento previo");
+      }else log("Puerta principal abierta");
+      state.doorOpen=true;
+      if(door) door.rotation.y=-Math.PI*.48;
+      state.smoke=Math.max(5,state.smoke-5);
+      state.visibility=Math.min(100,state.visibility+4);
+      state.temperature+=30;
+      state.oxygen=Math.min(20.9,state.oxygen+.3);
+      break;
+
+    case "open_window":
+      state.windowOpen=true;
+      if(windowPanel) windowPanel.position.y=3.0;
+      state.smoke=Math.max(5,state.smoke-10);
+      state.visibility=Math.min(100,state.visibility+8);
+      state.temperature+=42;
+      state.oxygen=Math.min(20.9,state.oxygen+.55);
+      state.score-=state.recognized?2:12;
+      log("Ventana abierta: cambió la ventilación");
+      break;
+
+    case "cooling":
+      state.cooled=true;
+      state.temperature=Math.max(80,state.temperature-105);
+      state.smoke=Math.max(8,state.smoke-5);
+      state.visibility=Math.min(100,state.visibility+6);
+      state.score+=8;
+      if(fireGroup) fireGroup.scale.setScalar(.62);
+      log("Enfriamiento aplicado");
+      break;
+
+    case "search":
+      if(!state.cooled){
+        state.score-=8;
+        log("Búsqueda iniciada con condiciones térmicas elevadas");
+      }else{
+        state.score+=8;
+        log("Búsqueda primaria iniciada");
+      }
+      state.victimFound=true;
+      if(victim) victim.material.color.set(0xffd166);
+      log("Víctima localizada en dormitorio");
+      break;
+  }
+  updateHUD();
+}
+
+function finish(){
+  running=false;
+  const finalScore=Math.max(0,Math.min(100,Math.round(state.score)));
+  const text=`Simulación finalizada · Puntaje operativo ${finalScore}/100 · Tiempo ${formatTime(elapsed)}`;
+  log(text);
+  alert(text);
+}
+
+window.EGS3D={init,start,setQuality,reset,action,finish};
+console.log("EGS 3D v0.9.3 API lista");
+window.EGS_3D_LOCAL_READY = true;
+console.log("EGS 3D LOCAL: motor listo");

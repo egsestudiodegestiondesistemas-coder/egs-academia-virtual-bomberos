@@ -1,0 +1,220 @@
+
+console.log("EGS Simulador 3D v1.0");
+
+import * as THREE from "https://esm.sh/three@0.180.0";
+
+const SCENARIOS = {
+  house: {
+    name: "Incendio en vivienda unifamiliar",
+    category: "Incendio estructural",
+    state: {temperature:120, smoke:35, visibility:72, oxygen:20.2, score:100},
+    builder: "house"
+  },
+  apartment: {
+    name: "Incendio en departamento",
+    category: "Incendio estructural",
+    state: {temperature:150, smoke:45, visibility:60, oxygen:19.8, score:100},
+    builder: "apartment"
+  },
+  warehouse: {
+    name: "Incendio en depósito",
+    category: "Incendio estructural",
+    state: {temperature:180, smoke:40, visibility:66, oxygen:20.0, score:100},
+    builder: "warehouse"
+  },
+  vehicle: {
+    name: "Incendio vehicular",
+    category: "Incendio vehicular",
+    state: {temperature:220, smoke:42, visibility:66, oxygen:20.4, score:100},
+    builder: "vehicle"
+  },
+  rescue: {
+    name: "Colisión vehicular con atrapado",
+    category: "Rescate vehicular",
+    state: {temperature:28, smoke:0, visibility:100, oxygen:20.9, score:100},
+    builder: "rescue"
+  },
+  phenomena: {
+    name: "Laboratorio de fenómenos del incendio",
+    category: "Fenómenos",
+    state: {temperature:190, smoke:52, visibility:52, oxygen:18.8, score:100},
+    builder: "phenomena"
+  }
+};
+
+const QUALITY = {
+  baja: {particles:80, pixel:1.0},
+  media:{particles:160,pixel:1.1},
+  alta:{particles:280,pixel:1.3}
+};
+
+let scene, camera, renderer, container;
+let activeScenario = "house";
+let quality = "media";
+let running = false;
+let elapsed = 0;
+let lastTime = 0;
+let state = {};
+let objects = {};
+let smokeSprites = [];
+let fireGroups = [];
+let waterParticles = [];
+let cameraMode = "orbit";
+let fp = {x:0,y:1.65,z:9,yaw:Math.PI,pitch:0};
+let keys = {};
+
+function $(id){ return document.getElementById(id); }
+function fmt(s){ return `${String(Math.floor(s/60)).padStart(2,"0")}:${String(Math.floor(s%60)).padStart(2,"0")}`; }
+function mat(c,r=.85){ return new THREE.MeshStandardMaterial({color:c,roughness:r}); }
+
+function addBox(parent,size,pos,material,name=""){
+  const m = new THREE.Mesh(new THREE.BoxGeometry(...size),material);
+  m.position.set(...pos); m.name=name; m.castShadow=true; m.receiveShadow=true; parent.add(m); return m;
+}
+function addLog(text){
+  const box=$("simLog"); if(!box) return;
+  const row=document.createElement("div"); row.textContent=`${fmt(elapsed)} · ${text}`; box.prepend(row);
+  while(box.children.length>14) box.removeChild(box.lastChild);
+}
+function updateHUD(){
+  if($("simClock")) $("simClock").textContent=fmt(elapsed);
+  if($("simTemp")) $("simTemp").textContent=`${Math.round(state.temperature||0)} °C`;
+  if($("simSmoke")) $("simSmoke").textContent=`${Math.round(state.smoke||0)} %`;
+  if($("simVisibility")) $("simVisibility").textContent=`${Math.round(state.visibility||0)} %`;
+  if($("simOxygen")) $("simOxygen").textContent=`${Number(state.oxygen||0).toFixed(1)} %`;
+  if($("simScenarioName")) $("simScenarioName").textContent=SCENARIOS[activeScenario].name;
+  if($("simScore")) $("simScore").textContent=Math.max(0,Math.min(100,Math.round(state.score||100)));
+}
+function clearScene(){
+  smokeSprites=[]; fireGroups=[]; waterParticles=[]; objects={};
+  while(scene.children.length) scene.remove(scene.children[0]);
+  scene.background=new THREE.Color(0x10161c);
+  scene.fog=new THREE.FogExp2(0x2c3236,.018);
+  scene.add(new THREE.HemisphereLight(0xcfe5f7,0x221b17,2.0));
+  const sun=new THREE.DirectionalLight(0xffefd4,2.7); sun.position.set(-8,14,10); scene.add(sun);
+  const ground=new THREE.Mesh(new THREE.BoxGeometry(40,.25,34),mat(0x283329,1)); ground.position.y=-.25; ground.receiveShadow=true; scene.add(ground);
+}
+function addVictim(pos){
+  const v=new THREE.Mesh(new THREE.CapsuleGeometry(.28,.9,4,8),mat(0x1f2327)); v.position.set(...pos); v.rotation.z=Math.PI/2; scene.add(v); objects.victim=v;
+}
+function addFire(pos,scale=1){
+  const g=new THREE.Group(); g.position.set(...pos); g.scale.setScalar(scale); scene.add(g); fireGroups.push(g);
+  for(let i=0;i<14;i++){
+    const f=new THREE.Mesh(
+      new THREE.ConeGeometry(.11+Math.random()*.13,.45+Math.random()*.55,7),
+      new THREE.MeshStandardMaterial({color:i%2?0xff6500:0xffc244,emissive:i%2?0xff2e00:0xff8a00,emissiveIntensity:2.3,transparent:true,opacity:.88})
+    );
+    f.position.set((Math.random()-.5)*1.15,Math.random()*.35,(Math.random()-.5)*.8); g.add(f);
+  }
+  const light=new THREE.PointLight(0xff5b18,6.5,7,2); light.position.y=1; g.add(light);
+}
+function smokeTexture(){
+  const c=document.createElement("canvas"); c.width=c.height=64; const ctx=c.getContext("2d");
+  const g=ctx.createRadialGradient(32,32,3,32,32,30);
+  g.addColorStop(0,"rgba(70,70,70,.52)"); g.addColorStop(.6,"rgba(45,45,45,.2)"); g.addColorStop(1,"rgba(20,20,20,0)");
+  ctx.fillStyle=g; ctx.fillRect(0,0,64,64); return new THREE.CanvasTexture(c);
+}
+function addSmoke(origin,span){
+  const tex=smokeTexture();
+  for(let i=0;i<QUALITY[quality].particles;i++){
+    const s=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,opacity:.2,depthWrite:false}));
+    s.position.set(origin[0]+Math.random()*span[0],origin[1]+Math.random()*span[1],origin[2]+Math.random()*span[2]);
+    const k=.55+Math.random()*1.55; s.scale.set(k,k,k); s.userData.speed=.06+Math.random()*.08; scene.add(s); smokeSprites.push(s);
+  }
+}
+function buildHouse(){
+  const g=new THREE.Group(); scene.add(g); const wall=mat(0xc8b8a2,.96),floor=mat(0x4b4d4f,.98),wood=mat(0x5a3b27,.9);
+  addBox(g,[12,.25,9],[0,0,0],floor);
+  addBox(g,[12,3.2,.22],[0,1.7,-4.4],wall); addBox(g,[.22,3.2,9],[-5.9,1.7,0],wall); addBox(g,[.22,3.2,9],[5.9,1.7,0],wall);
+  addBox(g,[3.6,3.2,.22],[-4.1,1.7,4.4],wall); addBox(g,[2.1,3.2,.22],[-.7,1.7,4.4],wall); addBox(g,[3.3,3.2,.22],[4.25,1.7,4.4],wall);
+  addBox(g,[.22,3,5.4],[.8,1.6,-1.3],wall); addBox(g,[4.8,3,.22],[-3.35,1.6,-1.2],wall);
+  objects.door=addBox(g,[1.2,2.3,.12],[1.2,1.2,4.28],wood);
+  objects.window=addBox(g,[2,1.35,.08],[-2.15,1.9,4.28],new THREE.MeshStandardMaterial({color:0x77a9bd,transparent:true,opacity:.45}));
+  addBox(g,[2.7,.85,1],[-2.2,.55,1],mat(0x51463f)); addBox(g,[2.5,.55,3.1],[-3.5,.42,-2.7],mat(0xb8aaa0)); addBox(g,[3.5,.95,.65],[3.6,.55,-3.7],mat(0x666a6d));
+  addVictim([-3.6,.62,-2.8]); addFire([3.8,.35,-3.2],1); addSmoke([2,1.3,-4],[4.5,2.2,5.2]);
+}
+function buildApartment(){ buildHouse(); const g=new THREE.Group();scene.add(g);addBox(g,[12,.18,9],[0,3.45,0],mat(0x54575b));addFire([-2.5,.4,1.4],.85);addSmoke([-4,1.2,-1],[5,2.3,6]); }
+function buildWarehouse(){
+  const g=new THREE.Group();scene.add(g);const wall=mat(0x8e9499,.92),floor=mat(0x414448,.98);
+  addBox(g,[18,.25,12],[0,0,0],floor);addBox(g,[18,5,.25],[0,2.6,-5.8],wall);addBox(g,[.25,5,12],[-8.9,2.6,0],wall);addBox(g,[.25,5,12],[8.9,2.6,0],wall);
+  for(let x=-6;x<=6;x+=4)for(let z=-3;z<=2;z+=2.5)addBox(g,[2.2,2.2,1.4],[x,1.1,z],mat(0x6c4e2f));
+  addFire([4,.4,-2],1.3);addFire([5.2,.4,-2.4],.8);addSmoke([0,1.5,-5],[14,3,7]);
+}
+function buildVehicle(){
+  const g=new THREE.Group();scene.add(g),body=mat(0x8f1f1f,.6),dark=mat(0x15181a,.75);
+  addBox(g,[4.2,.9,1.9],[0,.85,0],body);addBox(g,[2.3,.8,1.75],[-.2,1.55,0],body);
+  for(const x of [-1.45,1.45])for(const z of [-.92,.92]){const w=new THREE.Mesh(new THREE.CylinderGeometry(.38,.38,.28,18),dark);w.rotation.x=Math.PI/2;w.position.set(x,.45,z);g.add(w)}
+  addFire([1.5,.55,0],1);addSmoke([.8,1.4,-1.5],[4,2.5,3.2]);
+}
+function buildRescue(){
+  const g=new THREE.Group();scene.add(g),body=mat(0x2f5d8c,.65),dark=mat(0x181a1c);
+  objects.vehicle=addBox(g,[4.2,.9,1.9],[0,.85,0],body);objects.vehicle.rotation.y=.18;addBox(g,[2.4,.8,1.75],[-.3,1.55,0],body);
+  for(const x of [-1.45,1.45])for(const z of [-.92,.92]){const w=new THREE.Mesh(new THREE.CylinderGeometry(.38,.38,.28,18),dark);w.rotation.x=Math.PI/2;w.position.set(x,.45,z);g.add(w)}
+  addVictim([-.3,1.1,0]);addBox(g,[1.6,.25,.8],[2.2,.15,0],mat(0xe8a531));
+}
+function buildPhenomena(){
+  const g=new THREE.Group();scene.add(g),wall=mat(0xa99c8d,.95);
+  addBox(g,[10,.25,8],[0,0,0],mat(0x46494c));addBox(g,[10,3.4,.22],[0,1.8,-3.9],wall);addBox(g,[.22,3.4,8],[-4.9,1.8,0],wall);addBox(g,[.22,3.4,8],[4.9,1.8,0],wall);
+  addBox(g,[3.2,3.4,.22],[-3.4,1.8,3.9],wall);addBox(g,[3.2,3.4,.22],[3.4,1.8,3.9],wall);objects.door=addBox(g,[1.3,2.4,.12],[0,1.25,3.82],mat(0x503627));
+  addFire([0,.35,-2.4],.9);addSmoke([-4,1.4,-3],[8,2.4,6]);
+}
+function rebuild(){
+  clearScene(); state=JSON.parse(JSON.stringify(SCENARIOS[activeScenario].state)); elapsed=0;
+  ({house:buildHouse,apartment:buildApartment,warehouse:buildWarehouse,vehicle:buildVehicle,rescue:buildRescue,phenomena:buildPhenomena}[SCENARIOS[activeScenario].builder])();
+  updateHUD(); addLog(`Escenario cargado: ${SCENARIOS[activeScenario].name}`);
+}
+function installControls(){
+  let drag=false,lx=0,ly=0,yaw=.72,pitch=.48,radius=20;const target=new THREE.Vector3(0,1.2,0);
+  function orbitCam(){pitch=Math.max(.14,Math.min(1.25,pitch));radius=Math.max(5,Math.min(34,radius));camera.position.set(target.x+radius*Math.cos(pitch)*Math.cos(yaw),target.y+radius*Math.sin(pitch),target.z+radius*Math.cos(pitch)*Math.sin(yaw));camera.lookAt(target)}
+  renderer.domElement.addEventListener("pointerdown",e=>{if(cameraMode!=="orbit")return;drag=true;lx=e.clientX;ly=e.clientY});
+  renderer.domElement.addEventListener("pointerup",()=>drag=false);
+  renderer.domElement.addEventListener("pointermove",e=>{
+    if(cameraMode==="orbit"&&drag){yaw-=(e.clientX-lx)*.008;pitch-=(e.clientY-ly)*.006;lx=e.clientX;ly=e.clientY;orbitCam()}
+    if(cameraMode==="first"&&document.pointerLockElement===renderer.domElement){fp.yaw-=e.movementX*.0025;fp.pitch-=e.movementY*.0022;fp.pitch=Math.max(-1.2,Math.min(1.2,fp.pitch))}
+  });
+  renderer.domElement.addEventListener("wheel",e=>{if(cameraMode!=="orbit")return;e.preventDefault();radius+=e.deltaY*.012;orbitCam()},{passive:false});
+  renderer.domElement.addEventListener("click",()=>{if(cameraMode==="first")renderer.domElement.requestPointerLock?.()});
+  window.addEventListener("keydown",e=>keys[e.code]=true);window.addEventListener("keyup",e=>keys[e.code]=false);
+  orbitCam();
+}
+function applyFirstPerson(dt){
+  if(cameraMode!=="first")return;
+  const speed=3.0*dt,dir=new THREE.Vector3(Math.sin(fp.yaw),0,Math.cos(fp.yaw)),right=new THREE.Vector3(dir.z,0,-dir.x);
+  if(keys["KeyW"]) {fp.x+=dir.x*speed;fp.z+=dir.z*speed}
+  if(keys["KeyS"]) {fp.x-=dir.x*speed;fp.z-=dir.z*speed}
+  if(keys["KeyA"]) {fp.x-=right.x*speed;fp.z-=right.z*speed}
+  if(keys["KeyD"]) {fp.x+=right.x*speed;fp.z+=right.z*speed}
+  camera.position.set(fp.x,fp.y,fp.z);
+  const look=new THREE.Vector3(Math.sin(fp.yaw)*Math.cos(fp.pitch),Math.sin(fp.pitch),Math.cos(fp.yaw)*Math.cos(fp.pitch));
+  camera.lookAt(camera.position.clone().add(look));
+}
+function resize(){if(!container||!renderer)return;const r=container.getBoundingClientRect();renderer.setSize(Math.max(320,r.width),Math.max(420,r.height),false);camera.aspect=Math.max(320,r.width)/Math.max(420,r.height);camera.updateProjectionMatrix()}
+async function init(){
+  container=$("sim3d"); if(!container) throw new Error("No existe #sim3d");
+  if(renderer){resize();return}
+  scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(58,1,.1,100);renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"});renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;renderer.setPixelRatio(Math.min(devicePixelRatio,QUALITY[quality].pixel));container.innerHTML="";container.appendChild(renderer.domElement);installControls();rebuild();resize();window.addEventListener("resize",resize);animate(performance.now())
+}
+function animate(now){
+  requestAnimationFrame(animate);const dt=Math.min(.05,lastTime?(now-lastTime)/1000:0);lastTime=now;
+  if(running){elapsed+=dt;fireGroups.forEach((g,gi)=>g.children.forEach((f,i)=>{if(f.isMesh)f.scale.y=.8+Math.sin(now*.012+i+gi)*.18+Math.random()*.08}));smokeSprites.forEach(s=>{s.position.y+=s.userData.speed*dt;if(s.position.y>4.8)s.position.y=1.3;s.material.opacity=Math.min(.34,.1+(state.smoke||0)/450)});if(activeScenario!=="rescue"){state.temperature=Math.min(850,state.temperature+.3*dt);state.smoke=Math.min(100,state.smoke+.08*dt);state.visibility=Math.max(4,state.visibility-.05*dt);state.oxygen=Math.max(12,state.oxygen-.004*dt)}updateHUD()}
+  applyFirstPerson(dt);renderer.render(scene,camera)
+}
+function start(){running=true;lastTime=performance.now();addLog("Simulación iniciada")}
+function setScenario(id){if(!SCENARIOS[id])return;activeScenario=id;rebuild();running=true}
+function setQuality(v){quality=QUALITY[v]?v:"media";renderer?.setPixelRatio(Math.min(devicePixelRatio,QUALITY[quality].pixel));rebuild();addLog(`Calidad ${quality}`)}
+function setCameraMode(v){cameraMode=v;if(v==="first"){fp={x:0,y:1.65,z:9,yaw:Math.PI,pitch:0};addLog("Modo primera persona activado: WASD + mouse")}else addLog("Modo cámara orbital activado")}
+function waterBurst(){for(let i=0;i<80;i++){const p=new THREE.Mesh(new THREE.SphereGeometry(.025,5,4),new THREE.MeshBasicMaterial({color:0x79c7ff}));p.position.set(0,1.2,2.5);p.userData.v=new THREE.Vector3((Math.random()-.5)*.7,.2+Math.random()*.35,-3-Math.random()*2);scene.add(p);waterParticles.push(p);setTimeout(()=>scene.remove(p),1200)}}
+function action(a){
+  if(a==="recognition"){state.recognized=true;state.score+=5;addLog("Reconocimiento 360° completado")}
+  if(a==="open_front"){if(objects.door)objects.door.rotation.y=-Math.PI*.48;state.smoke=Math.max(0,(state.smoke||0)-5);state.visibility=Math.min(100,(state.visibility||100)+5);state.temperature+=30;state.oxygen=Math.min(20.9,(state.oxygen||20)+.3);addLog("Acceso principal abierto")}
+  if(a==="open_window"){if(objects.window)objects.window.position.y=3;state.smoke=Math.max(0,(state.smoke||0)-10);state.visibility=Math.min(100,(state.visibility||100)+8);state.temperature+=40;state.oxygen=Math.min(20.9,(state.oxygen||20)+.55);addLog("Ventana abierta: cambió ventilación")}
+  if(a==="cooling"){state.temperature=Math.max(50,state.temperature-110);state.smoke=Math.max(0,(state.smoke||0)-5);state.visibility=Math.min(100,(state.visibility||100)+6);fireGroups.forEach(g=>g.scale.setScalar(.62));waterBurst();state.score+=8;addLog("Enfriamiento aplicado")}
+  if(a==="search"){if(objects.victim)objects.victim.material.color.set(0xffd166);state.score+=5;addLog("Búsqueda primaria / víctima localizada")}
+  if(a==="stabilize"){state.score+=8;addLog("Vehículo estabilizado")}
+  if(a==="phen_rollover"){state.temperature=420;state.smoke=72;state.visibility=32;fireGroups.forEach(g=>g.scale.set(1.8,.4,1.8));addLog("Demostración visual: rollover")}
+  if(a==="phen_flashover"){state.temperature=680;state.smoke=90;state.visibility=10;for(let i=0;i<4;i++)addFire([-3+i*2,.25,-1+Math.random()*2],.8);addLog("Demostración visual: flashover")}
+  if(a==="phen_vent"){state.temperature=740;state.smoke=94;state.visibility=7;state.oxygen=18.4;addFire([0,.3,1.4],1.5);addLog("Demostración visual: transición inducida por ventilación")}
+  updateHUD();
+}
+function finish(){running=false;alert(`Simulación finalizada · Puntaje ${Math.max(0,Math.min(100,Math.round(state.score||100)))}/100 · Tiempo ${fmt(elapsed)}`)}
+window.EGS3D={init,start,setScenario,setQuality,setCameraMode,action,finish};

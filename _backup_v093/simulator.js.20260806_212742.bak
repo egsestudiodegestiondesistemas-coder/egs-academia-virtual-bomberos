@@ -1,0 +1,127 @@
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
+import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js";
+
+let scene,camera,renderer,controls,clock,animId,container;
+let smokeParticles=[],fireGroup=null,frontDoor=null,frontWindow=null,victim=null;
+let initialized=false,running=false,elapsed=0,lastTs=0,quality="media";
+let state={temperature:120,smoke:35,visibility:72,oxygen:20.2,firePower:28,score:100,recognized:false,doorOpen:false,windowOpen:false,cooled:false,victimFound:false};
+let logs=[];
+
+const q={baja:{particles:220,pixel:1,shadows:false},media:{particles:450,pixel:1.25,shadows:true},alta:{particles:800,pixel:1.5,shadows:true}};
+
+function mat(color,rough=.75,metal=0){return new THREE.MeshStandardMaterial({color,roughness:rough,metalness:metal})}
+function box(name,size,pos,material){
+  const g=new THREE.BoxGeometry(...size),m=new THREE.Mesh(g,material);m.name=name;m.position.set(...pos);m.castShadow=true;m.receiveShadow=true;scene.add(m);return m
+}
+function addLog(text){
+  const t=formatTime(elapsed);logs.unshift(`${t} · ${text}`);logs=logs.slice(0,12);
+  const el=document.getElementById("simLog");if(el)el.innerHTML=logs.map(x=>`<div>${x}</div>`).join("")
+}
+function formatTime(s){const m=String(Math.floor(s/60)).padStart(2,"0"),ss=String(Math.floor(s%60)).padStart(2,"0");return `${m}:${ss}`}
+function updateHUD(){
+  const set=(id,val)=>{const e=document.getElementById(id);if(e)e.textContent=val};
+  set("simClock",formatTime(elapsed));set("simTemp",`${Math.round(state.temperature)} °C`);set("simSmoke",`${Math.round(state.smoke)} %`);set("simVisibility",`${Math.round(state.visibility)} %`);set("simOxygen",`${state.oxygen.toFixed(1)} %`);
+  let obj="Reconocimiento inicial";if(state.recognized)obj="Controlar accesos y ventilación";if(state.cooled)obj="Búsqueda primaria";if(state.victimFound)obj="Control y finalización";set("simObjective",obj)
+}
+function createHouse(){
+  const floor=box("Piso",[12,.25,9],[0,.1,0],mat(0x45484a,.95));
+  const wall=mat(0xc6b8a4,.95),dark=mat(0x4d4035,.9),trim=mat(0xe7dfd5,.8);
+  box("Pared trasera",[12,3.2,.25],[0,1.7,-4.4],wall);
+  box("Pared izquierda",[.25,3.2,9],[-5.9,1.7,0],wall);
+  box("Pared derecha",[.25,3.2,9],[5.9,1.7,0],wall);
+  box("Frente izq",[3.8,3.2,.25],[-4,1.7,4.4],wall);
+  box("Frente centro",[2.3,3.2,.25],[-.75,1.7,4.4],wall);
+  box("Frente der",[3.2,3.2,.25],[4.35,1.7,4.4],wall);
+  box("Divisor central",[.22,3.0,5.5],[0.7,1.6,-1.4],wall);
+  box("Divisor dormitorio",[4.8,3,.22],[-3.3,1.6,-1.3],wall);
+
+  frontDoor=box("Puerta",[1.25,2.35,.12],[1.2,1.22,4.28],dark);frontDoor.geometry.translate(.62,0,0);frontDoor.userData.hingeX=.58;
+  frontWindow=box("Ventana",[2.1,1.45,.10],[-2.2,1.9,4.27],new THREE.MeshStandardMaterial({color:0x7da0ae,transparent:true,opacity:.45,roughness:.2}));
+  box("Marco ventana",[2.35,.12,.18],[-2.2,2.67,4.22],trim);box("Marco ventana",[2.35,.12,.18],[-2.2,1.13,4.22],trim);
+
+  // Furniture.
+  box("Sofa",[2.7,.85,1.0],[-2.2,.55,1.0],mat(0x51463f,.95));
+  box("Mesa",[1.5,.12,1.1],[2.7,.85,.4],mat(0x5d3a24,.8));
+  for(const p of [[2.15,.45,.0],[3.25,.45,.0]]) box("Pata mesa",[.1,.8,.1],p,mat(0x3b261a,.8));
+  box("Cama",[2.4,.55,3.2],[-3.5,.4,-2.7],mat(0xb6aaa0,.95));
+  box("Mueble cocina",[3.4,.95,.65],[3.6,.55,-3.7],mat(0x64686c,.9));
+  box("Heladera",[1.0,2.0,.8],[5.0,1.05,-3.4],mat(0xbcc2c7,.5,.15));
+
+  // Roof visual perimeter, open top for camera.
+  const roofMat=mat(0x2a2d31,.95);
+  box("Alero frente",[12.4,.15,.5],[0,3.35,4.5],roofMat);
+  box("Alero fondo",[12.4,.15,.5],[0,3.35,-4.5],roofMat);
+
+  // Victim silhouette.
+  const vg=new THREE.CapsuleGeometry(.28,.9,5,10);victim=new THREE.Mesh(vg,mat(0x202326,.9));victim.position.set(-3.6,.62,-2.8);victim.rotation.z=Math.PI/2;scene.add(victim);
+
+  // Fire in kitchen.
+  fireGroup=new THREE.Group();fireGroup.position.set(3.8,.35,-3.15);scene.add(fireGroup);
+  for(let i=0;i<12;i++){
+    const geo=new THREE.ConeGeometry(.13+Math.random()*.16,.55+Math.random()*.5,7);
+    const mm=new THREE.MeshStandardMaterial({color:i%2?0xff6a00:0xffc14a,emissive:i%2?0xff3300:0xff8a00,emissiveIntensity:2,transparent:true,opacity:.82});
+    const f=new THREE.Mesh(geo,mm);f.position.set((Math.random()-.5)*1.1,(Math.random()*.35), (Math.random()-.5)*.7);f.rotation.z=(Math.random()-.5)*.25;fireGroup.add(f)
+  }
+  const light=new THREE.PointLight(0xff5b18,7,6,2);light.position.set(3.8,1.3,-3.1);light.castShadow=false;scene.add(light);fireGroup.userData.light=light
+}
+function createSmoke(){
+  smokeParticles.forEach(p=>scene.remove(p));smokeParticles=[];
+  const count=q[quality].particles;
+  const geo=new THREE.SphereGeometry(.28,6,4);
+  for(let i=0;i<count;i++){
+    const mm=new THREE.MeshBasicMaterial({color:0x313437,transparent:true,opacity:.05+Math.random()*.07,depthWrite:false});
+    const p=new THREE.Mesh(geo,mm);p.scale.setScalar(.7+Math.random()*1.8);
+    p.position.set(2.4+Math.random()*4.0,1.2+Math.random()*2.2,-4+Math.random()*5.8);
+    p.userData={speed:.04+Math.random()*.06,phase:Math.random()*6.28};scene.add(p);smokeParticles.push(p)
+  }
+}
+function buildScene(){
+  scene=new THREE.Scene();scene.background=new THREE.Color(0x11161b);scene.fog=new THREE.FogExp2(0x242a2e,.025);
+  camera=new THREE.PerspectiveCamera(58,1,.1,80);camera.position.set(13,9,15);
+  renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"});renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+  renderer.shadowMap.enabled=q[quality].shadows;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.setPixelRatio(Math.min(window.devicePixelRatio,q[quality].pixel));
+  container.innerHTML="";container.appendChild(renderer.domElement);
+  const hemi=new THREE.HemisphereLight(0xbad3e6,0x241d18,1.7);scene.add(hemi);
+  const sun=new THREE.DirectionalLight(0xfff0d2,3.2);sun.position.set(-9,14,10);sun.castShadow=q[quality].shadows;sun.shadow.mapSize.set(1024,1024);scene.add(sun);
+  const ground=box("Terreno",[34,.25,30],[0,-.18,0],mat(0x263226,1));ground.receiveShadow=true;
+  createHouse();createSmoke();
+  controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.target.set(0,1.3,0);controls.minDistance=5;controls.maxDistance=28;controls.maxPolarAngle=Math.PI*.48;
+  resize();window.addEventListener("resize",resize);
+}
+function resize(){if(!container||!renderer||!camera)return;const r=container.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix()}
+function animate(ts){
+  animId=requestAnimationFrame(animate);if(running){if(lastTs){elapsed+=(ts-lastTs)/1000}lastTs=ts;
+    // fire dynamics
+    if(fireGroup){fireGroup.children.filter(x=>x.isMesh).forEach((f,i)=>{f.scale.y=.75+Math.sin(ts*.01+i)*.22+Math.random()*.12;f.rotation.y+=.01})}
+    // smoke drift
+    smokeParticles.forEach((p,i)=>{p.position.y+=p.userData.speed*.015; p.position.x+=Math.sin(ts*.0007+p.userData.phase)*.0015; if(p.position.y>3.6)p.position.y=1.2; p.material.opacity=Math.min(.18,.03+state.smoke/700)})
+    // passive fire evolution
+    if(Math.floor(elapsed)%5===0 && elapsed>1){state.temperature=Math.min(780,state.temperature+.018);state.smoke=Math.min(100,state.smoke+.004);state.visibility=Math.max(5,state.visibility-.003);state.oxygen=Math.max(13,state.oxygen-.0005)}
+    updateHUD()
+  } else lastTs=ts;
+  controls?.update();renderer?.render(scene,camera)
+}
+async function init(){
+  if(initialized){resize();return}
+  container=document.getElementById("sim3d");if(!container)return;
+  buildScene();initialized=true;animate(0);addLog("Simulador 3D inicializado")
+}
+function start(){running=true;lastTs=0;resize();addLog("Escenario iniciado")}
+function setQuality(v){quality=v;if(renderer){renderer.shadowMap.enabled=q[v].shadows;renderer.setPixelRatio(Math.min(window.devicePixelRatio,q[v].pixel));createSmoke();resize()}addLog(`Calidad: ${v}`)}
+function reset(){
+  state={temperature:120,smoke:35,visibility:72,oxygen:20.2,firePower:28,score:100,recognized:false,doorOpen:false,windowOpen:false,cooled:false,victimFound:false};elapsed=0;logs=[];
+  if(frontDoor)frontDoor.rotation.y=0;if(frontWindow)frontWindow.position.y=1.9;if(fireGroup){fireGroup.visible=true;fireGroup.userData.light.intensity=7}
+  createSmoke();camera.position.set(13,9,15);controls.target.set(0,1.3,0);controls.update();addLog("Escenario reiniciado");updateHUD()
+}
+function action(a){
+  if(a==="recognition"){if(!state.recognized){state.recognized=true;state.score+=5;addLog("Reconocimiento 360° completado")}else addLog("Reconocimiento ya realizado")}
+  if(a==="open_front"){if(!state.recognized){state.score-=10;addLog("Puerta abierta sin reconocimiento previo")}else addLog("Puerta principal abierta");state.doorOpen=true;frontDoor.rotation.y=-Math.PI*.46;state.smoke=Math.max(5,state.smoke-5);state.visibility=Math.min(100,state.visibility+4);state.temperature+=32;state.oxygen=Math.min(20.9,state.oxygen+.35)}
+  if(a==="open_window"){state.windowOpen=true;frontWindow.position.y=3.1;state.smoke=Math.max(5,state.smoke-10);state.visibility=Math.min(100,state.visibility+8);state.temperature+=45;state.oxygen=Math.min(20.9,state.oxygen+.6);state.score-=state.recognized?2:12;addLog("Ventana frontal abierta: cambió la ventilación")}
+  if(a==="cooling"){state.cooled=true;state.temperature=Math.max(80,state.temperature-110);state.firePower=Math.max(5,state.firePower-16);state.smoke=Math.max(10,state.smoke-5);state.visibility=Math.min(100,state.visibility+6);state.score+=8;if(fireGroup)fireGroup.scale.setScalar(.65);if(fireGroup?.userData.light)fireGroup.userData.light.intensity=4;addLog("Enfriamiento aplicado")}
+  if(a==="search"){if(!state.cooled){state.score-=8;addLog("Búsqueda iniciada con condiciones térmicas elevadas")}else{state.score+=8;addLog("Búsqueda primaria iniciada")};state.victimFound=true;victim.material.color.set(0xffd166);addLog("Víctima localizada en dormitorio")}
+  updateHUD()
+}
+function finish(){
+  running=false;const msg=`Simulación finalizada · Puntaje operativo ${Math.max(0,Math.min(100,Math.round(state.score)))}/100 · Tiempo ${formatTime(elapsed)}`;addLog(msg);alert(msg)
+}
+window.EGS3D={init,start,setQuality,reset,action,finish};

@@ -1,0 +1,149 @@
+{
+  "metadata": {
+    "module_id": "EXT-001",
+    "module_name": "Extintores y Clases de Fuego",
+    "version": "0.7.0-alpha",
+    "source_ids": [
+      "SRC-FED-CBA-M1-2009",
+      "SRC-BN1-INT-2026"
+    ],
+    "status": "activo"
+  },
+  "sections": [
+    {
+      "title": "Agente extintor",
+      "summary": "Sustancia o producto aplicado al incendio para extinguirlo actuando sobre uno o más componentes del tetraedro del fuego."
+    },
+    {
+      "title": "Clase A",
+      "summary": "Combustibles sólidos ordinarios. El material de Federación indica que suelen dejar brasas o cenizas. Símbolo: A blanca sobre triángulo verde."
+    },
+    {
+      "title": "Clase B",
+      "summary": "Líquidos combustibles e inflamables y algunos productos afines. El manual señala que no dejan residuos como los fuegos Clase A. Símbolo: B blanca sobre cuadrado rojo."
+    },
+    {
+      "title": "Clase C",
+      "summary": "Equipos o instalaciones energizadas. Una vez eliminada la energía, la clasificación depende del combustible comprometido. Símbolo: C blanca sobre círculo azul."
+    },
+    {
+      "title": "Clase D",
+      "summary": "Determinados metales combustibles, como magnesio o titanio, capaces de alcanzar temperaturas muy elevadas. Símbolo: D blanca sobre estrella amarilla."
+    },
+    {
+      "title": "Clase K",
+      "summary": "Clasificación usada para fuegos asociados a grasas y aceites de cocina; requiere agentes adecuados para ese tipo de combustible."
+    },
+    {
+      "title": "Agentes básicos",
+      "summary": "El diseño curricular BN1 incluye agua, niebla, espuma, CO₂, polvos químicos, compuestos halogenados y extintores portátiles."
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué caracteriza a un fuego Clase A según el manual de Federación?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "Combustibles sólidos ordinarios que pueden dejar brasas o cenizas",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Únicamente equipos eléctricos energizados",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Solo metales combustibles",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "Un tablero eléctrico energizado que está ardiendo se considera inicialmente:",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "Clase C por existir carga eléctrica",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Clase D",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Clase K",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "Después de cortar la energía en un fuego Clase C, ¿qué determina su nueva clasificación?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "El combustible que continúa ardiendo",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Siempre pasa a Clase D",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Sigue siendo Clase C en todos los casos",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué forma identifica a la Clase B en el manual de Federación?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "Cuadrado rojo",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Triángulo verde",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Estrella amarilla",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué clase corresponde a determinados metales combustibles?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "Clase D",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Clase B",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Clase K",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

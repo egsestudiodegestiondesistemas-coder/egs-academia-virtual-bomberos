@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EGS | Centro de Simulación Virtual</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div>
+        <div class="brand">EGS FIRE ACADEMY</div>
+        <div class="subtitle">
+            Centro de Investigación, Simulación y Entrenamiento Bomberil
+        </div>
+    </div>
+
+    <div class="status">
+        CENTRO DE SIMULACIÓN VIRTUAL · ALPHA 0.3
+    </div>
+
+</header>
+
+
+<main id="app">
+
+    <!-- INICIO -->
+
+    <section id="home" class="screen active">
+
+        <div class="hero">
+
+            <p class="eyebrow">
+                ENTRENAMIENTO PROFESIONAL PARA BOMBEROS VOLUNTARIOS
+            </p>
+
+            <h1>
+                Centro de Simulación Virtual
+            </h1>
+
+            <p class="heroText">
+                Entorno de entrenamiento para Química del Fuego y
+                Operaciones en Incendios Estructurales, orientado a la
+                toma de decisiones y basado en doctrina técnica e
+                institucional continuamente actualizable.
+            </p>
+
+        </div>
+
+
+        <div class="modules">
+
+            <article
+                class="moduleCard"
+                onclick="openModule('chemistry')"
+            >
+
+                <span class="number">01</span>
+
+                <h2>
+                    Química del Fuego
+                </h2>
+
+                <p>
+                    Combustión, tetraedro del fuego, clases de fuego,
+                    agentes extintores, desarrollo del incendio y
+                    fenómenos asociados.
+                </p>
+
+                <button>
+                    INGRESAR
+                </button>
+
+            </article>
+
+
+            <article
+                class="moduleCard featured"
+                onclick="openModule('operations')"
+            >
+
+                <span class="number">02</span>
+
+                <h2>
+                    Operaciones en Incendios Estructurales
+                </h2>
+
+                <p>
+                    Análisis de escenario, lectura del incendio,
+                    maniobras, ventilación, ataque y toma de decisiones.
+                </p>
+
+                <button>
+                    INICIAR ENTRENAMIENTO
+                </button>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUÍMICA -->
+
+    <section id="chemistry" class="screen">
+
+        <button class="back" onclick="goHome()">
+            ← Centro principal
+        </button>
+
+        <p class="eyebrow">MÓDULO 01</p>
+
+        <h1>
+            Química del Fuego
+        </h1>
+
+        <p class="sectionIntro">
+            Módulo doctrinario orientado a comprender los procesos
+            físicos y químicos que intervienen en la combustión y
+            condicionan las decisiones operativas.
+        </p>
+
+        <div class="trainingGrid">
+
+            <div class="panel">
+                <span>01</span>
+                <h3>Combustión</h3>
+            </div>
+
+            <div class="panel">
+                <span>02</span>
+                <h3>Tetraedro del fuego</h3>
+            </div>
+
+            <div class="panel">
+                <span>03</span>
+                <h3>Clases de fuego</h3>
+            </div>
+
+            <div class="panel">
+                <span>04</span>
+                <h3>Agentes extintores</h3>
+            </div>
+
+            <div class="panel">
+                <span>05</span>
+                <h3>Desarrollo del incendio</h3>
+            </div>
+
+            <div class="panel">
+                <span>06</span>
+                <h3>ILC e ILV</h3>
+            </div>
+
+            <div class="panel">
+                <span>07</span>
+                <h3>Flashover</h3>
+            </div>
+
+            <div class="panel">
+                <span>08</span>
+                <h3>Backdraft</h3>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- OPERACIONES -->
+
+    <section id="operations" class="screen">
+
+        <button class="back" onclick="goHome()">
+            ← Centro principal
+        </button>
+
+        <p class="eyebrow">MÓDULO 02</p>
+
+        <h1>
+            Operaciones en Incendios Estructurales
+        </h1>
+
+        <p class="sectionIntro">
+            Seleccioná un escenario de entrenamiento. Los escenarios
+            adicionales se incorporarán progresivamente y serán
+            versionados según la doctrina vigente.
+        </p>
+
+
+        <div class="scenarioGrid">
+
+            <article
+                class="scenario"
+                onclick="startScenario('Vivienda unifamiliar')"
+            >
+
+                <div class="scenarioImage house"></div>
+
+                <div class="scenarioBody">
+
+                    <span>ESCENARIO ACTIVO</span>
+
+                    <h3>
+                        Vivienda unifamiliar
+                    </h3>
+
+                    <p>
+                        Incendio estructural en desarrollo con toma de
+                        decisiones progresiva.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="scenario disabled"
+            >
+
+                <div class="scenarioImage warehouse"></div>
+
+                <div class="scenarioBody">
+
+                    <span>PRÓXIMAMENTE</span>
+
+                    <h3>
+                        Depósito industrial
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="scenario disabled"
+            >
+
+                <div class="scenarioImage building"></div>
+
+                <div class="scenarioBody">
+
+                    <span>PRÓXIMAMENTE</span>
+
+                    <h3>
+                        Edificio en altura
+                    </h3>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- SIMULACIÓN -->
+
+    <section id="simulation" class="screen">
+
+        <div class="simulationHeader">
+
+            <div>
+
+                <p class="eyebrow">
+                    ENTRENAMIENTO ACTIVO
+                </p>
+
+                <h1 id="scenarioTitle">
+                    Vivienda unifamiliar
+                </h1>
+
+            </div>
+
+
+            <div class="timer">
+
+                <span>TIEMPO</span>
+
+                <strong id="time">
+                    00:00
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="simLayout">
+
+            <div class="scene">
+
+                <div class="smoke" id="smoke"></div>
+
+                <div class="buildingVisual">
+
+                    <div class="window fireWindow">
+                        <div class="fire">🔥</div>
+                    </div>
+
+                    <div class="window"></div>
+
+                    <div class="door"></div>
+
+                </div>
+
+
+                <div class="sceneInfo">
+
+                    <div>
+                        <span>TEMPERATURA</span>
+                        <strong id="temperature">80 °C</strong>
+                    </div>
+
+                    <div>
+                        <span>HUMO</span>
+                        <strong id="smokeLevel">15 %</strong>
+                    </div>
+
+                    <div>
+                        <span>VISIBILIDAD</span>
+                        <strong id="visibility">100 %</strong>
+                    </div>
+
+                    <div>
+                        <span>ETAPA</span>
+                        <strong id="stage">Crecimiento</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <aside class="decisionPanel">
+
+                <span class="panelLabel">
+                    DECISIÓN OPERATIVA
+                </span>
+
+                <h2 id="question">
+                    Arribás a la escena. ¿Cuál es tu primera acción?
+                </h2>
+
+
+                <button class="decision"></button>
+
+                <button class="decision"></button>
+
+                <button class="decision"></button>
+
+
+                <div id="feedback"></div>
+
+
+                <button
+                    class="finish"
+                    onclick="finishTraining()"
+                >
+                    FINALIZAR ENTRENAMIENTO
+                </button>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- DEBRIEFING -->
+
+    <section id="debriefing" class="screen">
+
+        <p class="eyebrow">
+            INFORME POST ENTRENAMIENTO
+        </p>
+
+        <h1>
+            Debriefing
+        </h1>
+
+
+        <div class="score">
+
+            <span>RESULTADO</span>
+
+            <strong id="score">
+                100
+            </strong>
+
+            <small>
+                /100
+            </small>
+
+        </div>
+
+
+        <div class="report">
+
+            <h2>
+                Registro de decisiones
+            </h2>
+
+            <div id="decisionLog"></div>
+
+        </div>
+
+
+        <button
+            class="primary"
+            onclick="goHome()"
+        >
+            VOLVER AL CENTRO
+        </button>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-block">
+
+        <strong>
+            EGS | Estudio de Gestión de Sistemas
+        </strong>
+
+        <span>
+            Centro de Investigación, Simulación y Entrenamiento Bomberil
+        </span>
+
+    </div>
+
+
+    <div class="developer-credit">
+
+        <span>
+            Desarrollado por
+        </span>
+
+        <strong>
+            Téc. Ambiental Yamila Vocos
+        </strong>
+
+        <span>
+            San Francisco, Córdoba · Argentina
+        </span>
+
+    </div>
+
+
+    <div class="footer-block footer-right">
+
+        <span>
+            Prototipo Alpha · Desarrollo 2026
+        </span>
+
+        <span>
+            Doctrina y contenidos técnicos sujetos a revisión y actualización
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>

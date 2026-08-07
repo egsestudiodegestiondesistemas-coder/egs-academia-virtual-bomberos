@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "module_id": "EXT-001",
+    "module_name": "Extintores y Clases de Fuego",
+    "version": "0.8.0-alpha",
+    "status": "activo",
+    "source_ids": [
+      "SRC-FED-CBA-M1-2009",
+      "SRC-DC-BN1-2022"
+    ]
+  },
+  "sections": [
+    {
+      "title": "Clase A",
+      "summary": "Combustibles sólidos ordinarios. Símbolo tradicional: A sobre triángulo verde.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "title": "Clase B",
+      "summary": "Líquidos combustibles e inflamables. Símbolo tradicional: B sobre cuadrado rojo.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "title": "Clase C",
+      "summary": "Equipos o instalaciones eléctricas energizadas. Al eliminar la energía, la clasificación depende del combustible que continúa ardiendo.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "title": "Clase D",
+      "summary": "Metales combustibles determinados. Requieren agentes compatibles con el metal involucrado.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "title": "Clase K",
+      "summary": "Fuegos asociados a grasas y aceites de cocina. Se emplean agentes específicos para ese riesgo.",
+      "source_id": "SRC-DC-BN1-2022"
+    },
+    {
+      "title": "Agentes extintores",
+      "summary": "El marco BN1 aborda agua, espuma, CO₂, polvos químicos y otros agentes según combustible y riesgo.",
+      "source_id": "SRC-DC-BN1-2022"
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué clase corresponde a sólidos combustibles ordinarios?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "Clase A",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Clase C",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Clase D",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "Un tablero eléctrico energizado que arde se considera inicialmente:",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "Clase C",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Clase A",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Clase K",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "Después de cortar la energía en un fuego Clase C, la clasificación depende de:",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "El combustible que sigue ardiendo",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Siempre pasa a Clase D",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Siempre continúa siendo Clase C",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

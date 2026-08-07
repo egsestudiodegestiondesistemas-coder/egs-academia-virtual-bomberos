@@ -1,0 +1,135 @@
+{
+  "metadata": {
+    "module_id": "QF-001",
+    "module_name": "Química del Fuego",
+    "version": "0.9.0-alpha",
+    "status": "activo",
+    "source_ids": [
+      "SRC-FED-CBA-M1-2009",
+      "SRC-BN1-INT-2026"
+    ]
+  },
+  "sections": [
+    {
+      "title": "Combustión",
+      "summary": "Reacción química de oxidación entre combustible y comburente iniciada por energía en forma de calor.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "title": "Pirólisis",
+      "summary": "Descomposición térmica de materiales que puede generar gases combustibles antes de la combustión con llama.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "title": "Triángulo del fuego",
+      "summary": "Combustible, comburente y calor.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "title": "Tetraedro del fuego",
+      "summary": "Combustible, comburente, calor y reacción química en cadena.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "title": "Fases del incendio",
+      "summary": "Fase inicial, crecimiento, pleno desarrollo y decaimiento.",
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "title": "ILC e ILV",
+      "summary": "Incendio limitado por el combustible e incendio limitado por la ventilación.",
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "title": "Fenómenos",
+      "summary": "Rollover, flashover y fenómenos asociados a cambios de ventilación deben interpretarse mediante lectura integral del incendio.",
+      "source_id": "SRC-BN1-INT-2026"
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué integra el triángulo del fuego?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "Combustible, comburente y calor",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Combustible, humo y agua",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Calor, vapor y presión",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué agrega el tetraedro del fuego?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "text": "La reacción química en cadena",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "La humedad",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "La presión atmosférica",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "Un incendio con combustible disponible pero poco aporte de aire está:",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "text": "Limitado por la ventilación",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Limitado por el combustible",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Extinguido",
+          "score": -20,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Cuáles son las cuatro fases indicadas para un incendio interior?",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "text": "Inicial, crecimiento, pleno desarrollo y decaimiento",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Ignición, explosión, ventilación y extinción",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Inicial, rollover, backdraft y extinción",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

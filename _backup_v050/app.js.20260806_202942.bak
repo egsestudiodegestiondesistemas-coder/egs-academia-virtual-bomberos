@@ -1,0 +1,1044 @@
+/* =========================================================
+   EGS FIRE ACADEMY
+   Centro de Investigación, Simulación y Entrenamiento Bomberil
+
+   Frontend Runtime
+   Versión 0.4.0 Alpha
+   ========================================================= */
+
+
+// =========================================================
+// CONFIGURACIÓN
+// =========================================================
+
+const API_URL = "http://127.0.0.1:8001";
+
+
+// =========================================================
+// ESTADO GLOBAL
+// =========================================================
+
+let simulationTime = 0;
+let temperature = 80;
+let smoke = 15;
+let visibility = 100;
+let score = 100;
+
+let currentStep = 0;
+let timer = null;
+
+let log = [];
+
+let scenarioActive = false;
+
+let doctrineData = null;
+let trainingQuestions = [];
+
+
+// =========================================================
+// ENTRENAMIENTO LOCAL DE RESPALDO
+// =========================================================
+
+const trainingSteps = [
+
+    {
+        id: "arrival",
+
+        question:
+            "Arribás a una vivienda con presencia visible de humo. ¿Cuál es tu primera acción?",
+
+        options: [
+
+            {
+                id: "360",
+                text: "Realizar reconocimiento 360°",
+                score: 0,
+                status: "correct",
+
+                feedback:
+                    "Reconocimiento exterior registrado. Se obtiene información antes de definir la estrategia."
+            },
+
+            {
+                id: "entry",
+                text: "Ingresar inmediatamente",
+                score: -20,
+                status: "critical_error",
+
+                feedback:
+                    "Ingreso registrado antes de completar la evaluación exterior."
+            },
+
+            {
+                id: "ventilate",
+                text: "Ventilar inmediatamente",
+                score: -10,
+                status: "error",
+
+                feedback:
+                    "La ventilación modifica el flujo de aire y puede alterar rápidamente el comportamiento del incendio."
+            }
+        ]
+    },
+
+    {
+        id: "fire_reading",
+
+        question:
+            "Durante el reconocimiento observás humo denso y poca llama visible. ¿Qué debés evaluar?",
+
+        options: [
+
+            {
+                id: "fire_behavior",
+                text: "Comportamiento del incendio y ventilación",
+                score: 0,
+                status: "correct",
+
+                feedback:
+                    "Se registra evaluación del comportamiento del incendio y de las condiciones de ventilación."
+            },
+
+            {
+                id: "entry_fast",
+                text: "Ingresar rápidamente porque hay poca llama",
+                score: -20,
+                status: "critical_error",
+
+                feedback:
+                    "La presencia de poca llama visible no implica necesariamente condiciones seguras."
+            },
+
+            {
+                id: "break_window",
+                text: "Romper una ventana para liberar humo",
+                score: -15,
+                status: "error",
+
+                feedback:
+                    "La apertura de una ventana modifica la ventilación y puede aumentar la disponibilidad de oxígeno."
+            }
+        ]
+    },
+
+    {
+        id: "ventilation_state",
+
+        question:
+            "La estructura conserva combustible disponible, pero existe poco ingreso de aire. ¿Cómo clasificás el incendio?",
+
+        options: [
+
+            {
+                id: "ilv",
+                text: "Incendio limitado por la ventilación",
+                score: 0,
+                status: "correct",
+
+                feedback:
+                    "Correcto. El desarrollo está condicionado por la cantidad de aire disponible."
+            },
+
+            {
+                id: "ilc",
+                text: "Incendio limitado por el combustible",
+                score: -15,
+                status: "error",
+
+                feedback:
+                    "La condición descripta corresponde a limitación por ventilación."
+            },
+
+            {
+                id: "extinguished",
+                text: "Incendio prácticamente extinguido",
+                score: -20,
+                status: "error",
+
+                feedback:
+                    "La reducción de las llamas no significa necesariamente que el incendio esté extinguido."
+            }
+        ]
+    },
+
+    {
+        id: "flashover",
+
+        question:
+            "La temperatura aumenta rápidamente, el plano de humo desciende y aparecen llamas en la capa superior. ¿Qué fenómeno puede aproximarse?",
+
+        options: [
+
+            {
+                id: "flashover",
+                text: "Flashover",
+                score: 0,
+                status: "correct",
+
+                feedback:
+                    "Se identifica una posible transición hacia un incendio completamente desarrollado."
+            },
+
+            {
+                id: "backdraft",
+                text: "Backdraft necesariamente",
+                score: -10,
+                status: "error",
+
+                feedback:
+                    "Backdraft y flashover son fenómenos diferentes."
+            },
+
+            {
+                id: "safe_conditions",
+                text: "Condiciones estables",
+                score: -20,
+                status: "critical_error",
+
+                feedback:
+                    "El aumento térmico y la evolución de la capa de gases indican condiciones de mayor riesgo."
+            }
+        ]
+    },
+
+    {
+        id: "attack_strategy",
+
+        question:
+            "El incendio presenta alta carga térmica y fuego visible desde una abertura exterior. ¿Qué alternativa táctica puede reducir rápidamente su intensidad antes del ingreso?",
+
+        options: [
+
+            {
+                id: "blitz",
+                text: "Ataque exterior de alto caudal / Blitz Attack",
+                score: 0,
+                status: "correct",
+
+                feedback:
+                    "Se registra un ataque exterior rápido destinado a reducir la intensidad."
+            },
+
+            {
+                id: "enter_without_line",
+                text: "Ingreso inmediato sin línea preparada",
+                score: -25,
+                status: "critical_error",
+
+                feedback:
+                    "El ingreso sin una línea preparada incrementa significativamente el riesgo operativo."
+            },
+
+            {
+                id: "wait",
+                text: "Esperar sin realizar ninguna acción",
+                score: -15,
+                status: "error",
+
+                feedback:
+                    "La demora puede permitir que continúe aumentando la potencia del incendio."
+            }
+        ]
+    },
+
+    {
+        id: "defensive",
+
+        question:
+            "La estructura presenta riesgo importante de colapso y no existen condiciones seguras para ingreso. ¿Qué maniobra corresponde considerar?",
+
+        options: [
+
+            {
+                id: "defensive",
+                text: "Maniobra defensiva",
+                score: 0,
+                status: "correct",
+
+                feedback:
+                    "Se prioriza limitar la propagación y operar desde una zona segura."
+            },
+
+            {
+                id: "interior",
+                text: "Maniobra ofensiva interior",
+                score: -25,
+                status: "critical_error",
+
+                feedback:
+                    "El riesgo estructural debe formar parte de la evaluación previa a cualquier ingreso."
+            },
+
+            {
+                id: "random_vent",
+                text: "Ventilar todas las aberturas",
+                score: -20,
+                status: "error",
+
+                feedback:
+                    "La ventilación debe formar parte de una estrategia coordinada."
+            }
+        ]
+    }
+];
+
+
+// =========================================================
+// CARGA DE DOCTRINA DESDE PYTHON
+// =========================================================
+
+async function loadDoctrine() {
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/doctrine/structural-fire/training`
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `Error HTTP ${response.status}`
+            );
+        }
+
+        doctrineData = await response.json();
+
+        trainingQuestions =
+            Array.isArray(doctrineData.training)
+                ? doctrineData.training
+                : [];
+
+        console.log(
+            "EGS FIRE ACADEMY - Doctrina conectada"
+        );
+
+        console.log(
+            "Módulo:",
+            doctrineData.metadata?.module_name
+        );
+
+        console.log(
+            "Versión:",
+            doctrineData.metadata?.version
+        );
+
+        console.log(
+            "Preguntas:",
+            trainingQuestions.length
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.warn(
+            "Backend doctrinario no disponible. Se utilizará el respaldo local.",
+            error
+        );
+
+        doctrineData = null;
+        trainingQuestions = [];
+
+        return false;
+    }
+}
+
+
+// =========================================================
+// NAVEGACIÓN
+// =========================================================
+
+function showScreen(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+            screen.classList.remove("active");
+        });
+
+    const target =
+        document.getElementById(id);
+
+    if (target) {
+        target.classList.add("active");
+    }
+}
+
+
+function goHome() {
+
+    stopTimer();
+
+    scenarioActive = false;
+
+    showScreen("home");
+}
+
+
+function openModule(module) {
+
+    showScreen(module);
+}
+
+
+// =========================================================
+// INICIO DEL ENTRENAMIENTO
+// =========================================================
+
+async function startScenario(name) {
+
+    await loadDoctrine();
+
+    simulationTime = 0;
+    temperature = 80;
+    smoke = 15;
+    visibility = 100;
+    score = 100;
+
+    currentStep = 0;
+    log = [];
+
+    scenarioActive = true;
+
+    const title =
+        document.getElementById(
+            "scenarioTitle"
+        );
+
+    if (title) {
+        title.textContent = name;
+    }
+
+    const feedback =
+        document.getElementById(
+            "feedback"
+        );
+
+    if (feedback) {
+        feedback.innerHTML = "";
+    }
+
+    showScreen("simulation");
+
+    loadTrainingStep();
+
+    updateTelemetry();
+
+    startTimer();
+}
+
+
+// =========================================================
+// CRONÓMETRO
+// =========================================================
+
+function startTimer() {
+
+    stopTimer();
+
+    timer = setInterval(() => {
+
+        if (!scenarioActive) {
+            return;
+        }
+
+        simulationTime += 1;
+
+        if (simulationTime % 5 === 0) {
+
+            temperature += 12;
+            smoke += 3;
+            visibility -= 2;
+
+            normalizeSimulationValues();
+        }
+
+        updateTelemetry();
+
+    }, 1000);
+}
+
+
+function stopTimer() {
+
+    if (timer !== null) {
+
+        clearInterval(timer);
+
+        timer = null;
+    }
+}
+
+
+// =========================================================
+// TELEMETRÍA
+// =========================================================
+
+function updateTelemetry() {
+
+    const minutes =
+        Math.floor(
+            simulationTime / 60
+        )
+        .toString()
+        .padStart(2, "0");
+
+    const seconds =
+        (simulationTime % 60)
+        .toString()
+        .padStart(2, "0");
+
+    setText(
+        "time",
+        `${minutes}:${seconds}`
+    );
+
+    setText(
+        "temperature",
+        `${temperature} °C`
+    );
+
+    setText(
+        "smokeLevel",
+        `${Math.round(smoke)} %`
+    );
+
+    setText(
+        "visibility",
+        `${Math.round(visibility)} %`
+    );
+
+    let stage =
+        "Crecimiento";
+
+    if (temperature >= 300) {
+        stage =
+            "Crecimiento avanzado";
+    }
+
+    if (temperature >= 500) {
+        stage =
+            "Condición crítica";
+    }
+
+    if (temperature >= 600) {
+        stage =
+            "Posible transición generalizada";
+    }
+
+    setText(
+        "stage",
+        stage
+    );
+
+    const smokeElement =
+        document.getElementById(
+            "smoke"
+        );
+
+    if (smokeElement) {
+
+        smokeElement.style.opacity =
+            Math.min(
+                smoke / 100,
+                0.92
+            );
+    }
+}
+
+
+// =========================================================
+// CARGAR PREGUNTA / DECISIÓN
+// =========================================================
+
+function loadTrainingStep() {
+
+    const activeTrainingSteps =
+        trainingQuestions.length > 0
+            ? trainingQuestions
+            : trainingSteps;
+
+    const step =
+        activeTrainingSteps[currentStep];
+
+    if (!step) {
+
+        finishTraining();
+
+        return;
+    }
+
+
+    const normalizedOptions =
+        Array.isArray(step.options)
+            ? step.options.map(
+                option => ({
+                    ...option,
+
+                    feedback:
+                        option.feedback ||
+                        (
+                            option.status === "correct"
+                                ? "Decisión doctrinariamente adecuada para esta etapa del entrenamiento."
+                                : option.status === "critical_error"
+                                    ? "La decisión fue registrada como un error crítico y será analizada durante el debriefing."
+                                    : "La decisión requiere revisión doctrinaria durante el debriefing."
+                        ),
+
+                    score:
+                        Number.isFinite(
+                            Number(option.score)
+                        )
+                            ? Number(option.score)
+                            : 0
+                })
+            )
+            : [];
+
+
+    setText(
+        "question",
+        step.question
+    );
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".decision"
+        );
+
+
+    buttons.forEach(
+        (button, index) => {
+
+            const option =
+                normalizedOptions[index];
+
+            if (!option) {
+
+                button.style.display =
+                    "none";
+
+                return;
+            }
+
+            button.style.display =
+                "block";
+
+            button.textContent =
+                option.text;
+
+            button.onclick =
+                () => selectDecision(
+                    option
+                );
+        }
+    );
+}
+
+
+// =========================================================
+// DECISIONES
+// =========================================================
+
+function selectDecision(option) {
+
+    if (!scenarioActive) {
+        return;
+    }
+
+    score += option.score;
+
+    if (score < 0) {
+        score = 0;
+    }
+
+    if (score > 100) {
+        score = 100;
+    }
+
+
+    applyOperationalEffect(
+        option.id
+    );
+
+
+    log.push({
+
+        step:
+            currentStep + 1,
+
+        decision:
+            option.text,
+
+        feedback:
+            option.feedback,
+
+        impact:
+            option.score,
+
+        status:
+            option.status || "unknown"
+    });
+
+
+    const feedback =
+        document.getElementById(
+            "feedback"
+        );
+
+
+    if (feedback) {
+
+        feedback.innerHTML = `
+            <strong>
+                Decisión registrada
+            </strong>
+
+            <p>
+                ${option.feedback}
+            </p>
+        `;
+    }
+
+
+    disableDecisionButtons();
+
+    currentStep += 1;
+
+
+    setTimeout(() => {
+
+        enableDecisionButtons();
+
+        loadTrainingStep();
+
+    }, 1000);
+
+
+    updateTelemetry();
+}
+
+
+// =========================================================
+// CONSECUENCIAS INICIALES
+// =========================================================
+
+function applyOperationalEffect(id) {
+
+    switch (id) {
+
+        case "360":
+        case "recognition":
+        case "fire_behavior":
+        case "ilv":
+        case "flashover":
+        case "defensive":
+
+            break;
+
+
+        case "entry":
+        case "immediate_entry":
+        case "entry_fast":
+        case "enter_without_line":
+
+            temperature += 15;
+            smoke += 5;
+            visibility -= 5;
+
+            break;
+
+
+        case "ventilate":
+        case "uncoordinated_ventilation":
+        case "break_window":
+        case "random_vent":
+
+            smoke -= 8;
+            visibility += 8;
+            temperature += 25;
+
+            break;
+
+
+        case "blitz":
+
+            temperature -= 40;
+            smoke -= 5;
+            visibility += 4;
+
+            break;
+
+
+        case "wait":
+
+            temperature += 35;
+            smoke += 10;
+            visibility -= 10;
+
+            break;
+
+
+        case "cooling":
+
+            temperature -= 30;
+
+            break;
+    }
+
+
+    normalizeSimulationValues();
+}
+
+
+// =========================================================
+// NORMALIZACIÓN
+// =========================================================
+
+function normalizeSimulationValues() {
+
+    if (temperature < 20) {
+        temperature = 20;
+    }
+
+    if (smoke < 0) {
+        smoke = 0;
+    }
+
+    if (smoke > 100) {
+        smoke = 100;
+    }
+
+    if (visibility < 0) {
+        visibility = 0;
+    }
+
+    if (visibility > 100) {
+        visibility = 100;
+    }
+}
+
+
+// =========================================================
+// BOTONES
+// =========================================================
+
+function disableDecisionButtons() {
+
+    document
+        .querySelectorAll(
+            ".decision"
+        )
+        .forEach(button => {
+
+            button.disabled = true;
+        });
+}
+
+
+function enableDecisionButtons() {
+
+    document
+        .querySelectorAll(
+            ".decision"
+        )
+        .forEach(button => {
+
+            button.disabled = false;
+        });
+}
+
+
+// =========================================================
+// DEBRIEFING
+// =========================================================
+
+function finishTraining() {
+
+    scenarioActive = false;
+
+    stopTimer();
+
+
+    setText(
+        "score",
+        score
+    );
+
+
+    const logContainer =
+        document.getElementById(
+            "decisionLog"
+        );
+
+
+    if (logContainer) {
+
+        if (log.length === 0) {
+
+            logContainer.innerHTML = `
+                <p>
+                    No se registraron decisiones
+                    durante el entrenamiento.
+                </p>
+            `;
+
+        } else {
+
+            logContainer.innerHTML =
+                log
+                    .map(entry => {
+
+                        let impactText =
+                            "Sin penalización";
+
+                        if (entry.impact < 0) {
+
+                            impactText =
+                                `${entry.impact} puntos`;
+                        }
+
+
+                        let statusText =
+                            "Registrada";
+
+                        if (
+                            entry.status ===
+                            "correct"
+                        ) {
+
+                            statusText =
+                                "Adecuada";
+                        }
+
+                        if (
+                            entry.status ===
+                            "error"
+                        ) {
+
+                            statusText =
+                                "Requiere revisión";
+                        }
+
+                        if (
+                            entry.status ===
+                            "critical_error"
+                        ) {
+
+                            statusText =
+                                "Error crítico";
+                        }
+
+
+                        return `
+                            <div class="debriefEntry">
+
+                                <p>
+                                    <strong>
+                                        Decisión ${entry.step}
+                                    </strong>
+                                </p>
+
+                                <p>
+                                    ${entry.decision}
+                                </p>
+
+                                <p>
+                                    ${entry.feedback}
+                                </p>
+
+                                <small>
+                                    Estado:
+                                    ${statusText}
+                                    ·
+                                    Impacto:
+                                    ${impactText}
+                                </small>
+
+                            </div>
+                        `;
+
+                    })
+                    .join("");
+        }
+    }
+
+
+    showScreen(
+        "debriefing"
+    );
+}
+
+
+// =========================================================
+// UTILIDAD
+// =========================================================
+
+function setText(
+    elementId,
+    value
+) {
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+    if (element) {
+
+        element.textContent =
+            value;
+    }
+}
+
+
+// =========================================================
+// ESTADO DEL BACKEND
+// =========================================================
+
+async function backendStatus() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/`
+            );
+
+        if (!response.ok) {
+
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+        }
+
+        return await response.json();
+
+    } catch (error) {
+
+        console.warn(
+            "Backend Python no disponible.",
+            error
+        );
+
+        return null;
+    }
+}
+
+
+// =========================================================
+// INICIALIZACIÓN
+// =========================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        showScreen("home");
+
+        await backendStatus();
+
+        await loadDoctrine();
+    }
+);

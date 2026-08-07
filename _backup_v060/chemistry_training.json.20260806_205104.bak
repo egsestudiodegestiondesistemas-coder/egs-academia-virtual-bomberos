@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "module_id": "QF-001",
+    "module_name": "Química del Fuego",
+    "version": "0.5.0-alpha",
+    "status": "EN_REVISION_DOCTRINARIA",
+    "source_ids": [
+      "SRC-FED-CBA-M1-2009",
+      "SRC-BN1-INT-2026"
+    ]
+  },
+  "sections": [
+    {
+      "id": "combustion",
+      "title": "Combustión",
+      "summary": "Reacción química de oxidación entre combustible y comburente, iniciada por energía en forma de calor.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "id": "pyrolysis",
+      "title": "Pirólisis",
+      "summary": "Descomposición térmica de sólidos que puede generar gases inflamables.",
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "id": "triangle",
+      "title": "Triángulo del fuego",
+      "concepts": [
+        "Combustible",
+        "Comburente",
+        "Calor"
+      ],
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "id": "tetrahedron",
+      "title": "Tetraedro del fuego",
+      "concepts": [
+        "Combustible",
+        "Comburente",
+        "Calor",
+        "Reacción química en cadena"
+      ],
+      "source_id": "SRC-FED-CBA-M1-2009"
+    },
+    {
+      "id": "phases",
+      "title": "Fases del incendio interior",
+      "concepts": [
+        "Inicial",
+        "Crecimiento",
+        "Pleno desarrollo",
+        "Decaimiento"
+      ],
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "id": "phenomena",
+      "title": "Fenómenos",
+      "concepts": [
+        "Rollover",
+        "Flashover",
+        "Flashover inducido por ventilación"
+      ],
+      "source_id": "SRC-BN1-INT-2026"
+    }
+  ],
+  "training": [
+    {
+      "id": "QF-D01",
+      "question": "¿Qué elementos integran el triángulo del fuego?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "id": "a",
+          "text": "Combustible, comburente y calor",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "b",
+          "text": "Combustible, humo y agua",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "id": "c",
+          "text": "Calor, vapor y presión",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "id": "QF-D02",
+      "question": "¿Qué agrega el tetraedro del fuego respecto del triángulo?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "id": "a",
+          "text": "La reacción química en cadena",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "b",
+          "text": "La presión atmosférica",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "id": "c",
+          "text": "La humedad",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "id": "QF-D03",
+      "question": "¿Qué proceso térmico puede generar gases inflamables a partir de un sólido combustible?",
+      "source_id": "SRC-FED-CBA-M1-2009",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pirólisis",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "b",
+          "text": "Condensación",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "id": "c",
+          "text": "Sedimentación",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "id": "QF-D04",
+      "question": "¿Cuáles son las cuatro fases del incendio interior indicadas en el material BN1?",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "id": "a",
+          "text": "Inicial, crecimiento, pleno desarrollo y decaimiento",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "b",
+          "text": "Ignición, explosión, ventilación y extinción",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "id": "c",
+          "text": "Inicial, rollover y backdraft únicamente",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

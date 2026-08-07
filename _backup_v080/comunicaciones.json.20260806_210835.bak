@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "module_id": "COM-001",
+    "module_name": "Comunicaciones Operativas",
+    "version": "0.7.0-alpha",
+    "source_ids": [],
+    "status": "preparado"
+  },
+  "sections": [
+    {
+      "title": "Pendiente de carga doctrinaria",
+      "summary": "La estructura está preparada, pero no se incorporan procedimientos específicos hasta cargar el material oficial correspondiente."
+    }
+  ],
+  "training": []
+}

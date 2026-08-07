@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "module_id": "ERA-001",
+    "module_name": "Equipos de Respiración Autónoma",
+    "version": "0.7.0-alpha",
+    "source_ids": [
+      "SRC-DC-BN1-2022"
+    ],
+    "status": "activo"
+  },
+  "sections": [
+    {
+      "title": "Marco BN1",
+      "summary": "El diseño curricular incluye equipos de respiración autónoma dentro de la protección personal del bombero."
+    },
+    {
+      "title": "Competencias",
+      "summary": "Se deben trabajar tipos, colocación, carga, inspección y uso del ERA."
+    },
+    {
+      "title": "Alistamiento y cuidado",
+      "summary": "El currículo también contempla uso, alistamiento y cuidado del equipo de protección respiratoria y su mantenimiento."
+    },
+    {
+      "title": "Profundización",
+      "summary": "Los modelos específicos del cuartel deben documentarse con sus manuales y procedimientos propios antes de cargar parámetros técnicos detallados."
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué aspectos del ERA enumera explícitamente el diseño curricular BN1?",
+      "source_id": "SRC-DC-BN1-2022",
+      "options": [
+        {
+          "text": "Tipos, colocación, carga, inspección y uso",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Solo color y fabricante",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Únicamente reparación electrónica",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿El mantenimiento y alistamiento del equipo respiratorio forman parte de la formación BN1?",
+      "source_id": "SRC-DC-BN1-2022",
+      "options": [
+        {
+          "text": "Sí, el currículo los contempla",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "No, nunca se abordan",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Solo corresponden al personal administrativo",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

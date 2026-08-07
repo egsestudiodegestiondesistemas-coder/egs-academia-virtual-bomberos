@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "module_id": "OIE-001",
+    "module_name": "Operaciones en Incendios Estructurales",
+    "version": "0.1.0",
+    "status": "EN_REVISION_DOCTRINARIA",
+    "primary_source": "Material de clase de Operaciones en Incendios Estructurales",
+    "institutional_scope": "Bomberos Voluntarios",
+    "last_review": "2026-08"
+  },
+
+  "sections": [
+    {
+      "id": "fire_development",
+      "title": "Evolución del incendio",
+      "concepts": [
+        "Fase inicial",
+        "Fase de crecimiento",
+        "Fase de pleno desarrollo",
+        "Fase de decaimiento"
+      ]
+    },
+
+    {
+      "id": "fire_regime",
+      "title": "Régimen del incendio",
+      "concepts": [
+        "Incendio limitado por el combustible",
+        "Incendio limitado por la ventilación"
+      ]
+    },
+
+    {
+      "id": "agents",
+      "title": "Agentes extintores",
+      "concepts": [
+        "Agua",
+        "Espuma",
+        "Polvo químico seco",
+        "Dióxido de carbono",
+        "Agentes halogenados",
+        "Polvos especiales"
+      ]
+    }
+  ],
+
+  "training": [
+    {
+      "id": "OIE-D01",
+      "phase": "evaluacion_inicial",
+      "question": "Arribás a una vivienda con presencia visible de humo. ¿Cuál es tu primera acción?",
+      "options": [
+        {
+          "id": "recognition",
+          "text": "Realizar reconocimiento y evaluación de la escena",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "immediate_entry",
+          "text": "Ingresar inmediatamente sin evaluación exterior",
+          "score": -20,
+          "status": "critical_error"
+        },
+        {
+          "id": "uncoordinated_ventilation",
+          "text": "Abrir inmediatamente todas las aberturas",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+
+    {
+      "id": "OIE-D02",
+      "phase": "fire_regime",
+      "question": "Existe combustible disponible pero la cantidad de aire limita el desarrollo del incendio. ¿Qué condición presenta?",
+      "options": [
+        {
+          "id": "ilv",
+          "text": "Incendio limitado por la ventilación",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "ilc",
+          "text": "Incendio limitado por el combustible",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "id": "extinguished",
+          "text": "Incendio extinguido",
+          "score": -20,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

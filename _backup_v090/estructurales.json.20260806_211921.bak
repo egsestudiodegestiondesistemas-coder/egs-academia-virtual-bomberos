@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "module_id": "OIE-001",
+    "module_name": "Incendios Estructurales",
+    "version": "0.8.0-alpha",
+    "status": "activo",
+    "source_ids": [
+      "SRC-BN1-INT-2026",
+      "SRC-DC-BN1-2022"
+    ]
+  },
+  "sections": [
+    {
+      "title": "Emplazamiento",
+      "summary": "Organización inicial de unidades, personal y recursos a partir de la evaluación de la escena.",
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "title": "Zona de riesgo y zona de seguridad",
+      "summary": "Sectorización para controlar exposición, circulación y operación segura.",
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "title": "Corte de suministros",
+      "summary": "Identificación y control de riesgos asociados a electricidad, gas y otros suministros.",
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "title": "Entrada forzada",
+      "summary": "Selección de herramienta y técnica según la barrera, preservando control de la apertura.",
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "title": "Ventilación",
+      "summary": "Natural, horizontal, vertical y mecánica/forzada, coordinada con la estrategia de ataque.",
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "title": "Lectura del incendio",
+      "summary": "Humo, calor, ventilación, desarrollo y comportamiento condicionan la toma de decisiones.",
+      "source_id": "SRC-BN1-INT-2026"
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué dos zonas específicas establece el material de clase en la escena?",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "text": "Zona de riesgo y zona de seguridad",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Zona médica y zona administrativa",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "No es necesario sectorizar",
+          "score": -25,
+          "status": "critical_error"
+        }
+      ]
+    },
+    {
+      "question": "La ventilación en incendios estructurales debe:",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "text": "Coordinarse con el ataque y con la lectura del comportamiento del incendio",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Realizarse siempre abriendo todas las aberturas",
+          "score": -25,
+          "status": "critical_error"
+        },
+        {
+          "text": "Ignorar el flujo de gases",
+          "score": -20,
+          "status": "critical_error"
+        }
+      ]
+    },
+    {
+      "question": "Si la temperatura aumenta y el plano de humo desciende, corresponde:",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "text": "Reevaluar condiciones y considerar incremento del riesgo térmico",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Asumir que el incendio está estable",
+          "score": -20,
+          "status": "critical_error"
+        },
+        {
+          "text": "Ingresar sin evaluación adicional",
+          "score": -25,
+          "status": "critical_error"
+        }
+      ]
+    }
+  ]
+}

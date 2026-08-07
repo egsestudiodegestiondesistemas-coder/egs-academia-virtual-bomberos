@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "platform": "EGS | ACADEMIA VIRTUAL DE BOMBEROS",
+    "version": "0.7.0-alpha",
+    "scope": "Formación, estudio, evaluación y simulación bomberil",
+    "status": "estructura_modular_en_expansion"
+  },
+  "modules": [
+    {
+      "id": "quimica",
+      "name": "Química del Fuego",
+      "area": "Incendios",
+      "status": "activo",
+      "description": "Combustión, pirólisis, triángulo y tetraedro, fases y fenómenos."
+    },
+    {
+      "id": "estructurales",
+      "name": "Incendios Estructurales",
+      "area": "Incendios",
+      "status": "activo",
+      "description": "Emplazamiento, zonas, ventilación, lectura del incendio y decisiones."
+    },
+    {
+      "id": "extintores",
+      "name": "Extintores y Clases de Fuego",
+      "area": "Incendios",
+      "status": "activo",
+      "description": "Clases de fuego, agentes extintores, selección, residuos y limitaciones."
+    },
+    {
+      "id": "lineas",
+      "name": "Sistemas de Líneas, Mangas y Lanzas",
+      "area": "Incendios",
+      "status": "activo",
+      "description": "Líneas simples, combinadas y mixtas; mangas, accesorios, lanzas y plegados."
+    },
+    {
+      "id": "era",
+      "name": "Equipos de Respiración Autónoma",
+      "area": "Protección personal",
+      "status": "activo",
+      "description": "ERA, cilindros, alarmas, controles y seguridad operativa."
+    },
+    {
+      "id": "rescate",
+      "name": "Rescate Vehicular",
+      "area": "Rescate",
+      "status": "activo",
+      "description": "Evaluación de escena, estabilización, herramientas, extricación y seguridad."
+    },
+    {
+      "id": "socorrismo",
+      "name": "Socorrismo y Trauma",
+      "area": "Socorrismo",
+      "status": "activo",
+      "description": "XABCDE/ABCDE, urgencia, emergencia, RCP y trauma."
+    },
+    {
+      "id": "comunicaciones",
+      "name": "Comunicaciones Operativas",
+      "area": "Operaciones",
+      "status": "preparado",
+      "description": "Disciplina radial, equipos y comunicaciones operativas."
+    }
+  ]
+}

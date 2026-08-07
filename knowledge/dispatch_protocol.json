@@ -1,0 +1,10 @@
+{
+  "module": "Operaciones en Incendios Estructurales",
+  "phase": "Despacho",
+  "objectives": [
+    "Recepción de la alarma",
+    "Confirmación del tipo de incidente",
+    "Preparación del personal",
+    "Salida segura del cuartel"
+  ]
+}

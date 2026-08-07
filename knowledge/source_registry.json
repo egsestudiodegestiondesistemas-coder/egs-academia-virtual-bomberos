@@ -1,0 +1,57 @@
+{
+  "project": "EGS | Academia Virtual de Bomberos",
+  "version": "0.9.0-alpha",
+  "source_policy": {
+    "priority_order": [
+      "Material de formación utilizado en el cuartel / BN1",
+      "Federación de Bomberos Voluntarios de la Provincia de Córdoba",
+      "Diseño Curricular Bombero Nivel I - Jurisdicción Córdoba",
+      "Fuentes técnicas complementarias validadas"
+    ],
+    "rule": "Toda actualización doctrinaria debe quedar identificada por fuente, versión y estado de revisión."
+  },
+  "sources": [
+    {
+      "id": "SRC-BN1-INT-2026",
+      "title": "Incendios de Interior BN1",
+      "organization": "Material de formación bomberil",
+      "role": "Fuente principal de Incendios Estructurales",
+      "status": "vigente_en_entrenamiento"
+    },
+    {
+      "id": "SRC-FED-CBA-M1-2009",
+      "title": "Manual de Primer Nivel - Fuego I - Módulo 1 Combustión",
+      "organization": "Federación de Bomberos Voluntarios de la Provincia de Córdoba",
+      "role": "Referencia técnica",
+      "status": "requiere_revision_de_vigencia"
+    },
+    {
+      "id": "SRC-DC-BN1-2022",
+      "title": "Diseño Curricular Bombero Nivel I - Jurisdicción Córdoba",
+      "organization": "Ministerio de Educación de Córdoba / Federación BV Córdoba",
+      "role": "Marco curricular",
+      "status": "vigente"
+    },
+    {
+      "id": "SRC-LINEAS-BN1-SF-2026",
+      "title": "BN1 - Sistema de Líneas",
+      "organization": "Material de formación del cuartel",
+      "role": "Fuente principal de Sistemas de Líneas",
+      "status": "vigente_en_entrenamiento"
+    },
+    {
+      "id": "SRC-RV-N1",
+      "title": "Manual de Rescate Vehicular Nivel I",
+      "organization": "Formación bomberil",
+      "role": "Fuente principal de Rescate Vehicular",
+      "status": "material_base"
+    },
+    {
+      "id": "SRC-SOC-BN1-2024",
+      "title": "Socorrismo BN1 2024",
+      "organization": "Formación bomberil",
+      "role": "Fuente principal de Socorrismo",
+      "status": "material_de_formacion"
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "module_id": "SOC-001",
+    "module_name": "Socorrismo y Primeros Auxilios",
+    "version": "0.7.0-alpha",
+    "source_ids": [
+      "SRC-SOC-BN1-2024",
+      "SRC-DC-BN1-2022"
+    ],
+    "status": "activo"
+  },
+  "sections": [
+    {
+      "title": "Primeros auxilios",
+      "summary": "Medidas inmediatas en una persona lesionada, inconsciente o súbitamente enferma en el lugar del incidente hasta la llegada de asistencia sanitaria."
+    },
+    {
+      "title": "Objetivo",
+      "summary": "Conservar la vida, evitar complicaciones y favorecer la recuperación actuando de la mejor manera posible."
+    },
+    {
+      "title": "Socorrista o auxiliador",
+      "summary": "Persona con formación adecuada que debe priorizar su autocuidado y solo asistir cuando su propia integridad no corre riesgo."
+    },
+    {
+      "title": "Seguridad",
+      "summary": "Procedimientos destinados a prevenir nuevos accidentes y proteger al equipo y a la víctima."
+    },
+    {
+      "title": "Bioseguridad",
+      "summary": "Medidas preventivas para controlar riesgos biológicos, físicos y químicos durante la asistencia."
+    },
+    {
+      "title": "EPP",
+      "summary": "El material diferencia protección mecánica y biológica, incluyendo casco, chaquetón, pantalón, botas, guantes, barbijo y protector facial."
+    },
+    {
+      "title": "Equipamiento",
+      "summary": "Incluye maletín de trauma, curaciones, vía aérea y paro, con elementos de inmovilización, oxígeno, bolsa-válvula-máscara y DEA."
+    },
+    {
+      "title": "Contenidos BN1",
+      "summary": "El diseño curricular incluye primeros auxilios, RCP, DEA, parámetros vitales, trauma, hemorragias, quemaduras, shock e inmovilización."
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué son los primeros auxilios según el material BN1?",
+      "source_id": "SRC-SOC-BN1-2024",
+      "options": [
+        {
+          "text": "Medidas inmediatas hasta la llegada de asistencia sanitaria",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Tratamiento hospitalario definitivo",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Solo traslado de la víctima",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué debe priorizar siempre el socorrista?",
+      "source_id": "SRC-SOC-BN1-2024",
+      "options": [
+        {
+          "text": "Su propio autocuidado y seguridad antes de asistir",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Ingresar aunque exista peligro incontrolado",
+          "score": -25,
+          "status": "critical_error"
+        },
+        {
+          "text": "Retirar el EPP para trabajar más rápido",
+          "score": -25,
+          "status": "critical_error"
+        }
+      ]
+    },
+    {
+      "question": "¿Cuál es uno de los objetivos del primer auxilio?",
+      "source_id": "SRC-SOC-BN1-2024",
+      "options": [
+        {
+          "text": "Conservar la vida y evitar complicaciones",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Reemplazar definitivamente al servicio de emergencias",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Evitar toda evaluación inicial",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué equipo aparece dentro del maletín de paro del material?",
+      "source_id": "SRC-SOC-BN1-2024",
+      "options": [
+        {
+          "text": "Desfibrilador Externo Automático (DEA)",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Separador hidráulico",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Bifurcador de líneas",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "module_id": "LIN-001",
+    "module_name": "Sistemas de Líneas, Mangas y Lanzas",
+    "version": "0.8.0-alpha",
+    "status": "activo",
+    "source_ids": [
+      "SRC-LINEAS-BN1-SF-2026",
+      "SRC-DC-BN1-2022"
+    ]
+  },
+  "sections": [
+    {
+      "title": "Línea simple",
+      "summary": "Una sola línea de mangas de igual diámetro, sin derivaciones, alimenta una única lanza.",
+      "source_id": "SRC-LINEAS-BN1-SF-2026"
+    },
+    {
+      "title": "Línea combinada",
+      "summary": "Combina dos diámetros diferentes mediante reductor para pasar de mayor a menor diámetro.",
+      "source_id": "SRC-LINEAS-BN1-SF-2026"
+    },
+    {
+      "title": "Línea mixta",
+      "summary": "Una línea principal alimenta dos o más líneas secundarias mediante bifurcador.",
+      "source_id": "SRC-LINEAS-BN1-SF-2026"
+    },
+    {
+      "title": "Mangas",
+      "summary": "Colapsables, semirrígidas y rígidas según uso y configuración operativa.",
+      "source_id": "SRC-LINEAS-BN1-SF-2026"
+    },
+    {
+      "title": "Plegados",
+      "summary": "Carretel, caracol, estiba y Cleveland son formas de acondicionamiento y despliegue.",
+      "source_id": "SRC-LINEAS-BN1-SF-2026"
+    },
+    {
+      "title": "Accesorios",
+      "summary": "Reductores, bifurcadores, dosificadores y uniones cumplen funciones específicas en la conducción y aplicación del agente.",
+      "source_id": "SRC-LINEAS-BN1-SF-2026"
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué define a una línea simple?",
+      "source_id": "SRC-LINEAS-BN1-SF-2026",
+      "options": [
+        {
+          "text": "Una línea de igual diámetro, sin derivaciones, que alimenta una lanza",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Dos diámetros unidos por reductor",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Una principal dividida por bifurcador",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué accesorio permite pasar de mayor a menor diámetro?",
+      "source_id": "SRC-LINEAS-BN1-SF-2026",
+      "options": [
+        {
+          "text": "Reductor",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Bifurcador",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Dosificador",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué define a una línea mixta?",
+      "source_id": "SRC-LINEAS-BN1-SF-2026",
+      "options": [
+        {
+          "text": "Una principal alimenta dos o más secundarias mediante bifurcador",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Una sola línea sin derivaciones",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Dos diámetros unidos únicamente por reductor",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

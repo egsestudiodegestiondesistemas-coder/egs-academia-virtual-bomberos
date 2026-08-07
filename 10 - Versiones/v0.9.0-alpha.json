@@ -1,0 +1,22 @@
+{
+  "version": "0.9.0-alpha",
+  "updated_at": "2026-08-06T21:19:21",
+  "brand": "EGS | ACADEMIA VIRTUAL DE BOMBEROS",
+  "developer": "Téc. Sup. en Gestión Ambiental Yamila Vocos",
+  "features": [
+    "simulador 3D WebGL",
+    "vivienda procedural 3D",
+    "humo por partículas",
+    "fuego animado",
+    "puerta y ventana interactivas",
+    "víctima 3D",
+    "telemetría",
+    "niveles de calidad",
+    "reglas doctrinarias",
+    "8 módulos académicos",
+    "evaluación integral",
+    "progreso",
+    "buscador",
+    "biblioteca"
+  ]
+}

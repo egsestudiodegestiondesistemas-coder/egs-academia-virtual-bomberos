@@ -1,0 +1,39 @@
+{
+  "project": "EGS FIRE ACADEMY",
+  "version": "0.5.0-alpha",
+  "source_policy": {
+    "priority_order": [
+      "Material de clase vigente del cuartel",
+      "Federación de Bomberos Voluntarios de la Provincia de Córdoba",
+      "Diseño Curricular Bombero Nivel I - Jurisdicción Córdoba",
+      "Fuentes técnicas complementarias validadas"
+    ],
+    "rule": "Toda actualización doctrinaria debe quedar versionada, trazable y con estado de revisión."
+  },
+  "sources": [
+    {
+      "id": "SRC-BN1-INT-2026",
+      "title": "INCENDIOS DE INTERIOR BN1",
+      "organization": "Material de formación Bombero Profesional",
+      "cycle": "2026/27",
+      "role": "Fuente principal de clase",
+      "status": "vigente_en_entrenamiento"
+    },
+    {
+      "id": "SRC-FED-CBA-M1-2009",
+      "title": "Manual de Primer Nivel - Fuego I - Módulo 1 Combustión",
+      "organization": "Federación de Bomberos Voluntarios de la Provincia de Córdoba",
+      "edition": "2009",
+      "role": "Referencia oficial histórica/técnica",
+      "status": "requiere_revision_de_vigencia"
+    },
+    {
+      "id": "SRC-DC-BN1-2022",
+      "title": "Diseño Curricular Bombero Nivel I - Jurisdicción Córdoba",
+      "organization": "Ministerio de Educación de Córdoba / Federación BV Córdoba",
+      "approval": "Resolución 23/2022",
+      "role": "Marco curricular",
+      "status": "vigente"
+    }
+  ]
+}

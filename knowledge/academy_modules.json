@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "platform": "EGS | Academia Virtual de Bomberos",
+    "version": "0.9.0-alpha",
+    "scope": "Formación, estudio, evaluación y simulación bomberil"
+  },
+  "modules": [
+    {
+      "id": "quimica",
+      "name": "Química del Fuego",
+      "area": "Incendios",
+      "status": "activo",
+      "description": "Combustión, pirólisis, tetraedro, fases y fenómenos."
+    },
+    {
+      "id": "estructurales",
+      "name": "Incendios Estructurales",
+      "area": "Incendios",
+      "status": "activo",
+      "description": "Emplazamiento, ventilación, lectura y decisiones."
+    },
+    {
+      "id": "extintores",
+      "name": "Extintores y Clases de Fuego",
+      "area": "Incendios",
+      "status": "activo",
+      "description": "Clases de fuego, agentes extintores, selección y limitaciones."
+    },
+    {
+      "id": "lineas",
+      "name": "Sistemas de Líneas, Mangas y Lanzas",
+      "area": "Incendios",
+      "status": "activo",
+      "description": "Líneas simple, combinada y mixta, accesorios y plegados."
+    },
+    {
+      "id": "era",
+      "name": "Equipos de Respiración Autónoma",
+      "area": "Protección personal",
+      "status": "activo",
+      "description": "Función, inspección, colocación, uso y cuidado."
+    },
+    {
+      "id": "rescate",
+      "name": "Rescate Vehicular",
+      "area": "Rescate",
+      "status": "activo",
+      "description": "Evaluación, estabilización, acceso, herramientas y extricación."
+    },
+    {
+      "id": "socorrismo",
+      "name": "Socorrismo y Primeros Auxilios",
+      "area": "Socorrismo",
+      "status": "activo",
+      "description": "Seguridad, evaluación inicial, RCP/DEA, trauma y primeros auxilios."
+    },
+    {
+      "id": "comunicaciones",
+      "name": "Comunicaciones Operativas",
+      "area": "Operaciones",
+      "status": "activo",
+      "description": "Disciplina radial y transmisión operativa."
+    }
+  ]
+}

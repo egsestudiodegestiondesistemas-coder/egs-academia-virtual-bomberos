@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "module_id": "LIN-001",
+    "module_name": "Sistemas de Líneas, Mangas y Lanzas",
+    "version": "0.7.0-alpha",
+    "source_ids": [
+      "SRC-LINEAS-BN1-SF-2026",
+      "SRC-DC-BN1-2022"
+    ],
+    "status": "activo"
+  },
+  "sections": [
+    {
+      "title": "Lanzas",
+      "summary": "Dispositivo ubicado en el extremo de la línea de ataque para controlar y dirigir el agente extintor y adaptar el chorro al objetivo."
+    },
+    {
+      "title": "Tipos de lanzas",
+      "summary": "El material BN1 incluye chorro pleno, combinada, alta presión, corte y caudal variable, monitores y lanza de espuma."
+    },
+    {
+      "title": "Chorros",
+      "summary": "Pleno para alcance y ataque directo; ataque para enfriamiento; protección para formar una cortina que reduzca radiación térmica."
+    },
+    {
+      "title": "Mangas",
+      "summary": "El material diferencia colapsables, semirrígidas y rígidas, con usos de ataque, primer ataque y succión/abastecimiento."
+    },
+    {
+      "title": "Acondicionamiento",
+      "summary": "Carretel, caracol simple/doble, estiba y Cleveland son formas de acondicionar y desplegar las mangas."
+    },
+    {
+      "title": "Accesorios",
+      "summary": "Reductor para unir diámetros diferentes; bifurcador para dividir una línea principal; dosificador para incorporar espumígeno."
+    },
+    {
+      "title": "Uniones",
+      "summary": "Whitworth, Gost y Storz. Storz es un acople rápido y simétrico y debe coincidir en diámetro."
+    },
+    {
+      "title": "Sistema simple",
+      "summary": "Una sola línea de mangas de igual diámetro, sin derivaciones, alimenta una única lanza."
+    },
+    {
+      "title": "Sistema combinado",
+      "summary": "Combina dos diámetros diferentes usando un reductor para pasar de mayor a menor diámetro."
+    },
+    {
+      "title": "Sistema mixto",
+      "summary": "Una línea principal alimenta dos o más líneas secundarias mediante un bifurcador."
+    }
+  ],
+  "training": [
+    {
+      "question": "¿Qué caracteriza a un sistema de línea simple?",
+      "source_id": "SRC-LINEAS-BN1-SF-2026",
+      "options": [
+        {
+          "text": "Una sola línea de igual diámetro, sin derivaciones, alimenta una lanza",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Siempre utiliza dos diámetros y un reductor",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Una línea principal se divide obligatoriamente en tres",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué accesorio se utiliza para pasar de una manga de mayor diámetro a una de menor diámetro?",
+      "source_id": "SRC-LINEAS-BN1-SF-2026",
+      "options": [
+        {
+          "text": "Reductor",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Bifurcador",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Dosificador de espuma",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué define al sistema mixto?",
+      "source_id": "SRC-LINEAS-BN1-SF-2026",
+      "options": [
+        {
+          "text": "Una línea principal alimenta dos o más secundarias mediante bifurcador",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Dos diámetros unidos únicamente por reductor",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Una sola manga rígida sin lanza",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Para qué resulta útil el acondicionamiento Cleveland según el material BN1?",
+      "source_id": "SRC-LINEAS-BN1-SF-2026",
+      "options": [
+        {
+          "text": "Trabajo en espacios reducidos como halls y pasillos",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Succión desde ríos exclusivamente",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Solo transporte en autobomba sin despliegue",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué hace un bifurcador?",
+      "source_id": "SRC-LINEAS-BN1-SF-2026",
+      "options": [
+        {
+          "text": "Divide una línea principal en dos o más salidas",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Aumenta automáticamente el diámetro de una manga",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Convierte agua en espuma sin espumígeno",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

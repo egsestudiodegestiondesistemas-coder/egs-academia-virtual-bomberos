@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "simulator_id": "SIM-3D-001",
+    "name": "Simulador Operacional 3D",
+    "version": "0.9.0-alpha",
+    "engine": "Three.js/WebGL",
+    "model": "Simulación educativa basada en reglas doctrinarias; no es CFD ni predicción físico-científica certificada.",
+    "status": "activo"
+  },
+  "quality_presets": {
+    "baja": {
+      "shadows": false,
+      "particles": 220,
+      "pixel_ratio": 1.0
+    },
+    "media": {
+      "shadows": true,
+      "particles": 450,
+      "pixel_ratio": 1.25
+    },
+    "alta": {
+      "shadows": true,
+      "particles": 800,
+      "pixel_ratio": 1.5
+    }
+  },
+  "scenarios": [
+    {
+      "id": "HOUSE_3D_001",
+      "name": "Incendio en vivienda unifamiliar",
+      "category": "Incendios estructurales",
+      "difficulty": "BN1",
+      "briefing": "Vivienda de una planta. Se observa humo saliendo por una abertura frontal. El objetivo es reconocer la escena, controlar riesgos y tomar decisiones iniciales.",
+      "objectives": [
+        "Realizar reconocimiento inicial",
+        "Identificar zonas de riesgo y seguridad",
+        "Evaluar ventilación",
+        "Localizar el foco",
+        "Priorizar la seguridad del equipo"
+      ],
+      "initial_state": {
+        "temperature": 120,
+        "smoke": 35,
+        "visibility": 72,
+        "oxygen": 20.2,
+        "fire_power": 28,
+        "victims": 1
+      }
+    },
+    {
+      "id": "VEHICLE_3D_001",
+      "name": "Colisión vehicular con persona atrapada",
+      "category": "Rescate vehicular",
+      "difficulty": "BN1",
+      "briefing": "Colisión de vehículo liviano. Escenario preparado para evolución posterior.",
+      "objectives": [
+        "Evaluar escena",
+        "Asegurar",
+        "Estabilizar",
+        "Acceder"
+      ],
+      "status": "proximamente"
+    }
+  ]
+}

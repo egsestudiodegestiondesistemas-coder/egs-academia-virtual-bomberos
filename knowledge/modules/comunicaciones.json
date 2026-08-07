@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "module_id": "COM-001",
+    "module_name": "Comunicaciones Operativas",
+    "version": "0.9.0-alpha",
+    "status": "activo",
+    "source_ids": [
+      "SRC-DC-BN1-2022"
+    ]
+  },
+  "sections": [
+    {
+      "title": "Comunicación operativa",
+      "summary": "Debe ser clara, breve, comprensible y orientada a transmitir información necesaria para coordinar la intervención.",
+      "source_id": "SRC-DC-BN1-2022"
+    },
+    {
+      "title": "Disciplina radial",
+      "summary": "Evitar mensajes innecesarios, escuchar antes de transmitir y priorizar información operativa relevante.",
+      "source_id": "SRC-DC-BN1-2022"
+    },
+    {
+      "title": "Confirmación",
+      "summary": "La recepción de mensajes críticos debe verificarse cuando corresponda para reducir errores de interpretación.",
+      "source_id": "SRC-DC-BN1-2022"
+    },
+    {
+      "title": "Equipos",
+      "summary": "Los equipos y canales específicos dependen de la organización y deben documentarse con sus procedimientos vigentes.",
+      "source_id": "SRC-DC-BN1-2022"
+    }
+  ],
+  "training": [
+    {
+      "question": "Una comunicación operativa debe ser principalmente:",
+      "source_id": "SRC-DC-BN1-2022",
+      "options": [
+        {
+          "text": "Clara, breve y relevante para la operación",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Larga aunque no sea necesaria",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "text": "Ambigua para ahorrar tiempo",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "Antes de transmitir por radio es recomendable:",
+      "source_id": "SRC-DC-BN1-2022",
+      "options": [
+        {
+          "text": "Escuchar y verificar que el canal esté disponible",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Transmitir sobre cualquier mensaje en curso",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Mantener el pulsador presionado permanentemente",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

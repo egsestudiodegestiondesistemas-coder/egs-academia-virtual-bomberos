@@ -1,0 +1,82 @@
+{
+  "metadata": {
+    "module_id": "RV-001",
+    "module_name": "Rescate Vehicular",
+    "version": "0.8.0-alpha",
+    "status": "activo",
+    "source_ids": [
+      "SRC-RV-N1"
+    ]
+  },
+  "sections": [
+    {
+      "title": "Evaluación de escena",
+      "summary": "Identificar riesgos, vehículos, víctimas, tránsito, energías, fugas, tecnología y condiciones del entorno antes de iniciar maniobras.",
+      "source_id": "SRC-RV-N1"
+    },
+    {
+      "title": "Estabilización",
+      "summary": "Evitar movimientos no deseados del vehículo y crear un espacio seguro de trabajo.",
+      "source_id": "SRC-RV-N1"
+    },
+    {
+      "title": "Acceso",
+      "summary": "Generar un acceso controlado para valoración y asistencia de la víctima.",
+      "source_id": "SRC-RV-N1"
+    },
+    {
+      "title": "Herramientas",
+      "summary": "Herramientas manuales e hidráulicas se seleccionan según objetivo, estructura y plan de rescate.",
+      "source_id": "SRC-RV-N1"
+    },
+    {
+      "title": "Extricación y extracción",
+      "summary": "Extricación refiere a la liberación técnica; extracción, al retiro final de la víctima.",
+      "source_id": "SRC-RV-N1"
+    }
+  ],
+  "training": [
+    {
+      "question": "Antes de cortar un vehículo corresponde:",
+      "source_id": "SRC-RV-N1",
+      "options": [
+        {
+          "text": "Evaluar, asegurar y estabilizar la escena/vehículo",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Cortar primero y evaluar después",
+          "score": -25,
+          "status": "critical_error"
+        },
+        {
+          "text": "Mover el vehículo sin control",
+          "score": -25,
+          "status": "critical_error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué busca la estabilización?",
+      "source_id": "SRC-RV-N1",
+      "options": [
+        {
+          "text": "Evitar movimientos no deseados y crear una zona segura",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Aumentar el movimiento del vehículo",
+          "score": -20,
+          "status": "error"
+        },
+        {
+          "text": "Reemplazar la evaluación de la víctima",
+          "score": -20,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

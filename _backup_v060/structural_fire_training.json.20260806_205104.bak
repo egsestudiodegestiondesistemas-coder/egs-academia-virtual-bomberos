@@ -1,0 +1,247 @@
+{
+  "metadata": {
+    "module_id": "OIE-001",
+    "module_name": "Operaciones en Incendios Estructurales",
+    "version": "0.5.0-alpha",
+    "status": "EN_REVISION_DOCTRINARIA",
+    "source_ids": [
+      "SRC-BN1-INT-2026",
+      "SRC-DC-BN1-2022"
+    ]
+  },
+  "sections": [
+    {
+      "id": "scene",
+      "title": "Emplazamiento de escena",
+      "concepts": [
+        "Zona de riesgo",
+        "Zona de seguridad",
+        "Emplazamiento de unidades y personal"
+      ],
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "id": "utilities",
+      "title": "Corte de suministros",
+      "concepts": [
+        "Riesgo eléctrico",
+        "Suministro eléctrico",
+        "Gas natural",
+        "Gas envasado"
+      ],
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "id": "forced_entry",
+      "title": "Entrada forzada",
+      "concepts": [
+        "Evaluación",
+        "Herramienta adecuada",
+        "Control de apertura"
+      ],
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "id": "ventilation",
+      "title": "Ventilación",
+      "concepts": [
+        "Natural",
+        "Horizontal",
+        "Vertical",
+        "Mecánica/forzada",
+        "Coordinación con ataque"
+      ],
+      "source_id": "SRC-BN1-INT-2026"
+    },
+    {
+      "id": "interior",
+      "title": "Incendios interiores",
+      "concepts": [
+        "Fases",
+        "ILC",
+        "ILV",
+        "Rollover",
+        "Flashover",
+        "Flashover inducido por ventilación"
+      ],
+      "source_id": "SRC-BN1-INT-2026"
+    }
+  ],
+  "training": [
+    {
+      "id": "OIE-D01",
+      "question": "Al llegar a un incendio estructural, ¿qué dos zonas específicas establece el material de clase?",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "id": "zones",
+          "text": "Zona de riesgo y zona de seguridad",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "z2",
+          "text": "Zona roja y zona médica únicamente",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "id": "z3",
+          "text": "No es necesario sectorizar",
+          "score": -25,
+          "status": "critical_error"
+        }
+      ]
+    },
+    {
+      "id": "OIE-D02",
+      "question": "¿Qué caracteriza a la zona de seguridad?",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "id": "safe",
+          "text": "Área libre de obstáculos para operar bajo normas de seguridad y con actitud defensiva frente a eventos del incendio",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "s2",
+          "text": "Área destinada a ingresar sin EPP",
+          "score": -20,
+          "status": "critical_error"
+        },
+        {
+          "id": "s3",
+          "text": "Sector donde se concentran todos los riesgos",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "id": "OIE-D03",
+      "question": "Antes de ventilar un incendio estructural, ¿qué debe ocurrir?",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "id": "coordinate",
+          "text": "Coordinar la ventilación con el ataque y evaluar cómo cambiará el flujo",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "open_all",
+          "text": "Abrir todas las ventanas sin coordinación",
+          "score": -25,
+          "status": "critical_error"
+        },
+        {
+          "id": "ignore",
+          "text": "Ignorar el movimiento de humo y gases",
+          "score": -20,
+          "status": "critical_error"
+        }
+      ]
+    },
+    {
+      "id": "OIE-D04",
+      "question": "¿Qué tipos de ventilación enumera el material?",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "id": "t1",
+          "text": "Natural, horizontal, vertical y mecánica/forzada",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "t2",
+          "text": "Únicamente horizontal y vertical",
+          "score": -10,
+          "status": "error"
+        },
+        {
+          "id": "t3",
+          "text": "Solo ventilación por agua",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "id": "OIE-D05",
+      "question": "La temperatura aumenta, el plano neutro desciende y aparece rollover. ¿Qué fenómeno debe considerarse?",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "id": "f1",
+          "text": "Posible flashover",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "f2",
+          "text": "Únicamente una falla de abastecimiento",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "id": "f3",
+          "text": "Condición estable sin riesgo térmico",
+          "score": -25,
+          "status": "critical_error"
+        }
+      ]
+    },
+    {
+      "id": "OIE-D06",
+      "question": "¿Qué describe el material como flashover inducido por la ventilación?",
+      "source_id": "SRC-BN1-INT-2026",
+      "options": [
+        {
+          "id": "vf",
+          "text": "Un flashover producto de la ventilación realizada en un incendio infraventilado",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "vf2",
+          "text": "Una explosión de un cilindro de gas",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "id": "vf3",
+          "text": "Una pérdida de presión hidráulica",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "id": "OIE-D07",
+      "question": "Según el Diseño Curricular BN1, ¿qué enfoque debe tener la formación práctica?",
+      "source_id": "SRC-DC-BN1-2022",
+      "options": [
+        {
+          "id": "sim",
+          "text": "Situaciones controladas, proyectos contextualizados, simulaciones y resolución de situaciones complejas con fines formativos",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "id": "sim2",
+          "text": "Intervenciones reales sin supervisión como método principal",
+          "score": -25,
+          "status": "critical_error"
+        },
+        {
+          "id": "sim3",
+          "text": "Solo lectura teórica sin prácticas",
+          "score": -10,
+          "status": "error"
+        }
+      ]
+    }
+  ]
+}

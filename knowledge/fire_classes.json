@@ -1,0 +1,55 @@
+{
+  "A": {
+    "name": "Sólidos combustibles",
+    "examples": [
+      "Madera",
+      "Papel",
+      "Tela",
+      "Plástico"
+    ],
+    "agent": [
+      "Agua",
+      "Espuma"
+    ]
+  },
+
+  "B": {
+    "name": "Líquidos inflamables",
+    "examples": [
+      "Nafta",
+      "Gasoil",
+      "Alcohol"
+    ],
+    "agent": [
+      "Espuma AFFF",
+      "Polvo Químico Seco"
+    ]
+  },
+
+  "C": {
+    "name": "Equipos energizados",
+    "agent": [
+      "CO₂",
+      "Polvo Químico Seco"
+    ]
+  },
+
+  "D": {
+    "name": "Metales combustibles",
+    "examples": [
+      "Magnesio",
+      "Sodio",
+      "Titanio"
+    ],
+    "agent": [
+      "Polvo especial Clase D"
+    ]
+  },
+
+  "K": {
+    "name": "Aceites y grasas de cocina",
+    "agent": [
+      "Agente húmedo"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EGS | Academia Virtual de Bomberos</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><div><div class="brand">EGS | ACADEMIA VIRTUAL DE BOMBEROS</div>
+<div class="subtitle">Centro de Investigación, Simulación y Entrenamiento Bomberil</div></div>
+<div class="status" id="apiStatus">ALFA 0.6 · CARGANDO</div></header>
+<main>
+<section id="home" class="screen active">
+<p class="eyebrow">CAMPUS DE ENTRENAMIENTO BOMBERIL</p><h1>Academia Virtual de Bomberos</h1>
+<p class="lead">Formación doctrinaria, evaluación, simulación y análisis posterior al entrenamiento.</p>
+<div class="stats"><div><span>MÓDULOS</span><strong id="moduleCount">8</strong></div><div><span>EVALUACIONES</span><strong id="completedCount">0</strong></div><div><span>MEJOR PUNTAJE</span><strong id="bestScore">—</strong></div><div><span>INTENTOS</span><strong id="attemptCount">0</strong></div></div>
+<div class="cards">
+<article class="card featured" onclick="openModule('academy')"><span>01</span><h2>Academia</h2><p>Programa modular completo y contenidos en expansión.</p><button>VER FORMACIÓN</button></article>
+<article class="card" onclick="openModule('chemistry')"><span>02</span><h2>Química del Fuego</h2><p>Combustión, pirólisis, fases, ILC/ILV y fenómenos.</p><button>ESTUDIAR</button></article>
+<article class="card" onclick="openModule('operations')"><span>03</span><h2>Incendios Estructurales</h2><p>Emplazamiento, ventilación, lectura y toma de decisiones.</p><button>ENTRENAR</button></article>
+<article class="card" onclick="showSources()"><span>04</span><h2>Biblioteca Doctrinaria</h2><p>Fuentes, organismo, versión y estado de revisión.</p><button>CONSULTAR</button></article>
+</div></section>
+
+<section id="academy" class="screen"><button class="back" onclick="goHome()">← Campus principal</button><p class="eyebrow">PROGRAMA DE FORMACIÓN</p><h1>Academia</h1><div id="academyGrid" class="grid"></div></section>
+<section id="chemistry" class="screen"><button class="back" onclick="goHome()">← Campus principal</button><p class="eyebrow">MÓDULO ACTIVO</p><h1>Química del Fuego</h1><div id="chemistrySections" class="grid"></div><button class="primary" onclick="startTraining('chemistry')">INICIAR EVALUACIÓN</button></section>
+<section id="operations" class="screen"><button class="back" onclick="goHome()">← Campus principal</button><p class="eyebrow">MÓDULO ACTIVO</p><h1>Incendios Estructurales</h1><div id="operationSections" class="grid"></div><h2>Escenarios</h2><div id="scenarioGrid" class="cards compact"></div><button class="primary" onclick="startTraining('structural-fire')">INICIAR ENTRENAMIENTO</button></section>
+<section id="sources" class="screen"><button class="back" onclick="goHome()">← Campus principal</button><p class="eyebrow">TRAZABILIDAD</p><h1>Biblioteca Doctrinaria</h1><div id="sourceList" class="grid"></div></section>
+
+<section id="training" class="screen"><div class="trainingHead"><div><p class="eyebrow">ENTRENAMIENTO ACTIVO</p><h1 id="trainingTitle">Entrenamiento</h1></div><div class="scoreMini">PUNTAJE<strong id="liveScore">100</strong></div></div>
+<div class="trainingLayout"><div class="scenarioPanel"><div class="telemetry"><div><span>TIEMPO</span><strong id="time">00:00</strong></div><div><span>DECISIÓN</span><strong id="stepCounter">1/1</strong></div><div><span>FUENTE</span><strong id="sourceBadge">—</strong></div></div><div class="sceneMock"><div class="smoke"></div><div class="structure"></div></div></div>
+<aside class="decisionPanel"><span class="panelLabel">DECISIÓN / CONOCIMIENTO</span><h2 id="question">Cargando...</h2><div id="options"></div><div id="feedback"></div><button class="finish" onclick="finishTraining()">FINALIZAR</button></aside></div></section>
+
+<section id="analysis" class="screen"><p class="eyebrow">INFORME POST ENTRENAMIENTO</p><h1>Análisis posterior</h1><div class="finalScore"><strong id="finalScore">100</strong><span>/100</span></div><div id="decisionLog" class="report"></div><button class="primary" onclick="goHome()">VOLVER AL CAMPUS</button></section>
+</main>
+<footer><div><strong>EGS | Estudio de Gestión de Sistemas</strong><span>Academia Virtual de Bomberos</span></div><div class="credit"><span>Desarrollado por</span><strong>Téc. Ambiental Yamila Vocos</strong><span>San Francisco, Córdoba · Argentina</span></div><div class="right"><span>Alfa 0.6 · 2026</span><span>Doctrina versionada y sujeta a revisión</span></div></footer>
+<script src="app.js"></script></body></html>

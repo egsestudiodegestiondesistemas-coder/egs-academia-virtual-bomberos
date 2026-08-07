@@ -1,0 +1,57 @@
+const API_URL="http://127.0.0.1:8001";
+let cache={academy:null,sources:null};let activeModule=null,activeTraining=[],activeMeta=null,current=0,score=100,log=[],timer=null,seconds=0,lastResult=null;
+function showScreen(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id)?.classList.add("active");window.scrollTo(0,0)}
+function goHome(){stopTimer();showScreen("home");updateCampus()}
+async function api(path){const r=await fetch(API_URL+path);if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}
+function txt(v){return String(v??"")}
+function getProgress(){try{return JSON.parse(localStorage.getItem("egs_bomberos_progress"))||{intentos:0,mejor_puntaje:null,evaluaciones_completadas:0,por_modulo:{}}}catch(e){return {intentos:0,mejor_puntaje:null,evaluaciones_completadas:0,por_modulo:{}}}}
+function saveProgress(p){localStorage.setItem("egs_bomberos_progress",JSON.stringify(p));updateCampus()}
+function updateCampus(){const p=getProgress();document.getElementById("moduleCount").textContent=cache.academy?.modules?.length||8;document.getElementById("completedCount").textContent=p.evaluaciones_completadas||0;document.getElementById("bestScore").textContent=p.mejor_puntaje==null?"—":p.mejor_puntaje;document.getElementById("attemptCount").textContent=p.intentos||0}
+async function boot(){try{const s=await api("/");document.getElementById("apiStatus").textContent=`RC 1.1 · ${txt(s.status).toUpperCase()}`;[cache.academy,cache.sources]=await Promise.all([api("/academy/modules"),api("/sources")]);updateCampus()}catch(e){document.getElementById("apiStatus").textContent="RC 1.1 · API DESCONECTADA";console.warn(e)}}
+async function openAcademy(){if(!cache.academy)cache.academy=await api("/academy/modules");document.getElementById("academyGrid").innerHTML=cache.academy.modules.map(m=>`<article class="tile clickable" onclick="openModule('${m.id}')"><span>${txt(m.area)}</span><h2>${txt(m.name)}</h2><p>${txt(m.description)}</p><span class="moduleStatus">${txt(m.status).toUpperCase()}</span></article>`).join("");showScreen("academy")}
+async function openModule(id){activeModule=await api(`/academy/module/${id}`);activeModule._id=id;document.getElementById("moduleTitle").textContent=activeModule.metadata?.module_name||id;document.getElementById("moduleStatus").textContent=(activeModule.metadata?.status||"módulo").toUpperCase();document.getElementById("moduleSourceCount").textContent=`${(activeModule.metadata?.source_ids||[]).length} fuentes`;document.getElementById("moduleQuestionCount").textContent=`${(activeModule.training||[]).length} preguntas`;document.getElementById("moduleSections").innerHTML=(activeModule.sections||[]).map(s=>`<article class="tile"><h2>${txt(s.title)}</h2><p>${txt(s.summary||s.concepts?.join(" · "))}</p><span class="moduleStatus">${txt(s.source_id||"")}</span></article>`).join("");const b=document.getElementById("moduleTrainingButton");b.style.display=(activeModule.training||[]).length?"inline-block":"none";b.onclick=()=>startTraining(id);showScreen("module")}
+async function showSources(){if(!cache.sources)cache.sources=await api("/sources");document.getElementById("sourceList").innerHTML=cache.sources.sources.map(s=>`<article class="sourceCard"><strong>${txt(s.title)}</strong><p>${txt(s.organization)}</p><p>Estado: ${txt(s.status)}</p><p>Rol: ${txt(s.role)}</p></article>`).join("");showScreen("sources")}
+async function startTraining(id){const d=await api(`/academy/module/${id}/training?shuffle=true`);runTraining(d,id)}
+async function startIntegral(){const d=await api("/academy/integral?limit=20");runTraining(d,"integral")}
+function runTraining(d,id){activeTraining=d.training||[];activeMeta=d.metadata||{};activeMeta._id=id;current=0;score=100;log=[];seconds=0;const p=getProgress();p.intentos=(p.intentos||0)+1;saveProgress(p);document.getElementById("trainingTitle").textContent=activeMeta.module_name||"Entrenamiento";document.getElementById("liveScore").textContent=score;showScreen("training");renderStep();startTimer()}
+function renderStep(){const s=activeTraining[current];if(!s){finishTraining();return}document.getElementById("question").textContent=s.question;document.getElementById("stepCounter").textContent=`${current+1}/${activeTraining.length}`;document.getElementById("sourceBadge").textContent=s.source_id||"—";document.getElementById("feedback").innerHTML="";const opts=(s.options||[]).slice().sort(()=>Math.random()-.5);document.getElementById("options").innerHTML=opts.map((o,i)=>`<button class="optionBtn" data-i="${i}">${txt(o.text)}</button>`).join("");document.querySelectorAll(".optionBtn").forEach(b=>b.onclick=()=>choose(opts[Number(b.dataset.i)]))}
+function choose(o){score=Math.max(0,Math.min(100,score+Number(o.score||0)));document.getElementById("liveScore").textContent=score;const st=o.status==="correct"?"Adecuada":o.status==="critical_error"?"Error crítico":"Requiere revisión";log.push({n:current+1,text:o.text,status:st,impact:Number(o.score||0),source:activeTraining[current].source_id,module:activeTraining[current].module_name||activeMeta.module_name});document.getElementById("feedback").innerHTML=`<div class="feedbackBox"><strong>${st}</strong><br>${o.status==="correct"?"Respuesta coherente con la fuente cargada.":"Revisar el fundamento doctrinario en el análisis posterior."}</div>`;document.querySelectorAll(".optionBtn").forEach(b=>b.disabled=true);current++;setTimeout(renderStep,700)}
+function startTimer(){stopTimer();timer=setInterval(()=>{seconds++;document.getElementById("time").textContent=`${String(Math.floor(seconds/60)).padStart(2,"0")}:${String(seconds%60).padStart(2,"0")}`},1000)}
+function stopTimer(){if(timer){clearInterval(timer);timer=null}}
+function finishTraining(){stopTimer();document.getElementById("finalScore").textContent=score;const p=getProgress();p.evaluaciones_completadas=(p.evaluaciones_completadas||0)+1;p.mejor_puntaje=p.mejor_puntaje==null?score:Math.max(p.mejor_puntaje,score);saveProgress(p);document.getElementById("decisionLog").innerHTML=log.map(x=>`<div class="entry"><strong>${x.n}. ${txt(x.status)}</strong><p>${txt(x.text)}</p><p>Impacto ${x.impact} · Fuente ${txt(x.source)}</p></div>`).join("");lastResult={fecha:new Date().toISOString(),modulo:activeMeta.module_name,puntaje:score,decisiones:log};showScreen("analysis")}
+function exportResult(){if(!lastResult)return;const blob=new Blob([JSON.stringify(lastResult,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`egs_resultado_${Date.now()}.json`;a.click();URL.revokeObjectURL(a.href)}
+async function searchContent(q){const box=document.getElementById("searchResults");q=q.trim().toLowerCase();if(q.length<2){box.innerHTML="";return}if(!cache.academy)cache.academy=await api("/academy/modules");let results=[];for(const m of cache.academy.modules){if((m.name+" "+m.description+" "+m.area).toLowerCase().includes(q))results.push({type:"Módulo",title:m.name,id:m.id,desc:m.description});try{const d=await api(`/academy/module/${m.id}`);for(const s of d.sections||[]){if((s.title+" "+s.summary).toLowerCase().includes(q))results.push({type:"Tema",title:s.title,id:m.id,desc:m.name})}}catch(e){}}box.innerHTML=results.slice(0,12).map(r=>`<article class="tile clickable" onclick="openModule('${r.id}')"><span>${r.type}</span><h2>${txt(r.title)}</h2><p>${txt(r.desc)}</p></article>`).join("")}
+
+/* ===== SIMULADOR ===== */
+let egs3dPromise=null;
+async function loadEGS3D(){
+  if(window.EGS3D)return window.EGS3D;
+  if(egs3dPromise)return egs3dPromise;
+  document.getElementById("sim3d").innerHTML='<div class="loading3d">Cargando motor 3D...</div>';
+  egs3dPromise=import("./simulator.js").then(()=>{if(!window.EGS3D)throw new Error("El motor no registró EGS3D");return window.EGS3D}).catch(err=>{document.getElementById("sim3d").innerHTML='<div class="loading3d">Error cargando 3D: '+String(err.message||err)+'</div>';egs3dPromise=null;throw err});
+  return egs3dPromise;
+}
+async function openSimulator(){showScreen("simulator");const e=await loadEGS3D();await e.init();wireSimulatorUI();e.start()}
+function wireSimulatorUI(){
+  const scenario=document.getElementById("simScenarioSelect"),camera=document.getElementById("simCameraSelect"),quality=document.getElementById("qualitySelect");
+  scenario.onchange=async()=>{const e=await loadEGS3D();e.setScenario(scenario.value);renderSimActions(scenario.value)}
+  camera.onchange=async()=>{const e=await loadEGS3D();e.setCameraMode(camera.value)}
+  quality.onchange=async()=>{const e=await loadEGS3D();e.setQuality(quality.value)}
+  document.getElementById("simResetBtn").onclick=async()=>{(await loadEGS3D()).reset()}
+  document.getElementById("simFinishBtn").onclick=async()=>{(await loadEGS3D()).finish()}
+  renderSimActions(scenario.value)
+}
+function renderSimActions(id){
+  const common=[["recognition","Reconocimiento 360°"],["open_access","Abrir acceso"],["cooling","Aplicar agua / enfriamiento"],["search","Iniciar búsqueda"]];
+  const map={
+    house:common.concat([["open_window","Abrir ventana"],["ventilate","Ventilar"]]),
+    apartment:common.concat([["open_window","Abrir ventana"],["ventilate","Ventilar"]]),
+    warehouse:common.concat([["protect_exposure","Proteger exposición"]]),
+    vehicle_fire:[["recognition","Reconocimiento 360°"],["isolate","Aislar vehículo"],["cooling","Aplicar enfriamiento"],["attack_vehicle","Atacar foco"]],
+    vehicle_rescue:[["recognition","Evaluar escena"],["isolate","Aislar riesgos"],["stabilize","Estabilizar vehículo"],["access_victim","Crear acceso"],["extricate","Extricar víctima"]],
+    phenomena:[["phen_rollover","Rollover"],["phen_flashover","Flashover"],["phen_backdraft","Backdraft / ventilación súbita"],["phen_smoke","Explosión de humo (visual educativa)"]]
+  };
+  document.getElementById("simActions").innerHTML=(map[id]||common).map(x=>`<button class="actionBtn" onclick="simAction('${x[0]}')">${x[1]}</button>`).join("")
+}
+async function simAction(a){(await loadEGS3D()).action(a)}
+document.addEventListener("DOMContentLoaded",boot);

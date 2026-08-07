@@ -1,0 +1,14 @@
+{
+  "version": "0.7.0-alpha",
+  "updated_at": "2026-08-06T21:00:17",
+  "brand": "EGS | ACADEMIA VIRTUAL DE BOMBEROS",
+  "active_modules": [
+    "quimica",
+    "estructurales",
+    "extintores",
+    "lineas",
+    "era",
+    "rescate",
+    "socorrismo"
+  ]
+}

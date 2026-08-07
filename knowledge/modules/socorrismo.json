@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "module_id": "SOC-001",
+    "module_name": "Socorrismo y Primeros Auxilios",
+    "version": "0.9.0-alpha",
+    "status": "activo",
+    "source_ids": [
+      "SRC-SOC-BN1-2024",
+      "SRC-DC-BN1-2022"
+    ]
+  },
+  "sections": [
+    {
+      "title": "Primeros auxilios",
+      "summary": "Medidas inmediatas brindadas hasta la llegada o continuidad de la asistencia sanitaria.",
+      "source_id": "SRC-SOC-BN1-2024"
+    },
+    {
+      "title": "Objetivos",
+      "summary": "Conservar la vida, evitar complicaciones y favorecer la recuperación.",
+      "source_id": "SRC-SOC-BN1-2024"
+    },
+    {
+      "title": "Seguridad del socorrista",
+      "summary": "La asistencia no debe comenzar sin considerar la seguridad propia, del equipo y de la víctima.",
+      "source_id": "SRC-SOC-BN1-2024"
+    },
+    {
+      "title": "Bioseguridad y EPP",
+      "summary": "Medidas de protección frente a riesgos biológicos, físicos y químicos durante la asistencia.",
+      "source_id": "SRC-SOC-BN1-2024"
+    },
+    {
+      "title": "Contenidos BN1",
+      "summary": "RCP, DEA, parámetros vitales, trauma, hemorragias, quemaduras, shock e inmovilización forman parte del marco formativo.",
+      "source_id": "SRC-DC-BN1-2022"
+    }
+  ],
+  "training": [
+    {
+      "question": "Uno de los objetivos de los primeros auxilios es:",
+      "source_id": "SRC-SOC-BN1-2024",
+      "options": [
+        {
+          "text": "Conservar la vida y evitar complicaciones",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Reemplazar definitivamente la atención sanitaria",
+          "score": -15,
+          "status": "error"
+        },
+        {
+          "text": "Evitar toda evaluación inicial",
+          "score": -15,
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "question": "¿Qué debe priorizar el socorrista antes de asistir?",
+      "source_id": "SRC-SOC-BN1-2024",
+      "options": [
+        {
+          "text": "Su seguridad y la seguridad de la escena",
+          "score": 0,
+          "status": "correct"
+        },
+        {
+          "text": "Ingresar aunque exista un riesgo incontrolado",
+          "score": -25,
+          "status": "critical_error"
+        },
+        {
+          "text": "Retirar el EPP para trabajar más rápido",
+          "score": -25,
+          "status": "critical_error"
+        }
+      ]
+    }
+  ]
+}
