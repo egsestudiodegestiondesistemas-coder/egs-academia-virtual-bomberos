@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b0e">
+<title>EGS | Academia Virtual de Bomberos</title>
+<link rel="stylesheet" href="styles.css?v=30">
+</head>
+<body>
+<header class="topbar">
+  <button class="brandButton" onclick="goHome()">
+    <span class="brand">EGS | ACADEMIA VIRTUAL DE BOMBEROS</span>
+    <span class="subtitle">FormaciÃ³n Â· EvaluaciÃ³n Â· SimulaciÃ³n operacional</span>
+  </button>
+  <nav class="topnav">
+    <button onclick="openAcademy()">Aprender</button>
+    <button onclick="startIntegral()">Evaluarme</button>
+    <button onclick="openSimulatorCatalog()">Simulador</button>
+    <button onclick="showSources()">Biblioteca</button>
+  </nav>
+  <div class="status" id="apiStatus">CONECTANDO</div>
+</header>
+
+<main>
+<section id="home" class="screen active">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">CENTRO DE ENTRENAMIENTO BOMBERIL</p>
+      <h1>FormaciÃ³n que se estudia.<br>Decisiones que se entrenan.</h1>
+      <p class="lead">AprendÃ© doctrina, comprobÃ¡ conocimientos y entrenÃ¡ decisiones operativas en escenarios 3D.</p>
+      <div class="heroActions">
+        <button class="primary" onclick="openAcademy()">EMPEZAR A APRENDER</button>
+        <button class="secondary" onclick="openSimulatorCatalog()">IR AL SIMULADOR</button>
+      </div>
+      <p class="microcopy">No necesitÃ¡s crear una cuenta. ElegÃ­ un camino y empezÃ¡.</p>
+    </div>
+    <div class="heroVisual">
+      <div class="heroGlow"></div><div class="heroBuilding"></div>
+      <div class="heroFire f1"></div><div class="heroFire f2"></div>
+      <div class="heroSmoke s1"></div><div class="heroSmoke s2"></div>
+      <div class="heroBadge">ENTRENAMIENTO INTERACTIVO</div>
+    </div>
+  </div>
+
+  <section class="pathSection">
+    <p class="eyebrow">Â¿QUÃ‰ QUERÃ‰S HACER?</p>
+    <h2>ElegÃ­ tu experiencia</h2>
+    <div class="pathGrid">
+      <article class="pathCard" onclick="openAcademy()"><span>01 Â· APRENDER</span><h3>Comprender antes de actuar</h3><p>MÃ³dulos, fichas y fuentes doctrinarias.</p><strong>Explorar Academia â†’</strong></article>
+      <article class="pathCard" onclick="startIntegral()"><span>02 Â· EVALUARME</span><h3>Comprobar lo que sabÃ©s</h3><p>Preguntas, revisiÃ³n y respuesta esperada segÃºn la fuente cargada.</p><strong>Iniciar evaluaciÃ³n â†’</strong></article>
+      <article class="pathCard featured" onclick="openSimulatorCatalog()"><span>03 Â· SIMULADOR</span><h3>Decidir y ver consecuencias</h3><p>Escenarios vivos con fuego, humo, vÃ­ctimas y operaciones.</p><strong>Ver escenarios â†’</strong></article>
+      <article class="pathCard" onclick="showSources()"><span>04 Â· PROFUNDIZAR</span><h3>Ir a las fuentes</h3><p>Biblioteca y trazabilidad doctrinaria.</p><strong>Abrir biblioteca â†’</strong></article>
+    </div>
+  </section>
+
+  <section class="discoverSection">
+    <p class="eyebrow">DESCUBRÃ CONTENIDO</p><h2>BuscÃ¡ un tema y entrÃ¡ directo</h2>
+    <div class="searchBox"><input id="globalSearch" placeholder="Ej.: flashover, lÃ­nea simple, ERA, rescate..." oninput="searchContent(this.value)"></div>
+    <div id="searchResults" class="grid compactGrid"></div>
+  </section>
+</section>
+
+<section id="academy" class="screen">
+  <button class="back" onclick="goHome()">â† Inicio</button><p class="eyebrow">APRENDER</p><h1>Academia</h1>
+  <p class="sectionLead">ElegÃ­ un mÃ³dulo. Cada tema conecta conocimiento, prÃ¡ctica y fuente.</p>
+  <div id="academyGrid" class="grid"></div>
+</section>
+
+<section id="module" class="screen">
+  <button class="back" onclick="openAcademy()">â† Academia</button><p class="eyebrow" id="moduleStatus">MÃ“DULO</p><h1 id="moduleTitle">MÃ³dulo</h1>
+  <div class="moduleBar"><span id="moduleSourceCount">0 fuentes</span><span id="moduleQuestionCount">0 preguntas</span></div>
+  <div id="moduleSections" class="grid"></div><div class="moduleActions"><button id="moduleTrainingButton" class="primary">PRACTICAR ESTE MÃ“DULO</button></div>
+</section>
+
+<section id="sources" class="screen">
+  <button class="back" onclick="goHome()">â† Inicio</button><p class="eyebrow">PROFUNDIZAR</p><h1>Biblioteca doctrinaria</h1>
+  <p class="sectionLead">Cada contenido debe poder rastrearse hasta su fuente.</p><div id="sourceList" class="grid"></div>
+</section>
+
+<section id="simCatalog" class="screen">
+  <button class="back" onclick="goHome()">â† Inicio</button><p class="eyebrow">SIMULADOR</p><h1>Simulador operacional</h1>
+  <p class="sectionLead">ElegÃ­ un escenario. Primero recibÃ­s el despacho y los objetivos.</p>
+  <div class="simCategoryBar">
+    <button class="chip active" onclick="filterSimCatalog('all',this)">Todos</button>
+    <button class="chip" onclick="filterSimCatalog('structural',this)">Estructural</button>
+    <button class="chip" onclick="filterSimCatalog('vehicle',this)">Vehicular</button>
+    <button class="chip" onclick="filterSimCatalog('operations',this)">Operaciones</button>
+    <button class="chip" onclick="filterSimCatalog('behavior',this)">Comportamiento</button>
+  </div>
+  <div id="simCatalogGrid" class="simCatalogGrid"></div>
+</section>
+
+<section id="simBrief" class="screen">
+  <button class="back" onclick="openSimulatorCatalog()">â† Escenarios</button>
+  <div class="briefLayout">
+    <div><p class="eyebrow">DESPACHO OPERACIONAL</p><h1 id="briefTitle">Escenario</h1><p id="briefDescription" class="briefText"></p><div id="briefFacts" class="briefFacts"></div></div>
+    <aside class="briefCard"><span class="panelLabel">OBJETIVOS</span><div id="briefObjectives"></div><button class="primary full" id="launchScenarioBtn">COMENZAR INTERVENCIÃ“N</button></aside>
+  </div>
+</section>
+
+<section id="simulator" class="screen simulatorScreen">
+  <div class="simTop">
+    <div><button class="back" onclick="exitSimulation()">â† Salir</button><p class="eyebrow">SIMULACIÃ“N EN VIVO</p><h1 id="simScenarioTitle">Escenario</h1></div>
+    <div class="simTopActions"><select id="qualitySelect" onchange="setSimulatorQuality(this.value)"><option value="baja">Baja</option><option value="media" selected>Media</option><option value="alta">Alta</option></select><button class="secondary" onclick="reset3DScenario()">REINICIAR</button></div>
+  </div>
+  <div class="simShell">
+    <div class="simViewportWrap">
+      <div id="sim3d"></div>
+      <div class="simHUD topLeft"><span>TIEMPO</span><strong id="simClock">00:00</strong></div>
+      <div class="simHUD topRight"><span>OBJETIVO</span><strong id="simObjective">Evaluar escena</strong></div>
+      <div class="simHUD bottomLeft"><span>ESTADO</span><strong id="simCondition">Activo</strong></div><div class="crosshair">+</div>
+    </div>
+    <aside class="simPanel">
+      <div class="panelSection telemetryPanel"><span class="panelLabel">CONDICIONES</span><div class="meterRow"><span>Temperatura</span><strong id="simTemp">â€”</strong></div><div class="meterRow"><span>Humo</span><strong id="simSmoke">â€”</strong></div><div class="meterRow"><span>Visibilidad</span><strong id="simVisibility">â€”</strong></div><div class="meterRow"><span>OxÃ­geno</span><strong id="simOxygen">â€”</strong></div></div>
+      <div class="panelSection"><span class="panelLabel">DECISIONES Y RECURSOS</span><div id="simActions"></div></div>
+      <div class="panelSection"><span class="panelLabel">REGISTRO EN VIVO</span><div id="simLog" class="simLog"></div></div>
+      <button class="primary full" onclick="finish3DSimulation()">FINALIZAR Y ANALIZAR</button>
+    </aside>
+  </div>
+  <p class="simNotice">SimulaciÃ³n educativa basada en reglas y visualizaciÃ³n 3D. No reemplaza entrenamiento prÃ¡ctico ni constituye CFD certificado.</p>
+</section>
+
+<section id="training" class="screen">
+  <button class="back" onclick="goHome()">â† Salir</button>
+  <div class="trainingHead"><div><p class="eyebrow">EVALUACIÃ“N ACTIVA</p><h1 id="trainingTitle">EvaluaciÃ³n</h1></div><div class="questionProgress" id="stepCounter">1/1</div></div>
+  <div class="trainingLayout">
+    <div class="knowledgePanel"><div class="questionMeta"><span>FUENTE</span><strong id="sourceBadge">â€”</strong></div><h2 id="question">Cargando...</h2><div id="options"></div><div id="feedback"></div><button id="nextQuestionBtn" class="primary full hidden" onclick="nextQuestion()">SIGUIENTE PREGUNTA</button></div>
+    <aside class="evaluationSide"><span class="panelLabel">CÃ“MO FUNCIONA</span><p>RespondÃ© y revisÃ¡ la respuesta esperada y la fuente antes de continuar.</p><div class="sessionMetric"><span>Tiempo</span><strong id="time">00:00</strong></div><div class="sessionMetric"><span>Revisadas</span><strong id="reviewedCount">0</strong></div><button class="finish" onclick="finishTraining()">Finalizar ahora</button></aside>
+  </div>
+</section>
+
+<section id="analysis" class="screen">
+  <p class="eyebrow">ANÃLISIS POSTERIOR</p><h1>QuÃ© pasÃ³ y quÃ© conviene repasar</h1>
+  <div class="analysisTop"><div class="finalScore"><strong id="finalScore">0</strong><span>%</span></div><div id="analysisSummary"></div></div>
+  <div id="decisionLog" class="report"></div><div class="heroActions"><button class="primary" onclick="openAcademy()">VOLVER A LA ACADEMIA</button><button class="secondary" onclick="startIntegral()">NUEVA EVALUACIÃ“N</button></div>
+</section>
+</main>
+
+<footer><div><strong>EGS | Estudio de GestiÃ³n de Sistemas</strong><span>Academia Virtual de Bomberos</span></div><div class="credit"><span>Desarrollado por</span><strong>TÃ©c. Sup. en GestiÃ³n Ambiental Yamila Vocos</strong><span>San Francisco, CÃ³rdoba Â· Argentina</span></div><div class="right"><span>Experience 2.0 Â· 2026</span><span>Doctrina versionada y sujeta a revisiÃ³n</span></div></footer>
+
+<script src="app.js?v=30"></script>
+<script src="simulation-core-client.js?v=50"></script>
+<script type="module" src="simulator.js?v=30"></script>
+</body></html>

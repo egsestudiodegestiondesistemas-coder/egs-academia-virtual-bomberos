@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "name": "EGS Simulation Core Engine",
+    "version": "2.0.0-dev",
+    "created": "2026-08-09T22:44:29",
+    "graphics_independent": true
+  },
+  "lifecycle": [
+    "dispatch",
+    "arrival",
+    "sizeup",
+    "decision",
+    "operation",
+    "reassessment",
+    "control",
+    "termination",
+    "aar"
+  ],
+  "state_domains": [
+    "environment",
+    "fire",
+    "smoke",
+    "structure",
+    "ventilation",
+    "water",
+    "resources",
+    "crew",
+    "era",
+    "victims",
+    "hazards",
+    "objectives",
+    "decisions",
+    "events"
+  ]
+}

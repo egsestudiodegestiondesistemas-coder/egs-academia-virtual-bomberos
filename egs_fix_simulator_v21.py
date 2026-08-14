@@ -1,4 +1,27 @@
-console.log("EGS 3D v2.1 robusto");
+
+from pathlib import Path
+import shutil, re
+from datetime import datetime
+
+ROOT = Path.cwd()
+if not (ROOT/"web").exists() and (ROOT/"05 - Código Fuente"/"egs-fire-academy"/"web").exists():
+    ROOT = ROOT/"05 - Código Fuente"/"egs-fire-academy"
+
+WEB = ROOT/"web"
+if not WEB.exists():
+    raise SystemExit("ERROR: ejecutá este archivo dentro de egs-fire-academy.")
+if not (WEB/"three.module.js").exists():
+    raise SystemExit("ERROR: falta web/three.module.js. No se modificó nada.")
+
+BACKUP = ROOT/"_backup_simulator_v21"
+BACKUP.mkdir(exist_ok=True)
+stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+for rel in ["simulator.js","web/simulator.js","app.js","web/app.js","index.html","web/index.html"]:
+    p=ROOT/rel
+    if p.exists():
+        shutil.copy2(p, BACKUP/f"{rel.replace('/','__')}.{stamp}.bak")
+
+SIM = """console.log("EGS 3D v2.1 robusto");
 import * as THREE from "./three.module.js";
 let scene,camera,renderer,container,running=false,elapsed=0,last=0,activeScenario="house",quality="media";
 let objects={},fires=[],smoke=[],water=[],state={};
@@ -33,3 +56,28 @@ function start(){running=true;last=performance.now()} function pause(){running=f
 function action(a){if(a==="recognition"||a==="observe"){state.obj="Interpretar condiciones";log("Reconocimiento realizado")}if(a==="open_access"){if(objects.door)objects.door.rotation.y=-1.4;state.t+=25;state.o=Math.min(20.9,state.o+.35);log("Acceso abierto")}if(a==="control_door"){if(objects.door)objects.door.rotation.y=-.25;log("Puerta controlada")}if(a==="open_window"||a==="ventilate"){if(objects.window)objects.window.position.y=3.2;state.s=Math.max(0,state.s-9);state.t+=30;log("Ventilación modificada")}if(a==="cooling"){waterBurst();state.t=Math.max(30,state.t-105);fires.forEach(g=>g.scale.multiplyScalar(.68));log("Agua aplicada")}if(a==="search"){if(objects.victim)objects.victim.traverse(x=>{if(x.material?.color)x.material.color.set(0xffd166)});log("Búsqueda realizada")}if(a==="protect"){fires.forEach(g=>g.scale.multiplyScalar(.85));state.c="Exposición protegida"}if(a==="isolate"){state.c="Zona aislada"}if(a==="deploy_line"){objects.hose?.forEach(h=>h.visible=true);log("Línea desplegada")}if(a==="stabilize"){addBox([.7,.35,.8],[-1.7,.18,.95],0xe5a532);addBox([.7,.35,.8],[1.7,.18,.95],0xe5a532);objects.stable=true;state.c="Vehículo estabilizado"}if(a==="access"){state.c=objects.stable?"Acceso creado":"Advertencia: vehículo no estabilizado"}if(a==="extricate"){if(objects.victim)objects.victim.position.set(3,.25,2);state.c="Víctima extricada"}if(a==="rollover"){state.t=430;fires.forEach(g=>g.scale.set(1.8,.45,1.8));state.c="Rollover"}if(a==="flashover"){state.t=690;for(let i=0;i<5;i++)makeFire([-4+i*2,.2,-1+Math.random()*2],.8);state.c="Transición térmica"}if(a==="select_fog"){state.c="Patrón: niebla"}if(a==="select_straight"){state.c="Patrón: chorro pleno"}if(a==="era_check"){objects.era=true;state.c="ERA comprobado"}if(a==="enter"){state.c=objects.era?"Ingreso realizado":"Advertencia: ERA sin comprobar"}if(a==="exit"){state.c="Salida completada"}hud();log(state.c)}
 function finish(){running=false;state.c="Finalizado";hud();log("Simulación finalizada")}
 window.EGS3D={init,start,pause,loadScenario,setQuality,reset,action,finish};
+"""
+
+for rel in ["simulator.js","web/simulator.js"]:
+    (ROOT/rel).write_text(SIM,encoding="utf-8")
+
+for rel in ["index.html","web/index.html"]:
+    p=ROOT/rel
+    if p.exists():
+        t=p.read_text(encoding="utf-8")
+        t=re.sub(r'app\.js\?v=\d+','app.js?v=21',t)
+        t=re.sub(r'simulator\.js\?v=\d+','simulator.js?v=21',t)
+        p.write_text(t,encoding="utf-8")
+
+for rel in ["app.js","web/app.js"]:
+    p=ROOT/rel
+    if p.exists():
+        t=p.read_text(encoding="utf-8")
+        t=re.sub(r'import\("\./simulator\.js\?v=\d+"\)','import("./simulator.js?v=21")',t)
+        p.write_text(t,encoding="utf-8")
+
+print("EGS SIMULADOR 3D v2.1 CORREGIDO")
+print("[OK] Motor robusto aplicado")
+print("[OK] Cache actualizado a v21")
+print("[OK] Raíz + web sincronizadas")
+print("Backup:", BACKUP)

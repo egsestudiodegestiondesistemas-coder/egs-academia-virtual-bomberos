@@ -1,0 +1,27 @@
+{
+  "rule_id": "string",
+  "concept": "string",
+  "trigger": {
+    "conditions": "array",
+    "user_action": "string"
+  },
+  "effects": [
+    {
+      "target": "state.path",
+      "operation": "set|add|subtract|multiply|transition",
+      "value": "number|string|object",
+      "visual_event": "string"
+    }
+  ],
+  "evaluation": {
+    "classification": "adequate|review|critical",
+    "feedback": "string"
+  },
+  "source": {
+    "source_id": "string",
+    "document": "string",
+    "section": "string",
+    "page": "string",
+    "validation_status": "pending|validated"
+  }
+}

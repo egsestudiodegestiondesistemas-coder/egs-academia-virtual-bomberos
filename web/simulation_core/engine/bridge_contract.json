@@ -1,0 +1,20 @@
+{
+  "description": "Contrato entre Simulation Core y cualquier motor gráfico",
+  "input_from_ui": {
+    "scenario_id": "string",
+    "action_id": "string",
+    "parameters": "object"
+  },
+  "output_to_graphics": {
+    "state_patch": "object",
+    "visual_events": "array",
+    "audio_events": "array",
+    "hud_patch": "object"
+  },
+  "output_to_learning": {
+    "classification": "string",
+    "feedback": "string",
+    "source": "object",
+    "review_topic": "string"
+  }
+}

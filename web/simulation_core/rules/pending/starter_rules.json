@@ -1,0 +1,96 @@
+[
+  {
+    "rule_id": "R-PENDING-VENT-001",
+    "concept": "Apertura y ventilación",
+    "trigger": {
+      "conditions": [
+        "estructura cerrada"
+      ],
+      "user_action": "open_door"
+    },
+    "effects": [
+      {
+        "target": "structure.doors.front.state",
+        "operation": "set",
+        "value": "open",
+        "visual_event": "door_open"
+      },
+      {
+        "target": "fire.ventilation_state",
+        "operation": "transition",
+        "value": "modified",
+        "visual_event": "airflow_change"
+      }
+    ],
+    "evaluation": {
+      "classification": "review",
+      "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario."
+    },
+    "source": {
+      "source_id": "PENDING",
+      "document": "",
+      "section": "",
+      "page": "",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "rule_id": "R-PENDING-WATER-001",
+    "concept": "Aplicación de agua",
+    "trigger": {
+      "conditions": [
+        "línea desplegada",
+        "lanza disponible"
+      ],
+      "user_action": "open_nozzle"
+    },
+    "effects": [
+      {
+        "target": "water.flow",
+        "operation": "transition",
+        "value": "open",
+        "visual_event": "water_stream_start"
+      }
+    ],
+    "evaluation": {
+      "classification": "review",
+      "feedback": "El efecto térmico y operativo debe parametrizarse con fuente validada."
+    },
+    "source": {
+      "source_id": "PENDING",
+      "document": "",
+      "section": "",
+      "page": "",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "rule_id": "R-PENDING-ERA-001",
+    "concept": "Ingreso con ERA",
+    "trigger": {
+      "conditions": [
+        "ERA comprobado"
+      ],
+      "user_action": "era_entry"
+    },
+    "effects": [
+      {
+        "target": "crew.entry_state",
+        "operation": "transition",
+        "value": "interior",
+        "visual_event": "crew_enter"
+      }
+    ],
+    "evaluation": {
+      "classification": "review",
+      "feedback": "Secuencia y criterios de ingreso pendientes de validación doctrinaria."
+    },
+    "source": {
+      "source_id": "PENDING",
+      "document": "",
+      "section": "",
+      "page": "",
+      "validation_status": "pending"
+    }
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "scenario_id": "string",
+  "started_at": "datetime",
+  "finished_at": "datetime",
+  "duration_seconds": "number",
+  "objectives": [
+    {
+      "id": "string",
+      "status": "completed|partial|not_completed"
+    }
+  ],
+  "timeline": [
+    {
+      "t": "number",
+      "phase": "string",
+      "action": "string",
+      "state_before": "object",
+      "state_after": "object",
+      "visual_events": "array",
+      "classification": "adequate|review|critical|unscored",
+      "feedback": "string",
+      "source": "object"
+    }
+  ],
+  "review_topics": "array",
+  "sources_used": "array"
+}

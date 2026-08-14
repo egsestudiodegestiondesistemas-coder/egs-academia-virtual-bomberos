@@ -1,0 +1,117 @@
+[
+  {
+    "id": "sizeup_360",
+    "label": "Reconocimiento 360°",
+    "domain": "sizeup"
+  },
+  {
+    "id": "read_smoke",
+    "label": "Interpretar humo",
+    "domain": "fire_behavior"
+  },
+  {
+    "id": "control_door",
+    "label": "Controlar puerta",
+    "domain": "ventilation"
+  },
+  {
+    "id": "open_door",
+    "label": "Abrir puerta",
+    "domain": "ventilation"
+  },
+  {
+    "id": "open_window",
+    "label": "Abrir ventana",
+    "domain": "ventilation"
+  },
+  {
+    "id": "deploy_simple_line",
+    "label": "Desplegar línea simple",
+    "domain": "water_lines"
+  },
+  {
+    "id": "deploy_combined_line",
+    "label": "Desplegar línea combinada",
+    "domain": "water_lines"
+  },
+  {
+    "id": "deploy_mixed_line",
+    "label": "Desplegar línea mixta",
+    "domain": "water_lines"
+  },
+  {
+    "id": "select_fog",
+    "label": "Seleccionar patrón niebla",
+    "domain": "water_lines"
+  },
+  {
+    "id": "select_straight",
+    "label": "Seleccionar chorro pleno",
+    "domain": "water_lines"
+  },
+  {
+    "id": "open_nozzle",
+    "label": "Abrir lanza",
+    "domain": "water_lines"
+  },
+  {
+    "id": "gas_cooling",
+    "label": "Enfriamiento de gases",
+    "domain": "fire_attack"
+  },
+  {
+    "id": "direct_attack",
+    "label": "Ataque directo",
+    "domain": "fire_attack"
+  },
+  {
+    "id": "search_primary",
+    "label": "Búsqueda primaria",
+    "domain": "search"
+  },
+  {
+    "id": "locate_victim",
+    "label": "Localizar víctima",
+    "domain": "search"
+  },
+  {
+    "id": "remove_victim",
+    "label": "Retirar víctima",
+    "domain": "rescue"
+  },
+  {
+    "id": "era_check",
+    "label": "Chequeo ERA",
+    "domain": "era"
+  },
+  {
+    "id": "era_entry",
+    "label": "Ingreso con ERA",
+    "domain": "era"
+  },
+  {
+    "id": "era_exit",
+    "label": "Salida con ERA",
+    "domain": "era"
+  },
+  {
+    "id": "vehicle_isolate",
+    "label": "Aislar riesgos vehiculares",
+    "domain": "vehicle"
+  },
+  {
+    "id": "vehicle_stabilize",
+    "label": "Estabilizar vehículo",
+    "domain": "vehicle"
+  },
+  {
+    "id": "vehicle_access",
+    "label": "Crear acceso vehicular",
+    "domain": "vehicle"
+  },
+  {
+    "id": "vehicle_extricate",
+    "label": "Extricar víctima",
+    "domain": "vehicle"
+  }
+]

@@ -6,33 +6,6 @@
 <meta name="theme-color" content="#090b0e">
 <title>EGS | Academia Virtual de Bomberos</title>
 <link rel="stylesheet" href="styles.css?v=60">
-<style>
-#simulator .simViewportWrap {
-    display: none !important;
-}
-
-#simulator .simShell {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-}
-
-#simulator .simPanel {
-    display: block !important;
-    width: 100% !important;
-    max-width: 1100px !important;
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-    margin: 0 auto !important;
-}
-
-#simulator {
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow: visible !important;
-}
-</style>
 </head>
 <body>
 <header class="topbar">
@@ -166,7 +139,7 @@
 
 <footer><div><strong>EGS | Estudio de Gestión de Sistemas</strong><span>Academia Virtual de Bomberos</span></div><div class="credit"><span>Desarrollado por</span><strong>Téc. Sup. en Gestión Ambiental Yamila Vocos</strong><span>San Francisco, Córdoba · Argentina</span></div><div class="right"><span>Experience 2.0 · 2026</span><span>Doctrina versionada y sujeta a revisión</span></div></footer>
 
-<script src="./app.js?v=1000"></script>
+<script src="app.js?v=60"></script>
 <script src="simulation-core-client.js?v=60"></script>
 <script type="module" src="simulator.js?v=30"></script>
 </body></html>

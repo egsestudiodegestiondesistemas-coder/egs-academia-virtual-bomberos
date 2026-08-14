@@ -1,0 +1,23 @@
+{
+  "name": "EGS Simulation Architecture",
+  "version": "3.0-dev",
+  "components": {
+    "academy": "Interfaz y aprendizaje web",
+    "simulation_core": "Estados, acciones, reglas, eventos, trazabilidad y AAR",
+    "graphics_current": "Three.js prototipo",
+    "graphics_target": "Unreal Engine / Pixel Streaming cuando exista GPU remota"
+  },
+  "flow": [
+    "Usuario selecciona escenario",
+    "Core inicializa estado",
+    "Usuario ejecuta acción",
+    "Core registra/evalúa y emite eventos",
+    "Motor gráfico representa la acción",
+    "AAR registra timeline",
+    "Motor gráfico puede cambiar sin cambiar el Core"
+  ],
+  "doctrine_policy": {
+    "validated_rules": "Pueden alimentar evaluación doctrinaria",
+    "pending_rules": "Solo integración técnica; no presentarlas como doctrina definitiva"
+  }
+}

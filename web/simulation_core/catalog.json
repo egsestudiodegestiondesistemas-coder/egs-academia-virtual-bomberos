@@ -1,0 +1,169 @@
+{
+  "metadata": {
+    "name": "EGS Simulation Core",
+    "version": "1.0.0-dev",
+    "created": "2026-08-09T22:38:01",
+    "principle": "Teoría -> observación -> decisión -> consecuencia -> análisis -> fuente"
+  },
+  "families": [
+    {
+      "id": "structural",
+      "name": "Incendios estructurales",
+      "status": "priority",
+      "scenarios": [
+        "vivienda_unifamiliar",
+        "departamento",
+        "edificio_altura",
+        "comercio",
+        "deposito",
+        "industria",
+        "sotano",
+        "garage",
+        "escuela",
+        "hospital",
+        "hotel"
+      ]
+    },
+    {
+      "id": "vehicle",
+      "name": "Incendios vehiculares",
+      "status": "priority",
+      "scenarios": [
+        "vehiculo_convencional",
+        "vehiculo_hibrido",
+        "vehiculo_electrico",
+        "camion",
+        "colectivo",
+        "maquinaria_agricola"
+      ]
+    },
+    {
+      "id": "wildland_interface",
+      "name": "Incendios forestales y de interfaz",
+      "status": "planned",
+      "scenarios": [
+        "pastizal",
+        "monte",
+        "bosque",
+        "interfaz_urbano_rural",
+        "propagacion_por_viento",
+        "proteccion_de_viviendas"
+      ]
+    },
+    {
+      "id": "flammable_liquids_gases",
+      "name": "Líquidos inflamables y gases",
+      "status": "planned",
+      "scenarios": [
+        "derrame_combustible",
+        "deposito_combustibles",
+        "fuga_gas_con_incendio",
+        "cilindro_gas_expuesto",
+        "estacion_servicio"
+      ]
+    },
+    {
+      "id": "electrical",
+      "name": "Riesgo e incendio eléctrico",
+      "status": "planned",
+      "scenarios": [
+        "tablero_electrico",
+        "instalacion_energizada",
+        "transformador",
+        "sala_electrica"
+      ]
+    },
+    {
+      "id": "metals_special",
+      "name": "Metales combustibles y riesgos especiales",
+      "status": "planned",
+      "scenarios": [
+        "metal_combustible",
+        "taller_industrial",
+        "almacenamiento_especial"
+      ]
+    },
+    {
+      "id": "cooking_oils",
+      "name": "Aceites y grasas de cocina",
+      "status": "planned",
+      "scenarios": [
+        "cocina_domestica",
+        "cocina_comercial",
+        "freidora"
+      ]
+    },
+    {
+      "id": "fire_behavior",
+      "name": "Comportamiento del fuego",
+      "status": "priority",
+      "scenarios": [
+        "crecimiento_incendio",
+        "transferencia_calor",
+        "plano_neutro",
+        "flujo_gases",
+        "ventilacion",
+        "rollover",
+        "flashover",
+        "incendio_limitado_combustible",
+        "incendio_limitado_ventilacion"
+      ]
+    },
+    {
+      "id": "water_lines",
+      "name": "Líneas, abastecimiento y aplicación de agua",
+      "status": "priority",
+      "scenarios": [
+        "linea_simple",
+        "linea_combinada",
+        "linea_mixta",
+        "despliegue_cleveland",
+        "despliegue_estiba",
+        "seleccion_lanza",
+        "patrones_chorro",
+        "abastecimiento",
+        "perdidas_y_presion"
+      ]
+    },
+    {
+      "id": "era_search",
+      "name": "ERA, ingreso, búsqueda y rescate",
+      "status": "priority",
+      "scenarios": [
+        "chequeo_era",
+        "ingreso_atmosfera",
+        "orientacion",
+        "busqueda_primaria",
+        "victima_inconsciente",
+        "consumo_aire",
+        "emergencia_era",
+        "salida"
+      ]
+    },
+    {
+      "id": "vehicle_rescue",
+      "name": "Rescate vehicular",
+      "status": "priority",
+      "scenarios": [
+        "reconocimiento",
+        "aislamiento_riesgos",
+        "estabilizacion",
+        "acceso",
+        "manejo_herramientas",
+        "extricacion"
+      ]
+    },
+    {
+      "id": "integrated",
+      "name": "Escenarios integrales",
+      "status": "future",
+      "scenarios": [
+        "incendio_estructural_completo",
+        "incendio_con_multiples_victimas",
+        "incendio_y_rescate",
+        "mando_y_toma_decisiones",
+        "operacion_multi_dotacion"
+      ]
+    }
+  ]
+}

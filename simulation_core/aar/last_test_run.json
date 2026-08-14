@@ -1,0 +1,3920 @@
+{
+  "generated_at": "2026-08-09T22:44:43.386966",
+  "state": {
+    "scenario_id": "structural_house_master",
+    "phase": "dispatch",
+    "clock_seconds": 0,
+    "environment": {
+      "time_of_day": "night",
+      "weather": "pending",
+      "wind": "pending"
+    },
+    "fire": {
+      "development_stage": "pending",
+      "heat_level": null,
+      "smoke_density": null,
+      "visibility": null,
+      "oxygen_level": null,
+      "ventilation_state": "modified",
+      "flow_path": {
+        "status": "unknown"
+      },
+      "fire_locations": []
+    },
+    "structure": {
+      "type": "single_family_house",
+      "doors": {
+        "front": {
+          "state": "open"
+        }
+      },
+      "windows": {
+        "front": {
+          "state": "closed"
+        }
+      },
+      "compartments": [],
+      "exposures": []
+    },
+    "resources": {
+      "crew": [],
+      "apparatus": [],
+      "hoselines": [],
+      "tools": [],
+      "era": []
+    },
+    "victims": [],
+    "hazards": [],
+    "objectives": [
+      {
+        "id": "recognition",
+        "status": "active"
+      },
+      {
+        "id": "fire_control",
+        "status": "pending"
+      },
+      {
+        "id": "search",
+        "status": "pending"
+      }
+    ],
+    "decisions": [
+      {
+        "t": 0,
+        "phase": "dispatch",
+        "action": "open_door",
+        "state_before": {
+          "scenario_id": "structural_house_master",
+          "phase": "dispatch",
+          "clock_seconds": 0,
+          "environment": {
+            "time_of_day": "night",
+            "weather": "pending",
+            "wind": "pending"
+          },
+          "fire": {
+            "development_stage": "pending",
+            "heat_level": null,
+            "smoke_density": null,
+            "visibility": null,
+            "oxygen_level": null,
+            "ventilation_state": "closed",
+            "flow_path": {
+              "status": "unknown"
+            },
+            "fire_locations": []
+          },
+          "structure": {
+            "type": "single_family_house",
+            "doors": {
+              "front": {
+                "state": "closed"
+              }
+            },
+            "windows": {
+              "front": {
+                "state": "closed"
+              }
+            },
+            "compartments": [],
+            "exposures": []
+          },
+          "resources": {
+            "crew": [],
+            "apparatus": [],
+            "hoselines": [],
+            "tools": [],
+            "era": []
+          },
+          "victims": [],
+          "hazards": [],
+          "objectives": [
+            {
+              "id": "recognition",
+              "status": "active"
+            },
+            {
+              "id": "fire_control",
+              "status": "pending"
+            },
+            {
+              "id": "search",
+              "status": "pending"
+            }
+          ],
+          "decisions": [],
+          "events": [],
+          "doctrine_links": []
+        },
+        "state_after": {
+          "scenario_id": "structural_house_master",
+          "phase": "dispatch",
+          "clock_seconds": 0,
+          "environment": {
+            "time_of_day": "night",
+            "weather": "pending",
+            "wind": "pending"
+          },
+          "fire": {
+            "development_stage": "pending",
+            "heat_level": null,
+            "smoke_density": null,
+            "visibility": null,
+            "oxygen_level": null,
+            "ventilation_state": "modified",
+            "flow_path": {
+              "status": "unknown"
+            },
+            "fire_locations": []
+          },
+          "structure": {
+            "type": "single_family_house",
+            "doors": {
+              "front": {
+                "state": "open"
+              }
+            },
+            "windows": {
+              "front": {
+                "state": "closed"
+              }
+            },
+            "compartments": [],
+            "exposures": []
+          },
+          "resources": {
+            "crew": [],
+            "apparatus": [],
+            "hoselines": [],
+            "tools": [],
+            "era": []
+          },
+          "victims": [],
+          "hazards": [],
+          "objectives": [
+            {
+              "id": "recognition",
+              "status": "active"
+            },
+            {
+              "id": "fire_control",
+              "status": "pending"
+            },
+            {
+              "id": "search",
+              "status": "pending"
+            }
+          ],
+          "decisions": [],
+          "events": [],
+          "doctrine_links": []
+        },
+        "visual_events": [
+          "door_open",
+          "airflow_change"
+        ],
+        "classification": "review",
+        "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+        "source": {
+          "source_id": "PENDING",
+          "document": "",
+          "section": "",
+          "page": "",
+          "validation_status": "pending"
+        }
+      },
+      {
+        "t": 0,
+        "phase": "dispatch",
+        "action": "open_nozzle",
+        "state_before": {
+          "scenario_id": "structural_house_master",
+          "phase": "dispatch",
+          "clock_seconds": 0,
+          "environment": {
+            "time_of_day": "night",
+            "weather": "pending",
+            "wind": "pending"
+          },
+          "fire": {
+            "development_stage": "pending",
+            "heat_level": null,
+            "smoke_density": null,
+            "visibility": null,
+            "oxygen_level": null,
+            "ventilation_state": "modified",
+            "flow_path": {
+              "status": "unknown"
+            },
+            "fire_locations": []
+          },
+          "structure": {
+            "type": "single_family_house",
+            "doors": {
+              "front": {
+                "state": "open"
+              }
+            },
+            "windows": {
+              "front": {
+                "state": "closed"
+              }
+            },
+            "compartments": [],
+            "exposures": []
+          },
+          "resources": {
+            "crew": [],
+            "apparatus": [],
+            "hoselines": [],
+            "tools": [],
+            "era": []
+          },
+          "victims": [],
+          "hazards": [],
+          "objectives": [
+            {
+              "id": "recognition",
+              "status": "active"
+            },
+            {
+              "id": "fire_control",
+              "status": "pending"
+            },
+            {
+              "id": "search",
+              "status": "pending"
+            }
+          ],
+          "decisions": [
+            {
+              "t": 0,
+              "phase": "dispatch",
+              "action": "open_door",
+              "state_before": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "closed",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [],
+                "events": [],
+                "doctrine_links": []
+              },
+              "state_after": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "modified",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "open"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [],
+                "events": [],
+                "doctrine_links": []
+              },
+              "visual_events": [
+                "door_open",
+                "airflow_change"
+              ],
+              "classification": "review",
+              "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+              "source": {
+                "source_id": "PENDING",
+                "document": "",
+                "section": "",
+                "page": "",
+                "validation_status": "pending"
+              }
+            }
+          ],
+          "events": [
+            "door_open",
+            "airflow_change"
+          ],
+          "doctrine_links": []
+        },
+        "state_after": {
+          "scenario_id": "structural_house_master",
+          "phase": "dispatch",
+          "clock_seconds": 0,
+          "environment": {
+            "time_of_day": "night",
+            "weather": "pending",
+            "wind": "pending"
+          },
+          "fire": {
+            "development_stage": "pending",
+            "heat_level": null,
+            "smoke_density": null,
+            "visibility": null,
+            "oxygen_level": null,
+            "ventilation_state": "modified",
+            "flow_path": {
+              "status": "unknown"
+            },
+            "fire_locations": []
+          },
+          "structure": {
+            "type": "single_family_house",
+            "doors": {
+              "front": {
+                "state": "open"
+              }
+            },
+            "windows": {
+              "front": {
+                "state": "closed"
+              }
+            },
+            "compartments": [],
+            "exposures": []
+          },
+          "resources": {
+            "crew": [],
+            "apparatus": [],
+            "hoselines": [],
+            "tools": [],
+            "era": []
+          },
+          "victims": [],
+          "hazards": [],
+          "objectives": [
+            {
+              "id": "recognition",
+              "status": "active"
+            },
+            {
+              "id": "fire_control",
+              "status": "pending"
+            },
+            {
+              "id": "search",
+              "status": "pending"
+            }
+          ],
+          "decisions": [
+            {
+              "t": 0,
+              "phase": "dispatch",
+              "action": "open_door",
+              "state_before": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "closed",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [],
+                "events": [],
+                "doctrine_links": []
+              },
+              "state_after": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "modified",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "open"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [],
+                "events": [],
+                "doctrine_links": []
+              },
+              "visual_events": [
+                "door_open",
+                "airflow_change"
+              ],
+              "classification": "review",
+              "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+              "source": {
+                "source_id": "PENDING",
+                "document": "",
+                "section": "",
+                "page": "",
+                "validation_status": "pending"
+              }
+            }
+          ],
+          "events": [
+            "door_open",
+            "airflow_change"
+          ],
+          "doctrine_links": [],
+          "water": {
+            "flow": "open"
+          }
+        },
+        "visual_events": [
+          "water_stream_start"
+        ],
+        "classification": "review",
+        "feedback": "El efecto térmico y operativo debe parametrizarse con fuente validada.",
+        "source": {
+          "source_id": "PENDING",
+          "document": "",
+          "section": "",
+          "page": "",
+          "validation_status": "pending"
+        }
+      },
+      {
+        "t": 0,
+        "phase": "dispatch",
+        "action": "era_entry",
+        "state_before": {
+          "scenario_id": "structural_house_master",
+          "phase": "dispatch",
+          "clock_seconds": 0,
+          "environment": {
+            "time_of_day": "night",
+            "weather": "pending",
+            "wind": "pending"
+          },
+          "fire": {
+            "development_stage": "pending",
+            "heat_level": null,
+            "smoke_density": null,
+            "visibility": null,
+            "oxygen_level": null,
+            "ventilation_state": "modified",
+            "flow_path": {
+              "status": "unknown"
+            },
+            "fire_locations": []
+          },
+          "structure": {
+            "type": "single_family_house",
+            "doors": {
+              "front": {
+                "state": "open"
+              }
+            },
+            "windows": {
+              "front": {
+                "state": "closed"
+              }
+            },
+            "compartments": [],
+            "exposures": []
+          },
+          "resources": {
+            "crew": [],
+            "apparatus": [],
+            "hoselines": [],
+            "tools": [],
+            "era": []
+          },
+          "victims": [],
+          "hazards": [],
+          "objectives": [
+            {
+              "id": "recognition",
+              "status": "active"
+            },
+            {
+              "id": "fire_control",
+              "status": "pending"
+            },
+            {
+              "id": "search",
+              "status": "pending"
+            }
+          ],
+          "decisions": [
+            {
+              "t": 0,
+              "phase": "dispatch",
+              "action": "open_door",
+              "state_before": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "closed",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [],
+                "events": [],
+                "doctrine_links": []
+              },
+              "state_after": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "modified",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "open"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [],
+                "events": [],
+                "doctrine_links": []
+              },
+              "visual_events": [
+                "door_open",
+                "airflow_change"
+              ],
+              "classification": "review",
+              "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+              "source": {
+                "source_id": "PENDING",
+                "document": "",
+                "section": "",
+                "page": "",
+                "validation_status": "pending"
+              }
+            },
+            {
+              "t": 0,
+              "phase": "dispatch",
+              "action": "open_nozzle",
+              "state_before": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "modified",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "open"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [
+                  {
+                    "t": 0,
+                    "phase": "dispatch",
+                    "action": "open_door",
+                    "state_before": {
+                      "scenario_id": "structural_house_master",
+                      "phase": "dispatch",
+                      "clock_seconds": 0,
+                      "environment": {
+                        "time_of_day": "night",
+                        "weather": "pending",
+                        "wind": "pending"
+                      },
+                      "fire": {
+                        "development_stage": "pending",
+                        "heat_level": null,
+                        "smoke_density": null,
+                        "visibility": null,
+                        "oxygen_level": null,
+                        "ventilation_state": "closed",
+                        "flow_path": {
+                          "status": "unknown"
+                        },
+                        "fire_locations": []
+                      },
+                      "structure": {
+                        "type": "single_family_house",
+                        "doors": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "windows": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "compartments": [],
+                        "exposures": []
+                      },
+                      "resources": {
+                        "crew": [],
+                        "apparatus": [],
+                        "hoselines": [],
+                        "tools": [],
+                        "era": []
+                      },
+                      "victims": [],
+                      "hazards": [],
+                      "objectives": [
+                        {
+                          "id": "recognition",
+                          "status": "active"
+                        },
+                        {
+                          "id": "fire_control",
+                          "status": "pending"
+                        },
+                        {
+                          "id": "search",
+                          "status": "pending"
+                        }
+                      ],
+                      "decisions": [],
+                      "events": [],
+                      "doctrine_links": []
+                    },
+                    "state_after": {
+                      "scenario_id": "structural_house_master",
+                      "phase": "dispatch",
+                      "clock_seconds": 0,
+                      "environment": {
+                        "time_of_day": "night",
+                        "weather": "pending",
+                        "wind": "pending"
+                      },
+                      "fire": {
+                        "development_stage": "pending",
+                        "heat_level": null,
+                        "smoke_density": null,
+                        "visibility": null,
+                        "oxygen_level": null,
+                        "ventilation_state": "modified",
+                        "flow_path": {
+                          "status": "unknown"
+                        },
+                        "fire_locations": []
+                      },
+                      "structure": {
+                        "type": "single_family_house",
+                        "doors": {
+                          "front": {
+                            "state": "open"
+                          }
+                        },
+                        "windows": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "compartments": [],
+                        "exposures": []
+                      },
+                      "resources": {
+                        "crew": [],
+                        "apparatus": [],
+                        "hoselines": [],
+                        "tools": [],
+                        "era": []
+                      },
+                      "victims": [],
+                      "hazards": [],
+                      "objectives": [
+                        {
+                          "id": "recognition",
+                          "status": "active"
+                        },
+                        {
+                          "id": "fire_control",
+                          "status": "pending"
+                        },
+                        {
+                          "id": "search",
+                          "status": "pending"
+                        }
+                      ],
+                      "decisions": [],
+                      "events": [],
+                      "doctrine_links": []
+                    },
+                    "visual_events": [
+                      "door_open",
+                      "airflow_change"
+                    ],
+                    "classification": "review",
+                    "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+                    "source": {
+                      "source_id": "PENDING",
+                      "document": "",
+                      "section": "",
+                      "page": "",
+                      "validation_status": "pending"
+                    }
+                  }
+                ],
+                "events": [
+                  "door_open",
+                  "airflow_change"
+                ],
+                "doctrine_links": []
+              },
+              "state_after": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "modified",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "open"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [
+                  {
+                    "t": 0,
+                    "phase": "dispatch",
+                    "action": "open_door",
+                    "state_before": {
+                      "scenario_id": "structural_house_master",
+                      "phase": "dispatch",
+                      "clock_seconds": 0,
+                      "environment": {
+                        "time_of_day": "night",
+                        "weather": "pending",
+                        "wind": "pending"
+                      },
+                      "fire": {
+                        "development_stage": "pending",
+                        "heat_level": null,
+                        "smoke_density": null,
+                        "visibility": null,
+                        "oxygen_level": null,
+                        "ventilation_state": "closed",
+                        "flow_path": {
+                          "status": "unknown"
+                        },
+                        "fire_locations": []
+                      },
+                      "structure": {
+                        "type": "single_family_house",
+                        "doors": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "windows": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "compartments": [],
+                        "exposures": []
+                      },
+                      "resources": {
+                        "crew": [],
+                        "apparatus": [],
+                        "hoselines": [],
+                        "tools": [],
+                        "era": []
+                      },
+                      "victims": [],
+                      "hazards": [],
+                      "objectives": [
+                        {
+                          "id": "recognition",
+                          "status": "active"
+                        },
+                        {
+                          "id": "fire_control",
+                          "status": "pending"
+                        },
+                        {
+                          "id": "search",
+                          "status": "pending"
+                        }
+                      ],
+                      "decisions": [],
+                      "events": [],
+                      "doctrine_links": []
+                    },
+                    "state_after": {
+                      "scenario_id": "structural_house_master",
+                      "phase": "dispatch",
+                      "clock_seconds": 0,
+                      "environment": {
+                        "time_of_day": "night",
+                        "weather": "pending",
+                        "wind": "pending"
+                      },
+                      "fire": {
+                        "development_stage": "pending",
+                        "heat_level": null,
+                        "smoke_density": null,
+                        "visibility": null,
+                        "oxygen_level": null,
+                        "ventilation_state": "modified",
+                        "flow_path": {
+                          "status": "unknown"
+                        },
+                        "fire_locations": []
+                      },
+                      "structure": {
+                        "type": "single_family_house",
+                        "doors": {
+                          "front": {
+                            "state": "open"
+                          }
+                        },
+                        "windows": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "compartments": [],
+                        "exposures": []
+                      },
+                      "resources": {
+                        "crew": [],
+                        "apparatus": [],
+                        "hoselines": [],
+                        "tools": [],
+                        "era": []
+                      },
+                      "victims": [],
+                      "hazards": [],
+                      "objectives": [
+                        {
+                          "id": "recognition",
+                          "status": "active"
+                        },
+                        {
+                          "id": "fire_control",
+                          "status": "pending"
+                        },
+                        {
+                          "id": "search",
+                          "status": "pending"
+                        }
+                      ],
+                      "decisions": [],
+                      "events": [],
+                      "doctrine_links": []
+                    },
+                    "visual_events": [
+                      "door_open",
+                      "airflow_change"
+                    ],
+                    "classification": "review",
+                    "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+                    "source": {
+                      "source_id": "PENDING",
+                      "document": "",
+                      "section": "",
+                      "page": "",
+                      "validation_status": "pending"
+                    }
+                  }
+                ],
+                "events": [
+                  "door_open",
+                  "airflow_change"
+                ],
+                "doctrine_links": [],
+                "water": {
+                  "flow": "open"
+                }
+              },
+              "visual_events": [
+                "water_stream_start"
+              ],
+              "classification": "review",
+              "feedback": "El efecto térmico y operativo debe parametrizarse con fuente validada.",
+              "source": {
+                "source_id": "PENDING",
+                "document": "",
+                "section": "",
+                "page": "",
+                "validation_status": "pending"
+              }
+            }
+          ],
+          "events": [
+            "door_open",
+            "airflow_change",
+            "water_stream_start"
+          ],
+          "doctrine_links": [],
+          "water": {
+            "flow": "open"
+          }
+        },
+        "state_after": {
+          "scenario_id": "structural_house_master",
+          "phase": "dispatch",
+          "clock_seconds": 0,
+          "environment": {
+            "time_of_day": "night",
+            "weather": "pending",
+            "wind": "pending"
+          },
+          "fire": {
+            "development_stage": "pending",
+            "heat_level": null,
+            "smoke_density": null,
+            "visibility": null,
+            "oxygen_level": null,
+            "ventilation_state": "modified",
+            "flow_path": {
+              "status": "unknown"
+            },
+            "fire_locations": []
+          },
+          "structure": {
+            "type": "single_family_house",
+            "doors": {
+              "front": {
+                "state": "open"
+              }
+            },
+            "windows": {
+              "front": {
+                "state": "closed"
+              }
+            },
+            "compartments": [],
+            "exposures": []
+          },
+          "resources": {
+            "crew": [],
+            "apparatus": [],
+            "hoselines": [],
+            "tools": [],
+            "era": []
+          },
+          "victims": [],
+          "hazards": [],
+          "objectives": [
+            {
+              "id": "recognition",
+              "status": "active"
+            },
+            {
+              "id": "fire_control",
+              "status": "pending"
+            },
+            {
+              "id": "search",
+              "status": "pending"
+            }
+          ],
+          "decisions": [
+            {
+              "t": 0,
+              "phase": "dispatch",
+              "action": "open_door",
+              "state_before": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "closed",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [],
+                "events": [],
+                "doctrine_links": []
+              },
+              "state_after": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "modified",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "open"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [],
+                "events": [],
+                "doctrine_links": []
+              },
+              "visual_events": [
+                "door_open",
+                "airflow_change"
+              ],
+              "classification": "review",
+              "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+              "source": {
+                "source_id": "PENDING",
+                "document": "",
+                "section": "",
+                "page": "",
+                "validation_status": "pending"
+              }
+            },
+            {
+              "t": 0,
+              "phase": "dispatch",
+              "action": "open_nozzle",
+              "state_before": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "modified",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "open"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [
+                  {
+                    "t": 0,
+                    "phase": "dispatch",
+                    "action": "open_door",
+                    "state_before": {
+                      "scenario_id": "structural_house_master",
+                      "phase": "dispatch",
+                      "clock_seconds": 0,
+                      "environment": {
+                        "time_of_day": "night",
+                        "weather": "pending",
+                        "wind": "pending"
+                      },
+                      "fire": {
+                        "development_stage": "pending",
+                        "heat_level": null,
+                        "smoke_density": null,
+                        "visibility": null,
+                        "oxygen_level": null,
+                        "ventilation_state": "closed",
+                        "flow_path": {
+                          "status": "unknown"
+                        },
+                        "fire_locations": []
+                      },
+                      "structure": {
+                        "type": "single_family_house",
+                        "doors": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "windows": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "compartments": [],
+                        "exposures": []
+                      },
+                      "resources": {
+                        "crew": [],
+                        "apparatus": [],
+                        "hoselines": [],
+                        "tools": [],
+                        "era": []
+                      },
+                      "victims": [],
+                      "hazards": [],
+                      "objectives": [
+                        {
+                          "id": "recognition",
+                          "status": "active"
+                        },
+                        {
+                          "id": "fire_control",
+                          "status": "pending"
+                        },
+                        {
+                          "id": "search",
+                          "status": "pending"
+                        }
+                      ],
+                      "decisions": [],
+                      "events": [],
+                      "doctrine_links": []
+                    },
+                    "state_after": {
+                      "scenario_id": "structural_house_master",
+                      "phase": "dispatch",
+                      "clock_seconds": 0,
+                      "environment": {
+                        "time_of_day": "night",
+                        "weather": "pending",
+                        "wind": "pending"
+                      },
+                      "fire": {
+                        "development_stage": "pending",
+                        "heat_level": null,
+                        "smoke_density": null,
+                        "visibility": null,
+                        "oxygen_level": null,
+                        "ventilation_state": "modified",
+                        "flow_path": {
+                          "status": "unknown"
+                        },
+                        "fire_locations": []
+                      },
+                      "structure": {
+                        "type": "single_family_house",
+                        "doors": {
+                          "front": {
+                            "state": "open"
+                          }
+                        },
+                        "windows": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "compartments": [],
+                        "exposures": []
+                      },
+                      "resources": {
+                        "crew": [],
+                        "apparatus": [],
+                        "hoselines": [],
+                        "tools": [],
+                        "era": []
+                      },
+                      "victims": [],
+                      "hazards": [],
+                      "objectives": [
+                        {
+                          "id": "recognition",
+                          "status": "active"
+                        },
+                        {
+                          "id": "fire_control",
+                          "status": "pending"
+                        },
+                        {
+                          "id": "search",
+                          "status": "pending"
+                        }
+                      ],
+                      "decisions": [],
+                      "events": [],
+                      "doctrine_links": []
+                    },
+                    "visual_events": [
+                      "door_open",
+                      "airflow_change"
+                    ],
+                    "classification": "review",
+                    "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+                    "source": {
+                      "source_id": "PENDING",
+                      "document": "",
+                      "section": "",
+                      "page": "",
+                      "validation_status": "pending"
+                    }
+                  }
+                ],
+                "events": [
+                  "door_open",
+                  "airflow_change"
+                ],
+                "doctrine_links": []
+              },
+              "state_after": {
+                "scenario_id": "structural_house_master",
+                "phase": "dispatch",
+                "clock_seconds": 0,
+                "environment": {
+                  "time_of_day": "night",
+                  "weather": "pending",
+                  "wind": "pending"
+                },
+                "fire": {
+                  "development_stage": "pending",
+                  "heat_level": null,
+                  "smoke_density": null,
+                  "visibility": null,
+                  "oxygen_level": null,
+                  "ventilation_state": "modified",
+                  "flow_path": {
+                    "status": "unknown"
+                  },
+                  "fire_locations": []
+                },
+                "structure": {
+                  "type": "single_family_house",
+                  "doors": {
+                    "front": {
+                      "state": "open"
+                    }
+                  },
+                  "windows": {
+                    "front": {
+                      "state": "closed"
+                    }
+                  },
+                  "compartments": [],
+                  "exposures": []
+                },
+                "resources": {
+                  "crew": [],
+                  "apparatus": [],
+                  "hoselines": [],
+                  "tools": [],
+                  "era": []
+                },
+                "victims": [],
+                "hazards": [],
+                "objectives": [
+                  {
+                    "id": "recognition",
+                    "status": "active"
+                  },
+                  {
+                    "id": "fire_control",
+                    "status": "pending"
+                  },
+                  {
+                    "id": "search",
+                    "status": "pending"
+                  }
+                ],
+                "decisions": [
+                  {
+                    "t": 0,
+                    "phase": "dispatch",
+                    "action": "open_door",
+                    "state_before": {
+                      "scenario_id": "structural_house_master",
+                      "phase": "dispatch",
+                      "clock_seconds": 0,
+                      "environment": {
+                        "time_of_day": "night",
+                        "weather": "pending",
+                        "wind": "pending"
+                      },
+                      "fire": {
+                        "development_stage": "pending",
+                        "heat_level": null,
+                        "smoke_density": null,
+                        "visibility": null,
+                        "oxygen_level": null,
+                        "ventilation_state": "closed",
+                        "flow_path": {
+                          "status": "unknown"
+                        },
+                        "fire_locations": []
+                      },
+                      "structure": {
+                        "type": "single_family_house",
+                        "doors": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "windows": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "compartments": [],
+                        "exposures": []
+                      },
+                      "resources": {
+                        "crew": [],
+                        "apparatus": [],
+                        "hoselines": [],
+                        "tools": [],
+                        "era": []
+                      },
+                      "victims": [],
+                      "hazards": [],
+                      "objectives": [
+                        {
+                          "id": "recognition",
+                          "status": "active"
+                        },
+                        {
+                          "id": "fire_control",
+                          "status": "pending"
+                        },
+                        {
+                          "id": "search",
+                          "status": "pending"
+                        }
+                      ],
+                      "decisions": [],
+                      "events": [],
+                      "doctrine_links": []
+                    },
+                    "state_after": {
+                      "scenario_id": "structural_house_master",
+                      "phase": "dispatch",
+                      "clock_seconds": 0,
+                      "environment": {
+                        "time_of_day": "night",
+                        "weather": "pending",
+                        "wind": "pending"
+                      },
+                      "fire": {
+                        "development_stage": "pending",
+                        "heat_level": null,
+                        "smoke_density": null,
+                        "visibility": null,
+                        "oxygen_level": null,
+                        "ventilation_state": "modified",
+                        "flow_path": {
+                          "status": "unknown"
+                        },
+                        "fire_locations": []
+                      },
+                      "structure": {
+                        "type": "single_family_house",
+                        "doors": {
+                          "front": {
+                            "state": "open"
+                          }
+                        },
+                        "windows": {
+                          "front": {
+                            "state": "closed"
+                          }
+                        },
+                        "compartments": [],
+                        "exposures": []
+                      },
+                      "resources": {
+                        "crew": [],
+                        "apparatus": [],
+                        "hoselines": [],
+                        "tools": [],
+                        "era": []
+                      },
+                      "victims": [],
+                      "hazards": [],
+                      "objectives": [
+                        {
+                          "id": "recognition",
+                          "status": "active"
+                        },
+                        {
+                          "id": "fire_control",
+                          "status": "pending"
+                        },
+                        {
+                          "id": "search",
+                          "status": "pending"
+                        }
+                      ],
+                      "decisions": [],
+                      "events": [],
+                      "doctrine_links": []
+                    },
+                    "visual_events": [
+                      "door_open",
+                      "airflow_change"
+                    ],
+                    "classification": "review",
+                    "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+                    "source": {
+                      "source_id": "PENDING",
+                      "document": "",
+                      "section": "",
+                      "page": "",
+                      "validation_status": "pending"
+                    }
+                  }
+                ],
+                "events": [
+                  "door_open",
+                  "airflow_change"
+                ],
+                "doctrine_links": [],
+                "water": {
+                  "flow": "open"
+                }
+              },
+              "visual_events": [
+                "water_stream_start"
+              ],
+              "classification": "review",
+              "feedback": "El efecto térmico y operativo debe parametrizarse con fuente validada.",
+              "source": {
+                "source_id": "PENDING",
+                "document": "",
+                "section": "",
+                "page": "",
+                "validation_status": "pending"
+              }
+            }
+          ],
+          "events": [
+            "door_open",
+            "airflow_change",
+            "water_stream_start"
+          ],
+          "doctrine_links": [],
+          "water": {
+            "flow": "open"
+          },
+          "crew": {
+            "entry_state": "interior"
+          }
+        },
+        "visual_events": [
+          "crew_enter"
+        ],
+        "classification": "review",
+        "feedback": "Secuencia y criterios de ingreso pendientes de validación doctrinaria.",
+        "source": {
+          "source_id": "PENDING",
+          "document": "",
+          "section": "",
+          "page": "",
+          "validation_status": "pending"
+        }
+      }
+    ],
+    "events": [
+      "door_open",
+      "airflow_change",
+      "water_stream_start",
+      "crew_enter"
+    ],
+    "doctrine_links": [],
+    "water": {
+      "flow": "open"
+    },
+    "crew": {
+      "entry_state": "interior"
+    }
+  },
+  "timeline": [
+    {
+      "t": 0,
+      "phase": "dispatch",
+      "action": "open_door",
+      "state_before": {
+        "scenario_id": "structural_house_master",
+        "phase": "dispatch",
+        "clock_seconds": 0,
+        "environment": {
+          "time_of_day": "night",
+          "weather": "pending",
+          "wind": "pending"
+        },
+        "fire": {
+          "development_stage": "pending",
+          "heat_level": null,
+          "smoke_density": null,
+          "visibility": null,
+          "oxygen_level": null,
+          "ventilation_state": "closed",
+          "flow_path": {
+            "status": "unknown"
+          },
+          "fire_locations": []
+        },
+        "structure": {
+          "type": "single_family_house",
+          "doors": {
+            "front": {
+              "state": "closed"
+            }
+          },
+          "windows": {
+            "front": {
+              "state": "closed"
+            }
+          },
+          "compartments": [],
+          "exposures": []
+        },
+        "resources": {
+          "crew": [],
+          "apparatus": [],
+          "hoselines": [],
+          "tools": [],
+          "era": []
+        },
+        "victims": [],
+        "hazards": [],
+        "objectives": [
+          {
+            "id": "recognition",
+            "status": "active"
+          },
+          {
+            "id": "fire_control",
+            "status": "pending"
+          },
+          {
+            "id": "search",
+            "status": "pending"
+          }
+        ],
+        "decisions": [],
+        "events": [],
+        "doctrine_links": []
+      },
+      "state_after": {
+        "scenario_id": "structural_house_master",
+        "phase": "dispatch",
+        "clock_seconds": 0,
+        "environment": {
+          "time_of_day": "night",
+          "weather": "pending",
+          "wind": "pending"
+        },
+        "fire": {
+          "development_stage": "pending",
+          "heat_level": null,
+          "smoke_density": null,
+          "visibility": null,
+          "oxygen_level": null,
+          "ventilation_state": "modified",
+          "flow_path": {
+            "status": "unknown"
+          },
+          "fire_locations": []
+        },
+        "structure": {
+          "type": "single_family_house",
+          "doors": {
+            "front": {
+              "state": "open"
+            }
+          },
+          "windows": {
+            "front": {
+              "state": "closed"
+            }
+          },
+          "compartments": [],
+          "exposures": []
+        },
+        "resources": {
+          "crew": [],
+          "apparatus": [],
+          "hoselines": [],
+          "tools": [],
+          "era": []
+        },
+        "victims": [],
+        "hazards": [],
+        "objectives": [
+          {
+            "id": "recognition",
+            "status": "active"
+          },
+          {
+            "id": "fire_control",
+            "status": "pending"
+          },
+          {
+            "id": "search",
+            "status": "pending"
+          }
+        ],
+        "decisions": [],
+        "events": [],
+        "doctrine_links": []
+      },
+      "visual_events": [
+        "door_open",
+        "airflow_change"
+      ],
+      "classification": "review",
+      "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+      "source": {
+        "source_id": "PENDING",
+        "document": "",
+        "section": "",
+        "page": "",
+        "validation_status": "pending"
+      }
+    },
+    {
+      "t": 0,
+      "phase": "dispatch",
+      "action": "open_nozzle",
+      "state_before": {
+        "scenario_id": "structural_house_master",
+        "phase": "dispatch",
+        "clock_seconds": 0,
+        "environment": {
+          "time_of_day": "night",
+          "weather": "pending",
+          "wind": "pending"
+        },
+        "fire": {
+          "development_stage": "pending",
+          "heat_level": null,
+          "smoke_density": null,
+          "visibility": null,
+          "oxygen_level": null,
+          "ventilation_state": "modified",
+          "flow_path": {
+            "status": "unknown"
+          },
+          "fire_locations": []
+        },
+        "structure": {
+          "type": "single_family_house",
+          "doors": {
+            "front": {
+              "state": "open"
+            }
+          },
+          "windows": {
+            "front": {
+              "state": "closed"
+            }
+          },
+          "compartments": [],
+          "exposures": []
+        },
+        "resources": {
+          "crew": [],
+          "apparatus": [],
+          "hoselines": [],
+          "tools": [],
+          "era": []
+        },
+        "victims": [],
+        "hazards": [],
+        "objectives": [
+          {
+            "id": "recognition",
+            "status": "active"
+          },
+          {
+            "id": "fire_control",
+            "status": "pending"
+          },
+          {
+            "id": "search",
+            "status": "pending"
+          }
+        ],
+        "decisions": [
+          {
+            "t": 0,
+            "phase": "dispatch",
+            "action": "open_door",
+            "state_before": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "closed",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [],
+              "events": [],
+              "doctrine_links": []
+            },
+            "state_after": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "modified",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "open"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [],
+              "events": [],
+              "doctrine_links": []
+            },
+            "visual_events": [
+              "door_open",
+              "airflow_change"
+            ],
+            "classification": "review",
+            "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+            "source": {
+              "source_id": "PENDING",
+              "document": "",
+              "section": "",
+              "page": "",
+              "validation_status": "pending"
+            }
+          }
+        ],
+        "events": [
+          "door_open",
+          "airflow_change"
+        ],
+        "doctrine_links": []
+      },
+      "state_after": {
+        "scenario_id": "structural_house_master",
+        "phase": "dispatch",
+        "clock_seconds": 0,
+        "environment": {
+          "time_of_day": "night",
+          "weather": "pending",
+          "wind": "pending"
+        },
+        "fire": {
+          "development_stage": "pending",
+          "heat_level": null,
+          "smoke_density": null,
+          "visibility": null,
+          "oxygen_level": null,
+          "ventilation_state": "modified",
+          "flow_path": {
+            "status": "unknown"
+          },
+          "fire_locations": []
+        },
+        "structure": {
+          "type": "single_family_house",
+          "doors": {
+            "front": {
+              "state": "open"
+            }
+          },
+          "windows": {
+            "front": {
+              "state": "closed"
+            }
+          },
+          "compartments": [],
+          "exposures": []
+        },
+        "resources": {
+          "crew": [],
+          "apparatus": [],
+          "hoselines": [],
+          "tools": [],
+          "era": []
+        },
+        "victims": [],
+        "hazards": [],
+        "objectives": [
+          {
+            "id": "recognition",
+            "status": "active"
+          },
+          {
+            "id": "fire_control",
+            "status": "pending"
+          },
+          {
+            "id": "search",
+            "status": "pending"
+          }
+        ],
+        "decisions": [
+          {
+            "t": 0,
+            "phase": "dispatch",
+            "action": "open_door",
+            "state_before": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "closed",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [],
+              "events": [],
+              "doctrine_links": []
+            },
+            "state_after": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "modified",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "open"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [],
+              "events": [],
+              "doctrine_links": []
+            },
+            "visual_events": [
+              "door_open",
+              "airflow_change"
+            ],
+            "classification": "review",
+            "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+            "source": {
+              "source_id": "PENDING",
+              "document": "",
+              "section": "",
+              "page": "",
+              "validation_status": "pending"
+            }
+          }
+        ],
+        "events": [
+          "door_open",
+          "airflow_change"
+        ],
+        "doctrine_links": [],
+        "water": {
+          "flow": "open"
+        }
+      },
+      "visual_events": [
+        "water_stream_start"
+      ],
+      "classification": "review",
+      "feedback": "El efecto térmico y operativo debe parametrizarse con fuente validada.",
+      "source": {
+        "source_id": "PENDING",
+        "document": "",
+        "section": "",
+        "page": "",
+        "validation_status": "pending"
+      }
+    },
+    {
+      "t": 0,
+      "phase": "dispatch",
+      "action": "era_entry",
+      "state_before": {
+        "scenario_id": "structural_house_master",
+        "phase": "dispatch",
+        "clock_seconds": 0,
+        "environment": {
+          "time_of_day": "night",
+          "weather": "pending",
+          "wind": "pending"
+        },
+        "fire": {
+          "development_stage": "pending",
+          "heat_level": null,
+          "smoke_density": null,
+          "visibility": null,
+          "oxygen_level": null,
+          "ventilation_state": "modified",
+          "flow_path": {
+            "status": "unknown"
+          },
+          "fire_locations": []
+        },
+        "structure": {
+          "type": "single_family_house",
+          "doors": {
+            "front": {
+              "state": "open"
+            }
+          },
+          "windows": {
+            "front": {
+              "state": "closed"
+            }
+          },
+          "compartments": [],
+          "exposures": []
+        },
+        "resources": {
+          "crew": [],
+          "apparatus": [],
+          "hoselines": [],
+          "tools": [],
+          "era": []
+        },
+        "victims": [],
+        "hazards": [],
+        "objectives": [
+          {
+            "id": "recognition",
+            "status": "active"
+          },
+          {
+            "id": "fire_control",
+            "status": "pending"
+          },
+          {
+            "id": "search",
+            "status": "pending"
+          }
+        ],
+        "decisions": [
+          {
+            "t": 0,
+            "phase": "dispatch",
+            "action": "open_door",
+            "state_before": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "closed",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [],
+              "events": [],
+              "doctrine_links": []
+            },
+            "state_after": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "modified",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "open"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [],
+              "events": [],
+              "doctrine_links": []
+            },
+            "visual_events": [
+              "door_open",
+              "airflow_change"
+            ],
+            "classification": "review",
+            "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+            "source": {
+              "source_id": "PENDING",
+              "document": "",
+              "section": "",
+              "page": "",
+              "validation_status": "pending"
+            }
+          },
+          {
+            "t": 0,
+            "phase": "dispatch",
+            "action": "open_nozzle",
+            "state_before": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "modified",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "open"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [
+                {
+                  "t": 0,
+                  "phase": "dispatch",
+                  "action": "open_door",
+                  "state_before": {
+                    "scenario_id": "structural_house_master",
+                    "phase": "dispatch",
+                    "clock_seconds": 0,
+                    "environment": {
+                      "time_of_day": "night",
+                      "weather": "pending",
+                      "wind": "pending"
+                    },
+                    "fire": {
+                      "development_stage": "pending",
+                      "heat_level": null,
+                      "smoke_density": null,
+                      "visibility": null,
+                      "oxygen_level": null,
+                      "ventilation_state": "closed",
+                      "flow_path": {
+                        "status": "unknown"
+                      },
+                      "fire_locations": []
+                    },
+                    "structure": {
+                      "type": "single_family_house",
+                      "doors": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "windows": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "compartments": [],
+                      "exposures": []
+                    },
+                    "resources": {
+                      "crew": [],
+                      "apparatus": [],
+                      "hoselines": [],
+                      "tools": [],
+                      "era": []
+                    },
+                    "victims": [],
+                    "hazards": [],
+                    "objectives": [
+                      {
+                        "id": "recognition",
+                        "status": "active"
+                      },
+                      {
+                        "id": "fire_control",
+                        "status": "pending"
+                      },
+                      {
+                        "id": "search",
+                        "status": "pending"
+                      }
+                    ],
+                    "decisions": [],
+                    "events": [],
+                    "doctrine_links": []
+                  },
+                  "state_after": {
+                    "scenario_id": "structural_house_master",
+                    "phase": "dispatch",
+                    "clock_seconds": 0,
+                    "environment": {
+                      "time_of_day": "night",
+                      "weather": "pending",
+                      "wind": "pending"
+                    },
+                    "fire": {
+                      "development_stage": "pending",
+                      "heat_level": null,
+                      "smoke_density": null,
+                      "visibility": null,
+                      "oxygen_level": null,
+                      "ventilation_state": "modified",
+                      "flow_path": {
+                        "status": "unknown"
+                      },
+                      "fire_locations": []
+                    },
+                    "structure": {
+                      "type": "single_family_house",
+                      "doors": {
+                        "front": {
+                          "state": "open"
+                        }
+                      },
+                      "windows": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "compartments": [],
+                      "exposures": []
+                    },
+                    "resources": {
+                      "crew": [],
+                      "apparatus": [],
+                      "hoselines": [],
+                      "tools": [],
+                      "era": []
+                    },
+                    "victims": [],
+                    "hazards": [],
+                    "objectives": [
+                      {
+                        "id": "recognition",
+                        "status": "active"
+                      },
+                      {
+                        "id": "fire_control",
+                        "status": "pending"
+                      },
+                      {
+                        "id": "search",
+                        "status": "pending"
+                      }
+                    ],
+                    "decisions": [],
+                    "events": [],
+                    "doctrine_links": []
+                  },
+                  "visual_events": [
+                    "door_open",
+                    "airflow_change"
+                  ],
+                  "classification": "review",
+                  "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+                  "source": {
+                    "source_id": "PENDING",
+                    "document": "",
+                    "section": "",
+                    "page": "",
+                    "validation_status": "pending"
+                  }
+                }
+              ],
+              "events": [
+                "door_open",
+                "airflow_change"
+              ],
+              "doctrine_links": []
+            },
+            "state_after": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "modified",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "open"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [
+                {
+                  "t": 0,
+                  "phase": "dispatch",
+                  "action": "open_door",
+                  "state_before": {
+                    "scenario_id": "structural_house_master",
+                    "phase": "dispatch",
+                    "clock_seconds": 0,
+                    "environment": {
+                      "time_of_day": "night",
+                      "weather": "pending",
+                      "wind": "pending"
+                    },
+                    "fire": {
+                      "development_stage": "pending",
+                      "heat_level": null,
+                      "smoke_density": null,
+                      "visibility": null,
+                      "oxygen_level": null,
+                      "ventilation_state": "closed",
+                      "flow_path": {
+                        "status": "unknown"
+                      },
+                      "fire_locations": []
+                    },
+                    "structure": {
+                      "type": "single_family_house",
+                      "doors": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "windows": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "compartments": [],
+                      "exposures": []
+                    },
+                    "resources": {
+                      "crew": [],
+                      "apparatus": [],
+                      "hoselines": [],
+                      "tools": [],
+                      "era": []
+                    },
+                    "victims": [],
+                    "hazards": [],
+                    "objectives": [
+                      {
+                        "id": "recognition",
+                        "status": "active"
+                      },
+                      {
+                        "id": "fire_control",
+                        "status": "pending"
+                      },
+                      {
+                        "id": "search",
+                        "status": "pending"
+                      }
+                    ],
+                    "decisions": [],
+                    "events": [],
+                    "doctrine_links": []
+                  },
+                  "state_after": {
+                    "scenario_id": "structural_house_master",
+                    "phase": "dispatch",
+                    "clock_seconds": 0,
+                    "environment": {
+                      "time_of_day": "night",
+                      "weather": "pending",
+                      "wind": "pending"
+                    },
+                    "fire": {
+                      "development_stage": "pending",
+                      "heat_level": null,
+                      "smoke_density": null,
+                      "visibility": null,
+                      "oxygen_level": null,
+                      "ventilation_state": "modified",
+                      "flow_path": {
+                        "status": "unknown"
+                      },
+                      "fire_locations": []
+                    },
+                    "structure": {
+                      "type": "single_family_house",
+                      "doors": {
+                        "front": {
+                          "state": "open"
+                        }
+                      },
+                      "windows": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "compartments": [],
+                      "exposures": []
+                    },
+                    "resources": {
+                      "crew": [],
+                      "apparatus": [],
+                      "hoselines": [],
+                      "tools": [],
+                      "era": []
+                    },
+                    "victims": [],
+                    "hazards": [],
+                    "objectives": [
+                      {
+                        "id": "recognition",
+                        "status": "active"
+                      },
+                      {
+                        "id": "fire_control",
+                        "status": "pending"
+                      },
+                      {
+                        "id": "search",
+                        "status": "pending"
+                      }
+                    ],
+                    "decisions": [],
+                    "events": [],
+                    "doctrine_links": []
+                  },
+                  "visual_events": [
+                    "door_open",
+                    "airflow_change"
+                  ],
+                  "classification": "review",
+                  "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+                  "source": {
+                    "source_id": "PENDING",
+                    "document": "",
+                    "section": "",
+                    "page": "",
+                    "validation_status": "pending"
+                  }
+                }
+              ],
+              "events": [
+                "door_open",
+                "airflow_change"
+              ],
+              "doctrine_links": [],
+              "water": {
+                "flow": "open"
+              }
+            },
+            "visual_events": [
+              "water_stream_start"
+            ],
+            "classification": "review",
+            "feedback": "El efecto térmico y operativo debe parametrizarse con fuente validada.",
+            "source": {
+              "source_id": "PENDING",
+              "document": "",
+              "section": "",
+              "page": "",
+              "validation_status": "pending"
+            }
+          }
+        ],
+        "events": [
+          "door_open",
+          "airflow_change",
+          "water_stream_start"
+        ],
+        "doctrine_links": [],
+        "water": {
+          "flow": "open"
+        }
+      },
+      "state_after": {
+        "scenario_id": "structural_house_master",
+        "phase": "dispatch",
+        "clock_seconds": 0,
+        "environment": {
+          "time_of_day": "night",
+          "weather": "pending",
+          "wind": "pending"
+        },
+        "fire": {
+          "development_stage": "pending",
+          "heat_level": null,
+          "smoke_density": null,
+          "visibility": null,
+          "oxygen_level": null,
+          "ventilation_state": "modified",
+          "flow_path": {
+            "status": "unknown"
+          },
+          "fire_locations": []
+        },
+        "structure": {
+          "type": "single_family_house",
+          "doors": {
+            "front": {
+              "state": "open"
+            }
+          },
+          "windows": {
+            "front": {
+              "state": "closed"
+            }
+          },
+          "compartments": [],
+          "exposures": []
+        },
+        "resources": {
+          "crew": [],
+          "apparatus": [],
+          "hoselines": [],
+          "tools": [],
+          "era": []
+        },
+        "victims": [],
+        "hazards": [],
+        "objectives": [
+          {
+            "id": "recognition",
+            "status": "active"
+          },
+          {
+            "id": "fire_control",
+            "status": "pending"
+          },
+          {
+            "id": "search",
+            "status": "pending"
+          }
+        ],
+        "decisions": [
+          {
+            "t": 0,
+            "phase": "dispatch",
+            "action": "open_door",
+            "state_before": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "closed",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [],
+              "events": [],
+              "doctrine_links": []
+            },
+            "state_after": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "modified",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "open"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [],
+              "events": [],
+              "doctrine_links": []
+            },
+            "visual_events": [
+              "door_open",
+              "airflow_change"
+            ],
+            "classification": "review",
+            "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+            "source": {
+              "source_id": "PENDING",
+              "document": "",
+              "section": "",
+              "page": "",
+              "validation_status": "pending"
+            }
+          },
+          {
+            "t": 0,
+            "phase": "dispatch",
+            "action": "open_nozzle",
+            "state_before": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "modified",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "open"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [
+                {
+                  "t": 0,
+                  "phase": "dispatch",
+                  "action": "open_door",
+                  "state_before": {
+                    "scenario_id": "structural_house_master",
+                    "phase": "dispatch",
+                    "clock_seconds": 0,
+                    "environment": {
+                      "time_of_day": "night",
+                      "weather": "pending",
+                      "wind": "pending"
+                    },
+                    "fire": {
+                      "development_stage": "pending",
+                      "heat_level": null,
+                      "smoke_density": null,
+                      "visibility": null,
+                      "oxygen_level": null,
+                      "ventilation_state": "closed",
+                      "flow_path": {
+                        "status": "unknown"
+                      },
+                      "fire_locations": []
+                    },
+                    "structure": {
+                      "type": "single_family_house",
+                      "doors": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "windows": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "compartments": [],
+                      "exposures": []
+                    },
+                    "resources": {
+                      "crew": [],
+                      "apparatus": [],
+                      "hoselines": [],
+                      "tools": [],
+                      "era": []
+                    },
+                    "victims": [],
+                    "hazards": [],
+                    "objectives": [
+                      {
+                        "id": "recognition",
+                        "status": "active"
+                      },
+                      {
+                        "id": "fire_control",
+                        "status": "pending"
+                      },
+                      {
+                        "id": "search",
+                        "status": "pending"
+                      }
+                    ],
+                    "decisions": [],
+                    "events": [],
+                    "doctrine_links": []
+                  },
+                  "state_after": {
+                    "scenario_id": "structural_house_master",
+                    "phase": "dispatch",
+                    "clock_seconds": 0,
+                    "environment": {
+                      "time_of_day": "night",
+                      "weather": "pending",
+                      "wind": "pending"
+                    },
+                    "fire": {
+                      "development_stage": "pending",
+                      "heat_level": null,
+                      "smoke_density": null,
+                      "visibility": null,
+                      "oxygen_level": null,
+                      "ventilation_state": "modified",
+                      "flow_path": {
+                        "status": "unknown"
+                      },
+                      "fire_locations": []
+                    },
+                    "structure": {
+                      "type": "single_family_house",
+                      "doors": {
+                        "front": {
+                          "state": "open"
+                        }
+                      },
+                      "windows": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "compartments": [],
+                      "exposures": []
+                    },
+                    "resources": {
+                      "crew": [],
+                      "apparatus": [],
+                      "hoselines": [],
+                      "tools": [],
+                      "era": []
+                    },
+                    "victims": [],
+                    "hazards": [],
+                    "objectives": [
+                      {
+                        "id": "recognition",
+                        "status": "active"
+                      },
+                      {
+                        "id": "fire_control",
+                        "status": "pending"
+                      },
+                      {
+                        "id": "search",
+                        "status": "pending"
+                      }
+                    ],
+                    "decisions": [],
+                    "events": [],
+                    "doctrine_links": []
+                  },
+                  "visual_events": [
+                    "door_open",
+                    "airflow_change"
+                  ],
+                  "classification": "review",
+                  "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+                  "source": {
+                    "source_id": "PENDING",
+                    "document": "",
+                    "section": "",
+                    "page": "",
+                    "validation_status": "pending"
+                  }
+                }
+              ],
+              "events": [
+                "door_open",
+                "airflow_change"
+              ],
+              "doctrine_links": []
+            },
+            "state_after": {
+              "scenario_id": "structural_house_master",
+              "phase": "dispatch",
+              "clock_seconds": 0,
+              "environment": {
+                "time_of_day": "night",
+                "weather": "pending",
+                "wind": "pending"
+              },
+              "fire": {
+                "development_stage": "pending",
+                "heat_level": null,
+                "smoke_density": null,
+                "visibility": null,
+                "oxygen_level": null,
+                "ventilation_state": "modified",
+                "flow_path": {
+                  "status": "unknown"
+                },
+                "fire_locations": []
+              },
+              "structure": {
+                "type": "single_family_house",
+                "doors": {
+                  "front": {
+                    "state": "open"
+                  }
+                },
+                "windows": {
+                  "front": {
+                    "state": "closed"
+                  }
+                },
+                "compartments": [],
+                "exposures": []
+              },
+              "resources": {
+                "crew": [],
+                "apparatus": [],
+                "hoselines": [],
+                "tools": [],
+                "era": []
+              },
+              "victims": [],
+              "hazards": [],
+              "objectives": [
+                {
+                  "id": "recognition",
+                  "status": "active"
+                },
+                {
+                  "id": "fire_control",
+                  "status": "pending"
+                },
+                {
+                  "id": "search",
+                  "status": "pending"
+                }
+              ],
+              "decisions": [
+                {
+                  "t": 0,
+                  "phase": "dispatch",
+                  "action": "open_door",
+                  "state_before": {
+                    "scenario_id": "structural_house_master",
+                    "phase": "dispatch",
+                    "clock_seconds": 0,
+                    "environment": {
+                      "time_of_day": "night",
+                      "weather": "pending",
+                      "wind": "pending"
+                    },
+                    "fire": {
+                      "development_stage": "pending",
+                      "heat_level": null,
+                      "smoke_density": null,
+                      "visibility": null,
+                      "oxygen_level": null,
+                      "ventilation_state": "closed",
+                      "flow_path": {
+                        "status": "unknown"
+                      },
+                      "fire_locations": []
+                    },
+                    "structure": {
+                      "type": "single_family_house",
+                      "doors": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "windows": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "compartments": [],
+                      "exposures": []
+                    },
+                    "resources": {
+                      "crew": [],
+                      "apparatus": [],
+                      "hoselines": [],
+                      "tools": [],
+                      "era": []
+                    },
+                    "victims": [],
+                    "hazards": [],
+                    "objectives": [
+                      {
+                        "id": "recognition",
+                        "status": "active"
+                      },
+                      {
+                        "id": "fire_control",
+                        "status": "pending"
+                      },
+                      {
+                        "id": "search",
+                        "status": "pending"
+                      }
+                    ],
+                    "decisions": [],
+                    "events": [],
+                    "doctrine_links": []
+                  },
+                  "state_after": {
+                    "scenario_id": "structural_house_master",
+                    "phase": "dispatch",
+                    "clock_seconds": 0,
+                    "environment": {
+                      "time_of_day": "night",
+                      "weather": "pending",
+                      "wind": "pending"
+                    },
+                    "fire": {
+                      "development_stage": "pending",
+                      "heat_level": null,
+                      "smoke_density": null,
+                      "visibility": null,
+                      "oxygen_level": null,
+                      "ventilation_state": "modified",
+                      "flow_path": {
+                        "status": "unknown"
+                      },
+                      "fire_locations": []
+                    },
+                    "structure": {
+                      "type": "single_family_house",
+                      "doors": {
+                        "front": {
+                          "state": "open"
+                        }
+                      },
+                      "windows": {
+                        "front": {
+                          "state": "closed"
+                        }
+                      },
+                      "compartments": [],
+                      "exposures": []
+                    },
+                    "resources": {
+                      "crew": [],
+                      "apparatus": [],
+                      "hoselines": [],
+                      "tools": [],
+                      "era": []
+                    },
+                    "victims": [],
+                    "hazards": [],
+                    "objectives": [
+                      {
+                        "id": "recognition",
+                        "status": "active"
+                      },
+                      {
+                        "id": "fire_control",
+                        "status": "pending"
+                      },
+                      {
+                        "id": "search",
+                        "status": "pending"
+                      }
+                    ],
+                    "decisions": [],
+                    "events": [],
+                    "doctrine_links": []
+                  },
+                  "visual_events": [
+                    "door_open",
+                    "airflow_change"
+                  ],
+                  "classification": "review",
+                  "feedback": "La consecuencia táctica final debe validarse contra la fuente doctrinaria aplicable al escenario.",
+                  "source": {
+                    "source_id": "PENDING",
+                    "document": "",
+                    "section": "",
+                    "page": "",
+                    "validation_status": "pending"
+                  }
+                }
+              ],
+              "events": [
+                "door_open",
+                "airflow_change"
+              ],
+              "doctrine_links": [],
+              "water": {
+                "flow": "open"
+              }
+            },
+            "visual_events": [
+              "water_stream_start"
+            ],
+            "classification": "review",
+            "feedback": "El efecto térmico y operativo debe parametrizarse con fuente validada.",
+            "source": {
+              "source_id": "PENDING",
+              "document": "",
+              "section": "",
+              "page": "",
+              "validation_status": "pending"
+            }
+          }
+        ],
+        "events": [
+          "door_open",
+          "airflow_change",
+          "water_stream_start"
+        ],
+        "doctrine_links": [],
+        "water": {
+          "flow": "open"
+        },
+        "crew": {
+          "entry_state": "interior"
+        }
+      },
+      "visual_events": [
+        "crew_enter"
+      ],
+      "classification": "review",
+      "feedback": "Secuencia y criterios de ingreso pendientes de validación doctrinaria.",
+      "source": {
+        "source_id": "PENDING",
+        "document": "",
+        "section": "",
+        "page": "",
+        "validation_status": "pending"
+      }
+    }
+  ]
+}

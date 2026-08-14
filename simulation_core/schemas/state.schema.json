@@ -1,0 +1,37 @@
+{
+  "scenario_id": "string",
+  "phase": "dispatch|sizeup|operations|control|termination|aar",
+  "environment": {
+    "time_of_day": "string",
+    "weather": "object",
+    "wind": "object"
+  },
+  "fire": {
+    "development_stage": "string",
+    "heat_level": "number",
+    "smoke_density": "number",
+    "visibility": "number",
+    "oxygen_level": "number",
+    "ventilation_state": "string",
+    "flow_path": "object",
+    "fire_locations": "array"
+  },
+  "structure": {
+    "type": "string",
+    "doors": "array",
+    "windows": "array",
+    "compartments": "array",
+    "exposures": "array"
+  },
+  "resources": {
+    "crew": "array",
+    "apparatus": "array",
+    "hoselines": "array",
+    "tools": "array",
+    "era": "array"
+  },
+  "victims": "array",
+  "decisions": "array",
+  "objectives": "array",
+  "doctrine_links": "array"
+}

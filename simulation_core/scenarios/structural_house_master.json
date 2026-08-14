@@ -1,0 +1,44 @@
+{
+  "id": "structural_house_master",
+  "family": "structural",
+  "name": "Escenario Maestro | Incendio estructural en vivienda",
+  "status": "design",
+  "briefing": {
+    "dispatch": "Pendiente de redacción doctrinaria validada",
+    "known_information": [],
+    "unknown_information": []
+  },
+  "learning_objectives": [
+    "Reconocimiento y lectura de escena",
+    "Interpretación de humo y condiciones",
+    "Control de accesos y ventilación",
+    "Selección y despliegue de línea",
+    "Aplicación de agua",
+    "Búsqueda y rescate",
+    "Reevaluación continua",
+    "Análisis posterior"
+  ],
+  "phases": [
+    "despacho",
+    "arribo",
+    "reconocimiento",
+    "seleccion_tactica",
+    "despliegue",
+    "ingreso",
+    "control",
+    "busqueda",
+    "reevaluacion",
+    "finalizacion",
+    "after_action_review"
+  ],
+  "doctrine_policy": {
+    "allow_unvalidated_rules": false,
+    "rule_behavior": "Una acción sin regla validada no debe producir una consecuencia doctrinaria definitiva.",
+    "source_priority": [
+      "Material de formación aportado por el usuario",
+      "Federación de Bomberos Voluntarios de Córdoba",
+      "Academia Nacional / fuentes institucionales pertinentes",
+      "Referencias internacionales complementarias identificadas"
+    ]
+  }
+}

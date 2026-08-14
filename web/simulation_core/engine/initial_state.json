@@ -1,0 +1,63 @@
+{
+  "scenario_id": "structural_house_master",
+  "phase": "dispatch",
+  "clock_seconds": 0,
+  "environment": {
+    "time_of_day": "night",
+    "weather": "pending",
+    "wind": "pending"
+  },
+  "fire": {
+    "development_stage": "pending",
+    "heat_level": null,
+    "smoke_density": null,
+    "visibility": null,
+    "oxygen_level": null,
+    "ventilation_state": "closed",
+    "flow_path": {
+      "status": "unknown"
+    },
+    "fire_locations": []
+  },
+  "structure": {
+    "type": "single_family_house",
+    "doors": {
+      "front": {
+        "state": "closed"
+      }
+    },
+    "windows": {
+      "front": {
+        "state": "closed"
+      }
+    },
+    "compartments": [],
+    "exposures": []
+  },
+  "resources": {
+    "crew": [],
+    "apparatus": [],
+    "hoselines": [],
+    "tools": [],
+    "era": []
+  },
+  "victims": [],
+  "hazards": [],
+  "objectives": [
+    {
+      "id": "recognition",
+      "status": "active"
+    },
+    {
+      "id": "fire_control",
+      "status": "pending"
+    },
+    {
+      "id": "search",
+      "status": "pending"
+    }
+  ],
+  "decisions": [],
+  "events": [],
+  "doctrine_links": []
+}
