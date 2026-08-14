@@ -193,3 +193,21 @@ canvas {
 #sim3d {
     display: none !important;
 }
+/* =========================================================
+   EGS - CONFIGURACIÓN FINAL
+   Ocultar visor 3D del simulador
+   ========================================================= */
+
+#simulator .simViewportWrap {
+    display: none !important;
+}
+
+/* El panel didáctico/operativo ocupa todo el ancho */
+#simulator .simShell {
+    grid-template-columns: 1fr !important;
+}
+
+#simulator .simPanel {
+    width: 100% !important;
+    max-width: 100% !important;
+}
