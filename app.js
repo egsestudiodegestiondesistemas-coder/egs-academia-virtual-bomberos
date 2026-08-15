@@ -22,29 +22,22 @@ function renderSimCatalog(f="all"){const g=document.getElementById("simCatalogGr
 function filterSimCatalog(f,b){document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderSimCatalog(f)}function openSimulatorCatalog(){renderSimCatalog();showScreen("simCatalog")}
 function selectScenario(id){selectedScenario=SIM_SCENARIOS.find(s=>s.id===id);document.getElementById("briefTitle").textContent=selectedScenario.name;document.getElementById("briefDescription").textContent=selectedScenario.dispatch;document.getElementById("briefFacts").innerHTML=selectedScenario.facts.map(x=>`<div class="briefFact"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join("");document.getElementById("briefObjectives").innerHTML=`<ul>${selectedScenario.objectives.map(x=>`<li>${x}</li>`).join("")}</ul>`;document.getElementById("launchScenarioBtn").onclick=()=>launchScenario(id);showScreen("simBrief")}
 function launchScenario(id) {
-    // Abrir la pantalla de intervención
+    selectedScenario = SIM_SCENARIOS.find(s => s.id === id) || selectedScenario;
+
     showScreen("simulator");
 
-    // Recuperar el escenario seleccionado si hiciera falta
-    if (!selectedScenario || selectedScenario.id !== id) {
-        selectedScenario = SIM_SCENARIOS.find(s => s.id === id);
-    }
-
-    // Si no existe el escenario, detener
-    if (!selectedScenario) {
-        console.error("No se encontró el escenario:", id);
-        return;
-    }
-
-    // Mostrar el nombre del escenario
     const title = document.getElementById("simScenarioTitle");
-    if (title) {
+    if (title && selectedScenario) {
         title.textContent = selectedScenario.name;
     }
 
-    // Cargar solamente las decisiones y recursos interactivos
-    // SIN cargar el simulador 3D
-    renderScenarioActions(id);
+    try {
+        renderScenarioActions(id);
+    } catch (err) {
+        console.error("Error cargando intervención:", err);
+    }
+
+    window.scrollTo(0, 0);
 }
 function renderScenarioActions(id){const A={house:[["recognition","Reconocimiento 360°"],["open_access","Abrir acceso"],["open_window","Abrir ventana"],["cooling","Aplicar agua"],["search","Buscar víctima"]],apartment:[["recognition","Reconocimiento"],["control_door","Controlar puerta"],["cooling","Enfriar"],["open_window","Ventilar"],["search","Buscar"]],warehouse:[["recognition","Reconocimiento"],["protect","Proteger exposición"],["cooling","Ataque con agua"],["ventilate","Ventilar"]],vehicle_fire:[["recognition","Asegurar escena"],["isolate","Aislar"],["deploy_line","Desplegar línea"],["cooling","Aplicar agua"]],vehicle_rescue:[["recognition","Evaluar"],["isolate","Aislar riesgos"],["stabilize","Estabilizar"],["access","Crear acceso"],["extricate","Extricar"]],fire_behavior:[["observe","Observar"],["rollover","Rollover"],["ventilate","Aumentar ventilación"],["flashover","Transición térmica"]],lines:[["deploy_line","Desplegar línea"],["select_fog","Patrón niebla"],["select_straight","Chorro pleno"],["cooling","Abrir agua"]],era:[["era_check","Comprobar ERA"],["enter","Ingresar"],["search","Buscar"],["exit","Salir"]]};document.getElementById("simActions").innerHTML=(A[id]||A.house).map(a=>`<button class="actionBtn" onclick="simAction('${a[0]}')">${a[1]}</button>`).join("")}
 async function startTraining(id){runTraining(await api(`/academy/module/${id}/training?shuffle=true`),id)}async function startIntegral(){runTraining(await api("/academy/integral?limit=20"),"integral")}
