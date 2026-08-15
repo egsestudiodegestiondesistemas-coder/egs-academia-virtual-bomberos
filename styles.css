@@ -10,3 +10,32 @@
 .aarWarning{padding:12px 14px;background:#1b1711;border:1px solid #59462c;color:#d9b77c;border-radius:8px;font-size:12px;margin-bottom:14px}
 .aarEntry{padding:14px 0;border-bottom:1px solid #292f36}.aarEntry>div{display:flex;justify-content:space-between;gap:12px}.aarEntry p{color:#aab2ba;margin:7px 0}.aarEntry small{color:#7f8993}
 @media(max-width:680px){.aarSummary{grid-template-columns:1fr 1fr}.aarModal{padding:20px 15px}}
+/* === EGS FINAL: SIMULADOR SIN VISOR 3D === */
+
+#simulator .simViewportWrap {
+    display: none !important;
+}
+
+#simulator .simShell {
+    display: block !important;
+}
+
+#simulator .simPanel {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+/* OCULTAR DEFINITIVAMENTE EL VISOR 3D */
+#simulator .simViewportWrap,
+#simulator #sim3d,
+#simulator canvas {
+    display: none !important;
+}
+
+#simulator .simShell {
+    display: block !important;
+}
+
+#simulator .simPanel {
+    width: 100% !important;
+    max-width: none !important;
+}

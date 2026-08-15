@@ -6,6 +6,41 @@
 <meta name="theme-color" content="#090b0e">
 <title>EGS | Academia Virtual de Bomberos</title>
 <link rel="stylesheet" href="styles.css?v=20">
+<style id="EGS-SIMULADOR-FINAL">
+/* EGS — SIMULADOR DIDÁCTICO SIN VISOR 3D */
+
+#simulator .simViewportWrap {
+    display: none !important;
+}
+
+#simulator #sim3d {
+    display: none !important;
+}
+
+#simulator canvas {
+    display: none !important;
+}
+
+#simulator .simShell {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+}
+
+#simulator .simPanel {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+}
+
+#simulator {
+    min-height: auto !important;
+}
+
+#simulator .simTop {
+    width: 100% !important;
+}
+</style>
 </head>
 <body>
 <header class="topbar">
