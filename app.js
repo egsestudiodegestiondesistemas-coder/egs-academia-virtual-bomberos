@@ -21,8 +21,31 @@ async function searchContent(q){const box=document.getElementById("searchResults
 function renderSimCatalog(f="all"){const g=document.getElementById("simCatalogGrid");if(!g)return;g.innerHTML=SIM_SCENARIOS.filter(s=>f==="all"||s.category===f).map(s=>`<article class="simCard" onclick="selectScenario('${s.id}')"><div class="simIcon">${s.icon}</div><span class="simDifficulty">${s.difficulty}</span><h3>${s.name}</h3><p>${s.description}</p><strong>Ver despacho →</strong></article>`).join("")}
 function filterSimCatalog(f,b){document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderSimCatalog(f)}function openSimulatorCatalog(){renderSimCatalog();showScreen("simCatalog")}
 function selectScenario(id){selectedScenario=SIM_SCENARIOS.find(s=>s.id===id);document.getElementById("briefTitle").textContent=selectedScenario.name;document.getElementById("briefDescription").textContent=selectedScenario.dispatch;document.getElementById("briefFacts").innerHTML=selectedScenario.facts.map(x=>`<div class="briefFact"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join("");document.getElementById("briefObjectives").innerHTML=`<ul>${selectedScenario.objectives.map(x=>`<li>${x}</li>`).join("")}</ul>`;document.getElementById("launchScenarioBtn").onclick=()=>launchScenario(id);showScreen("simBrief")}
-async function launchScenario(id){showScreen("simBrief");return;document.getElementById("simScenarioTitle").textContent=selectedScenario.name;const e=await loadEGS3D();await e.init();e.loadScenario(id);renderScenarioActions(id);e.start()}
-function exitSimulation(){window.EGS3D?.pause?.();showScreen("simulator");Catalog()}
+function launchScenario(id) {
+    // Abrir la pantalla de intervención
+    showScreen("simulator");
+
+    // Recuperar el escenario seleccionado si hiciera falta
+    if (!selectedScenario || selectedScenario.id !== id) {
+        selectedScenario = SIM_SCENARIOS.find(s => s.id === id);
+    }
+
+    // Si no existe el escenario, detener
+    if (!selectedScenario) {
+        console.error("No se encontró el escenario:", id);
+        return;
+    }
+
+    // Mostrar el nombre del escenario
+    const title = document.getElementById("simScenarioTitle");
+    if (title) {
+        title.textContent = selectedScenario.name;
+    }
+
+    // Cargar solamente las decisiones y recursos interactivos
+    // SIN cargar el simulador 3D
+    renderScenarioActions(id);
+}
 function renderScenarioActions(id){const A={house:[["recognition","Reconocimiento 360°"],["open_access","Abrir acceso"],["open_window","Abrir ventana"],["cooling","Aplicar agua"],["search","Buscar víctima"]],apartment:[["recognition","Reconocimiento"],["control_door","Controlar puerta"],["cooling","Enfriar"],["open_window","Ventilar"],["search","Buscar"]],warehouse:[["recognition","Reconocimiento"],["protect","Proteger exposición"],["cooling","Ataque con agua"],["ventilate","Ventilar"]],vehicle_fire:[["recognition","Asegurar escena"],["isolate","Aislar"],["deploy_line","Desplegar línea"],["cooling","Aplicar agua"]],vehicle_rescue:[["recognition","Evaluar"],["isolate","Aislar riesgos"],["stabilize","Estabilizar"],["access","Crear acceso"],["extricate","Extricar"]],fire_behavior:[["observe","Observar"],["rollover","Rollover"],["ventilate","Aumentar ventilación"],["flashover","Transición térmica"]],lines:[["deploy_line","Desplegar línea"],["select_fog","Patrón niebla"],["select_straight","Chorro pleno"],["cooling","Abrir agua"]],era:[["era_check","Comprobar ERA"],["enter","Ingresar"],["search","Buscar"],["exit","Salir"]]};document.getElementById("simActions").innerHTML=(A[id]||A.house).map(a=>`<button class="actionBtn" onclick="simAction('${a[0]}')">${a[1]}</button>`).join("")}
 async function startTraining(id){runTraining(await api(`/academy/module/${id}/training?shuffle=true`),id)}async function startIntegral(){runTraining(await api("/academy/integral?limit=20"),"integral")}
 function runTraining(d,id){activeTraining=d.training||[];activeMeta=d.metadata||{};activeMeta._id=id;current=0;correctCount=0;reviewed=0;log=[];seconds=0;answered=false;document.getElementById("trainingTitle").textContent=activeMeta.module_name||"Evaluación integral";showScreen("training");renderStep();startTimer()}
